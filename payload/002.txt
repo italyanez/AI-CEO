@@ -1,0 +1,237 @@
+ems:center}
+  .mid-cta .inline-form .btn,.callback .inline-form .btn{padding-left:18px;padding-right:18px}
+}
+.mid-cta>.form-status:empty,.callback>.form-status:empty{display:none}
+.callback{padding:24px 28px}
+.final-grid{align-items:center}
+.final-copy{grid-column:span 5}
+.final-side{grid-column:span 7;display:grid;grid-template-columns:minmax(180px,210px) minmax(0,1fr);gap:18px;align-items:stretch}
+.founder-card{border:1px solid rgba(255,255,255,.17);background:rgba(255,255,255,.07);border-radius:24px;padding:14px;display:flex;flex-direction:column;color:#fff;min-height:100%}
+.founder-photo{aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.05));display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.12)}
+.founder-photo img{width:100%;height:100%;object-fit:cover}
+.founder-photo-placeholder{padding:18px;text-align:center;color:#b9c9dc;font-size:12px;line-height:1.4}
+.founder-name{font-size:18px;font-weight:900;margin:14px 4px 2px;letter-spacing:-.02em}
+.founder-role{font-size:12px;color:#a9bed8;margin:0 4px 4px}
+.final-form{grid-column:auto;padding:24px;border-radius:24px}
+.final-form .form-title{font-size:19px;margin-bottom:4px}
+.final-form .form-subtitle{font-size:12.5px;color:#7890aa;margin-bottom:16px}
+.final-form .inline-form{grid-template-columns:1fr;gap:11px}
+.final-form .field{display:grid;gap:6px}
+.final-form .field label{font-size:11.5px;font-weight:800;color:#5f738d}
+.final-form input{height:50px}
+.final-form .btn{grid-column:auto;width:100%;min-height:52px;margin-top:2px}
+.final-form .form-note{margin-top:11px}
+footer{padding:38px 0 26px}
+.footer-grid{grid-template-columns:1.05fr 1.55fr 1fr;align-items:start;gap:34px}
+.footer-brand{font-size:19px;margin-bottom:8px}
+.footer-note{font-size:11.5px;line-height:1.55;max-width:34ch}
+.footer-title{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#7f9bbc;font-weight:850;margin-bottom:10px}
+.footer-legal,.footer-contact{font-size:12.5px;line-height:1.65;color:#c0cde0}
+.footer-legal strong{display:block;color:#fff;font-size:12.5px;margin-bottom:4px}
+.footer-contact a{display:block;color:#fff;margin-bottom:4px}
+.footer-links{display:flex;flex-direction:column;gap:8px;font-size:12.5px}
+.footer-links a{color:#c8d6e8}.footer-links a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.09);margin-top:28px;padding-top:16px;font-size:10.5px;color:#7890ad;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:1180px){
+  .hero-form .inline-form{grid-template-columns:1fr 1fr}
+  .hero-form .inline-form .btn{grid-column:1/-1}
+  .final-copy,.final-side{grid-column:1/-1}
+  .final-side{max-width:900px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-contact-wrap{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:768px){
+  .final-side{grid-template-columns:150px minmax(0,1fr)}
+  .founder-card{padding:10px;border-radius:20px}
+  .final-form{padding:20px}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-contact-wrap{grid-column:auto;grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .hero{padding-top:34px}
+  .hero-form .inline-form{grid-template-columns:1fr}
+  .hero-form .inline-form .btn{grid-column:auto}
+  .final-side{grid-template-columns:1fr}
+  .founder-card{display:grid;grid-template-columns:92px 1fr;grid-template-rows:auto auto;column-gap:14px;align-items:center}
+  .founder-photo{grid-row:1/3;aspect-ratio:1/1}
+  .founder-name{margin:0;align-self:end}
+  .founder-role{margin:0;align-self:start}
+}
+
+
+
+/* ===== REAL TEAM SECTION ===== */
+#team.team-section{
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 84% 4%,rgba(20,104,255,.08),transparent 28%),
+    linear-gradient(180deg,#fff 0%,#f6f9fe 100%);
+  padding:88px 28px 96px;
+}
+#team .team-section__inner{max-width:1240px;margin:auto}
+#team .team-section__top{
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);
+  gap:56px;
+  align-items:end;
+  margin-bottom:42px;
+}
+#team .team-section__eyebrow{
+  display:flex;align-items:center;gap:12px;margin-bottom:18px;
+  color:#1468ff;font-size:14px;font-weight:800;letter-spacing:.15em;text-transform:uppercase
+}
+#team .team-section__eyebrow:before{
+  content:"";width:9px;height:9px;border-radius:50%;
+  background:#ff7417;box-shadow:0 0 0 7px rgba(255,116,23,.12)
+}
+#team h2{
+  margin:0;max-width:840px;color:#082755;
+  font-size:clamp(44px,4.3vw,62px);line-height:1.02;letter-spacing:-.045em
+}
+#team .team-section__lead{
+  margin:0 0 3px;max-width:430px;color:#476280;font-size:18px;line-height:1.6
+}
+#team .team-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px
+}
+#team .team-card{
+  overflow:hidden;display:flex;flex-direction:column;
+  background:#fff;border:1px solid #dce7f5;border-radius:24px;
+  box-shadow:0 12px 30px rgba(13,58,112,.055);transition:.2s
+}
+#team .team-card:hover{
+  transform:translateY(-4px);box-shadow:0 20px 46px rgba(13,58,112,.10)
+}
+#team .team-card__photo{
+  height:352px;overflow:hidden;background:#edf3fa;padding:0;margin:0
+}
+#team .team-card__photo img{
+  width:100%;height:100%;display:block;object-fit:cover;
+  transform:none!important;margin:0;padding:0;border:0;border-radius:0
+}
+#team .team-card--vins img{object-position:50% 28%;transform:none!important}
+#team .team-card--ekaterina img{object-position:50% 22%;transform:none!important}
+#team .team-card--bugreev img{object-position:50% 24%;transform:none!important}
+#team .team-card--anna img{object-position:50% 24%;transform:none!important}
+#team .team-card--shchaev img{object-position:50% 18%;transform:none!important}
+#team .team-card--gleb img{object-position:50% 18%;transform:none!important}
+#team .team-card__body{
+  flex:1;display:flex;flex-direction:column;min-height:258px;padding:23px 23px 21px
+}
+#team .team-card__role{
+  margin-bottom:9px;color:#1468ff;font-size:13px;font-weight:800;
+  letter-spacing:.055em;text-transform:uppercase
+}
+#team .team-card__name{
+  margin:0 0 12px;color:#082755;font-size:24px;line-height:1.08;letter-spacing:-.025em
+}
+#team .team-card__desc{margin:0;color:#476280;font-size:16px;line-height:1.52}
+#team .team-card__meta{
+  margin-top:auto;padding-top:18px;border-top:1px solid #e7eef7;
+  color:#7c8faa;font-size:13px;font-weight:700;line-height:1.35
+}
+@media(max-width:1024px){
+  #team.team-section{padding:68px 24px 76px}
+  #team .team-section__top{grid-template-columns:1fr;gap:18px;margin-bottom:34px}
+  #team .team-section__lead{max-width:720px}
+  #team .team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #team .team-card__photo{height:340px}
+}
+@media(max-width:680px){
+  #team.team-section{padding:52px 16px 60px}
+  #team h2{font-size:clamp(38px,10.7vw,50px)}
+  #team .team-section__lead{font-size:17px}
+  #team .team-grid{grid-template-columns:1fr;gap:14px}
+  #team .team-card__photo{height:360px}
+  #team .team-card__body{min-height:0;padding:21px 20px 20px}
+  #team .team-card__meta{margin-top:18px}
+}
+/* ===== END REAL TEAM SECTION ===== */
+
+
+.founder-photo img{object-position:50% 25%}
+
+
+/* ===== CRO semantic pass v2 ===== */
+.product-bridge{background:#fff;border-top:1px solid #edf3fa;border-bottom:1px solid #edf3fa}
+.bridge-wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:44px;align-items:start}
+.bridge-def h2{margin-bottom:16px}
+.bridge-anti{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 14px}
+.bridge-anti span{border:1px solid #d7e5f5;background:#f6f9fe;color:#526a85;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:800}
+.bridge-note{margin:0;color:#60748d;font-size:14px;line-height:1.55;max-width:58ch}
+.bridge-effects{background:#f8fbff;border:1px solid var(--line);border-radius:22px;padding:22px 24px}
+.bridge-effects-title{font-size:13px;font-weight:850;color:var(--navy);margin-bottom:10px;text-transform:uppercase;letter-spacing:.08em}
+.effect-row{padding:14px 0;border-top:1px solid #e8eff7}
+.effect-row:first-of-type{border-top:0}
+.effect-row b{display:block;color:var(--navy);font-size:15px;margin-bottom:3px}
+.effect-row span{display:block;color:#6b7f97;font-size:13.5px;line-height:1.45}
+
+.not-fit{margin-top:24px;padding:22px 24px;background:#fbfdff;border:1px dashed #cbdced;border-radius:20px}
+.not-fit__title{font-weight:900;color:var(--navy);font-size:16px;margin-bottom:12px}
+.not-fit__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 20px}
+.not-fit__grid div{position:relative;padding-left:18px;color:#60758e;font-size:13.5px;line-height:1.45}
+.not-fit__grid div:before{content:"×";position:absolute;left:0;top:0;color:#8a9db4;font-weight:900}
+.not-fit p{margin:14px 0 0;color:#526a85;font-size:13px;font-weight:750}
+
+.board-caption{margin:0 0 14px;color:#aebfd4;font-size:12px;line-height:1.45}
+.micro-next{font-size:11.5px;color:#7589a2;line-height:1.45;margin-top:9px;grid-column:2}
+.micro-next b,.diagnostic-next b{color:var(--navy)}
+
+.calc-example{grid-column:span 7;margin-bottom:16px;border:1px solid var(--line);border-radius:20px;background:#fff;padding:20px 22px}
+.calc-example-tag{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.11em;color:var(--blue);margin-bottom:8px}
+.calc-example h3{font-size:18px;margin-bottom:14px}
+.calc-row{display:grid;grid-template-columns:1.35fr repeat(4,minmax(0,1fr));gap:10px;padding-bottom:14px;border-bottom:1px solid #edf2f7}
+.calc-row small{display:block;color:#8a9aaf;font-size:10.5px;margin-bottom:4px}
+.calc-row b{display:block;color:var(--navy);font-size:13px;line-height:1.3}
+.calc-row .calc-score{color:#0e946e}
+.calc-example>p{margin:12px 0 0;color:#71849b;font-size:12.5px;line-height:1.5}
+
+.diagnostic-next{max-width:900px;margin:18px auto 0;padding:12px 14px;background:#f6f9fe;border:1px solid var(--line);border-radius:12px;color:#647991;font-size:12.5px;text-align:center}
+
+@media(max-width:900px){
+  .bridge-wrap{grid-template-columns:1fr}
+  .not-fit__grid{grid-template-columns:1fr}
+  .calc-example{grid-column:1/-1}
+  .calc-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .micro-next{grid-column:1/-1}
+}
+@media(max-width:520px){
+  .bridge-effects{padding:18px}
+  .calc-row{grid-template-columns:1fr 1fr}
+  .not-fit{padding:18px}
+}
+/* ===== END CRO semantic pass v2 ===== */
+
+</style>
+</head>
+<body>
+<header class="topbar"><div class="container nav"><a class="brand" href="#top">AI <span>ДИРЕКТОР</span></a><nav class="nav-links"><a href="#how">Как работает</a><a href="#solutions">Возможности</a><a href="#team">Команда</a><a href="#cases">Кейсы</a><a href="#price">Цена</a><a href="#faq">FAQ</a></nav><div class="nav-contact"><a class="nav-phone" href="tel:+79201678118" aria-label="Позвонить +7 920 167-81-18"><b>+7 (920) 167-81-18</b><small>Позвонить / Telegram</small></a><a class="btn btn-primary" href="#heroForm">Получить AI-разбор →</a></div></div></header>
+<main id="top">
+<section class="hero"><div class="container hero-grid">
+<div class="hero-copy"><div class="hero-kicker"><i></i>AI-директор для бизнеса</div><h1>Найдём, где бизнес теряет деньги — и что можно отдать <span class="blue">AI</span></h1><p class="lead">Проводим AI-разбор компании, выбираем самые выгодные точки применения и сами внедряем решения, которые увеличивают продажи, сокращают расходы и освобождают команду от ручной работы.</p><div class="benefit-row"><div class="benefit"><b>↑ Больше продаж</b><span>конверсия, повторные сделки, возврат базы</span></div><div class="benefit"><b>↓ Меньше расходов</b><span>ручной труд, ошибки, рекламные потери</span></div><div class="benefit"><b>→ Больше контроля</b><span>аналитика, алерты, прозрачные процессы</span></div></div><div class="hero-form" id="heroForm"><div class="form-title">Покажем 3 зоны бизнеса, которые стоит проверить первыми</div><form class="lead-form inline-form" data-source="hero"><input name="name" placeholder="Имя" required><input name="phone" placeholder="Телефон / Telegram" required><input name="email" type="email" placeholder="Email" required><button class="btn btn-primary" type="submit">Найти 3 возможности за 15 минут →</button></form><div class="form-note"><b>Что дальше:</b> за 15 минут зададим несколько вопросов, назовём 2–3 зоны бизнеса, которые стоит проверить, и скажем, есть ли смысл идти в полноценный AI-разбор.</div><div class="form-status"></div></div></div>
+<aside class="hero-product"><div class="pc-label">Ваш AI-директор</div><div class="pc-price">150 000 ₽ <small>/ месяц</small></div><p>Один ответственный руководитель, за которым стоит профильная команда и библиотека готовых решений.</p><div class="pc-list"><div class="pc-row"><div class="pc-ico">1</div><div><b>Один ответственный</b><span>Не нужно управлять несколькими подрядчиками.</span></div></div><div class="pc-row"><div class="pc-ico">2</div><div><b>Команда специалистов</b><span>Аналитика, продажи, маркетинг, разработка и процессы.</span></div></div><div class="pc-row"><div class="pc-ico">3</div><div><b>Постоянные внедрения</b><span>Одно основное внедрение доводим до результата — затем следующее.</span></div></div><div class="pc-row"><div class="pc-ico">4</div><div><b>Измеримый результат</b><span>Каждый месяц видно, что сделано и какой эффект получен.</span></div></div></div></aside>
+<div class="hero-trust"><div class="trust-bit"><div>₽</div><div><strong>150 000 ₽ фиксированно</strong><span>Цена базовой подписки без «от».</span></div></div><div class="trust-bit"><div>0₽</div><div><strong>Первый созвон бесплатно</strong><span>15 минут, чтобы понять, есть ли смысл.</span></div></div><div class="trust-bit"><div>1</div><div><strong>Один ответственный</strong><span>Одна точка управления всеми внедрениями.</span></div></div><div class="trust-bit"><div>✓</div><div><strong>Прозрачный результат</strong><span>Что внедрено, что в работе, что изменилось.</span></div></div></div>
+</div></section>
+<section class="section compact product-bridge" id="product">
+  <div class="container">
+    <div class="bridge-wrap">
+      <div class="bridge-def">
+        <div class="eyebrow">Простыми словами</div>
+        <h2>Что именно вы покупаете</h2>
+        <p class="lead"><b>AI-директор — внешний руководитель AI-направления и команда внедрения.</b> Он находит, где бизнес теряет деньги и время, считает экономику решений и доводит приоритетные внедрения до измеримого результата.</p>
+        <div class="bridge-anti">
+          <span>Не SaaS</span><span>Не обучение ChatGPT</span><span>Не разовый аудит</span>
+        </div>
+        <p class="bridge-note">Один ответственный человек постоянно держит контекст компании, выбирает следующий приоритет и подключает нужных специалистов.</p>
+      </div>
+      <div class="bridge-effects">
+        <div class="bridge-effects-title">Где возникает экономический эффект</div>
+        <div class="effect-row"><b>Продажи</b><span>меньше потерянных лидов → быстрее обработка → больше доведённых сделок</span></div>
+        <div class="effect-row"><b>Маркетинг</b><span>раньше видим неэффективные расходы → быстрее принимаем решения</span></div>
+        <div class="effect-row"><b>Операционка</b><span>меньше ручной работы → меньше ошибок → больше объёма теми же силами</span></div>
+        <div class="effect-row"><b>Управление</b><span>данные собираются быстрее → отклонения видны раньше → руководитель быстрее реагирует</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="why"><div class="container split12"><div class="span5 why-copy"><div class="eyebrow">Почему сейчас</div><h2>AI уже становится частью себестоимости бизнеса</h2><p class="lead">Две похожие компании могут иметь одинаковую команду и рекламу — но разную производительность, если одна системно использует AI, а другая нет.</p><div class="ai-first"><b>AI-first</b> — это не «внедрить побольше нейросетей». Перед наймом ещё одного сотрудника или ростом отдела компания сначала спрашивает: можно ли решить задачу быстрее, дешевле или качественнее с помощью технологии?</div></div><div cla
