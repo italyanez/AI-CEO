@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071d40"/>
+      <stop offset="1" stop-color="#16457f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="82%" cy="10%" r="62%">
+      <stop offset="0" stop-color="#1769ff" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#1769ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <circle cx="1030" cy="495" r="210" fill="#ff7417" opacity=".12"/>
+  <text x="72" y="105" fill="#ffffff" font-family="DejaVu Sans, Arial, sans-serif" font-size="38" font-weight="700">AI <tspan fill="#64a0ff">ДИРЕКТОР</tspan></text>
+  <text x="72" y="242" fill="#ffffff" font-family="DejaVu Sans, Arial, sans-serif" font-size="64" font-weight="700">Измеримая AI-трансформация</text>
+  <text x="72" y="322" fill="#ffffff" font-family="DejaVu Sans, Arial, sans-serif" font-size="64" font-weight="700">для вашего бизнеса</text>
+  <text x="72" y="418" fill="#c9d7e9" font-family="DejaVu Sans, Arial, sans-serif" font-size="30">Находим, считаем и внедряем решения</text>
+  <rect x="72" y="488" width="356" height="72" rx="20" fill="#ff7417"/>
+  <text x="104" y="535" fill="#ffffff" font-family="DejaVu Sans, Arial, sans-serif" font-size="27" font-weight="700">agentanium.ru</text>
+</svg>
