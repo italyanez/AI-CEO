@@ -2,6 +2,17 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.agentanium.ru"
+        }
+      ],
+      "destination": "https://agentanium.ru/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
