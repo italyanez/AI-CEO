@@ -20,7 +20,8 @@
   <meta name="twitter:title" content="Бесплатный AI-разбор бизнеса — AI ДИРЕКТОР">
   <meta name="twitter:description" content="Найдём 3 способа увеличить прибыль с помощью AI и определим первое решение с максимальным экономическим эффектом.">
   <meta name="twitter:image" content="https://agentanium.ru/og-image.png">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23071426'/%3E%3Cpath d='M13 45 27 14h10l14 31H40l-2.4-6H25.8L23 45H13Zm16-15h5.2L31.7 23 29 30Z' fill='%23fff'/%3E%3Ccircle cx='49' cy='15' r='6' fill='%23ff7a1a'/%3E%3C/svg%3E">
+  <link rel="icon" href="/agentanium-logo-50x50.png" type="image/png" sizes="50x50">
+  <link rel="apple-touch-icon" href="/agentanium-logo-50x50.png">
   <title>Бесплатный AI-разбор бизнеса — AI ДИРЕКТОР</title>
   <style>
     :root {
@@ -118,42 +119,18 @@
       gap: 12px;
       font-size: 20px;
       font-weight: 900;
+      line-height: 1;
       letter-spacing: -.045em;
     }
 
-    .brand-mark {
-      position: relative;
-      display: grid;
-      place-items: center;
+    .brand-logo {
+      display: block;
+      flex: 0 0 auto;
       width: 42px;
       height: 42px;
-      border: 1px solid rgba(98, 163, 255, .38);
-      border-radius: 13px;
-      background: linear-gradient(145deg, rgba(36, 117, 255, .22), rgba(255, 122, 26, .12));
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 12px 30px rgba(36,117,255,.12);
     }
 
-    .brand-mark::before,
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-    }
-
-    .brand-mark::before {
-      width: 18px;
-      height: 18px;
-      border: 2px solid var(--blue-light);
-    }
-
-    .brand-mark::after {
-      width: 6px;
-      height: 6px;
-      background: var(--orange);
-      box-shadow: 0 0 18px var(--orange);
-    }
-
-    .brand span:last-child span { color: var(--blue-light); }
+    .brand-ai { color: var(--blue-light); }
 
     .header-contact {
       display: flex;
@@ -1039,14 +1016,10 @@
       white-space: nowrap;
     }
 
-    .document-brand::before {
-      content: "";
+    .document-brand img {
       flex: 0 0 auto;
       width: 24px;
       height: 24px;
-      border: 6px solid #2475ff;
-      border-radius: 50%;
-      box-shadow: inset 0 0 0 4px #f8fbff;
     }
 
     .document-heading {
@@ -1496,7 +1469,7 @@
       .container { width: min(100% - 28px, var(--max)); }
       .header-contact .btn { display: none; }
       .brand { font-size: 17px; gap: 9px; }
-      .brand-mark { width: 37px; height: 37px; border-radius: 11px; }
+      .brand-logo { width: 37px; height: 37px; }
       .phone strong { font-size: 14px; }
       .phone small { font-size: 10px; }
       .hero { padding: 38px 0 54px; }
@@ -1582,9 +1555,9 @@
 
   <header class="header">
     <div class="container header-row">
-      <a class="brand" href="#top" aria-label="AI Директор — наверх">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span>AI <span>ДИРЕКТОР</span></span>
+      <a class="brand" href="#top" aria-label="AI ДИРЕКТОР — наверх">
+        <img class="brand-logo" src="/agentanium-logo-50x50.png" width="50" height="50" alt="">
+        <span><span class="brand-ai">AI</span> ДИРЕКТОР</span>
       </a>
 
       <div class="header-contact">
@@ -1637,7 +1610,7 @@
 
             <div class="availability">Не более 5 разборов в неделю: каждый готовим заранее и проводим лично</div>
 
-            <p class="hero-definition"><strong>AI-директор</strong> — команда экспертов, которая находит главное узкое место бизнеса и определяет последовательность решений с максимальным экономическим эффектом.</p>
+            <p class="hero-definition"><strong>AI ДИРЕКТОР</strong> — команда экспертов, которая находит главное узкое место бизнеса и определяет последовательность решений с максимальным экономическим эффектом.</p>
           </div>
 
           <div class="hero-portrait">
@@ -1866,7 +1839,7 @@
 
           <div class="solutions-document" aria-label="10 примеров из базы 96 AI-решений">
             <div class="document-top">
-              <div class="document-brand">AI ДИРЕКТОР</div>
+              <div class="document-brand"><img src="/agentanium-logo-50x50.png" width="50" height="50" alt="">AI ДИРЕКТОР</div>
             </div>
 
             <div class="document-heading">
@@ -1953,7 +1926,7 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>AI <span>ДИРЕКТОР</span></span></div>
+          <a class="brand" href="#top" aria-label="AI ДИРЕКТОР — наверх"><img class="brand-logo" src="/agentanium-logo-50x50.png" width="50" height="50" alt=""><span><span class="brand-ai">AI</span> ДИРЕКТОР</span></a>
           <p style="margin-top:12px">Находим главное узкое место бизнеса и внедряем AI-решения с измеримым экономическим эффектом.</p>
         </div>
         <div>
