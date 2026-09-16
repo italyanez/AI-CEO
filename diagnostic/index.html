@@ -2031,6 +2031,7 @@
     </div>
   </div>
 
+  <script src="/assets/lead-delivery.js"></script>
   <script>
     (() => {
       const modal = document.getElementById('leadModal');
@@ -2140,7 +2141,7 @@
         window.history.replaceState({}, '', `${window.location.pathname}${cleanQuery ? `?${cleanQuery}` : ''}${window.location.hash}`);
       }
 
-      forms.forEach(form => form.addEventListener('submit', event => {
+      forms.forEach(form => form.addEventListener('submit', async event => {
         event.preventDefault();
 
         if (!form.reportValidity()) return;
@@ -2172,6 +2173,20 @@
         setHiddenField(form, 'Страница', lead.pageUrl);
         setHiddenField(form, 'Предыдущая страница', lead.referrer || 'Прямой переход');
         Object.entries(attribution).forEach(([key, value]) => setHiddenField(form, key, value));
+
+        try {
+          await window.AgentaniumLeads.send({
+            kind: 'application',
+            leadId,
+            source: `Диагностика · ${form.dataset.formLocation || 'форма'}`,
+            name: lead.name,
+            phone: lead.contact,
+            email: lead.email,
+            fields: { ...attribution, 'Время заявки': lead.createdAt }
+          });
+        } catch (_) {
+          setHiddenField(form, 'Доставка в CRM', 'Требует проверки — отправка продолжена по email');
+        }
 
         let submitted = false;
         const submitForm = () => {
