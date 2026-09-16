@@ -30,7 +30,8 @@
         credentials: 'omit',
         cache: 'no-store',
         keepalive: true,
-        headers: { 'Content-Type': 'application/json' },
+        // text/plain keeps this a simple CORS request and avoids a fragile OPTIONS preflight.
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
         body: JSON.stringify({
           pageUrl: location.href,
           referrer: document.referrer || '',

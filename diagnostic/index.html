@@ -2167,6 +2167,14 @@
         const leadId = (window.crypto && typeof window.crypto.randomUUID === 'function')
           ? window.crypto.randomUUID()
           : `lead-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+        try {
+          window.sessionStorage.setItem('agentaniumLeadContact', JSON.stringify({
+            leadId,
+            name: lead.name,
+            phone: lead.contact,
+            email: lead.email
+          }));
+        } catch (_) {}
         setHiddenField(form, 'ID заявки', leadId);
         setHiddenField(form, '_next', `https://agentanium.ru/diagnostic_thankyou?lead_id=${encodeURIComponent(leadId)}`);
         setHiddenField(form, 'Время заявки', lead.createdAt);
