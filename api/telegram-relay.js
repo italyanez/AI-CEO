@@ -79,8 +79,16 @@ export default async function handler(request, response) {
           ? 'telegram_unauthorized'
           : description.includes("can't initiate conversation")
             ? 'conversation_not_started'
+          : description.includes("bots can't send messages to bots")
+            ? 'recipient_is_bot'
           : description.includes('bot was blocked')
             ? 'bot_blocked'
+            : description.includes('not enough rights')
+              ? 'insufficient_chat_rights'
+              : description.includes('not a member of')
+                ? 'bot_not_chat_member'
+                : description.includes('was kicked from')
+                  ? 'bot_kicked_from_chat'
             : description.includes('user is deactivated')
               ? 'user_deactivated'
               : telegramResponse.status === 403
