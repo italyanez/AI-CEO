@@ -73,6 +73,10 @@ export default async function handler(request, response) {
     const telegramResult = await telegramResponse.json().catch(() => ({}));
     if (!telegramResponse.ok) {
       const description = String(telegramResult.description || '').toLowerCase();
+      console.warn('Telegram sendMessage rejected', {
+        status: telegramResponse.status,
+        description,
+      });
       const reason = description.includes('chat not found')
         ? 'chat_not_found'
         : description.includes('unauthorized')
