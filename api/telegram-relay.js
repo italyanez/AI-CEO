@@ -77,8 +77,14 @@ export default async function handler(request, response) {
         ? 'chat_not_found'
         : description.includes('unauthorized')
           ? 'telegram_unauthorized'
+          : description.includes("can't initiate conversation")
+            ? 'conversation_not_started'
           : description.includes('bot was blocked')
             ? 'bot_blocked'
+            : description.includes('user is deactivated')
+              ? 'user_deactivated'
+              : telegramResponse.status === 403
+                ? 'telegram_forbidden'
             : `telegram_http_${telegramResponse.status}`;
       return reply(response, 502, { ok: false, reason });
     }
