@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Вход — сквозная аналитика</title>
+  <link rel="stylesheet" href="/assets/manrope.css">
+  <link rel="stylesheet" href="./assets/stat.css">
+</head>
+<body class="login-page">
+  <section class="login-art">
+    <div class="login-brand"><span class="brand-mark">A</span><span>AGENTANIUM</span></div>
+    <div class="login-copy">
+      <div class="eyebrow">Сквозная аналитика</div>
+      <h1>Все деньги бизнеса — в одном отчёте</h1>
+      <p>От рекламного расхода и первого лида до заказа, вручения и фактической выручки.</p>
+    </div>
+    <div class="login-foot">Демонстрационный кабинет · данные обезличены</div>
+  </section>
+  <main class="login-side">
+    <form class="login-card" id="loginForm">
+      <h2>Войти в отчёт</h2>
+      <p>Введите данные демонстрационного доступа.</p>
+      <div class="field"><label for="login">Логин</label><input id="login" name="login" autocomplete="username" required></div>
+      <div class="field"><label for="password">Пароль</label><input id="password" name="password" type="password" autocomplete="current-password" required></div>
+      <button class="login-btn" type="submit">Войти</button>
+      <div class="login-status" id="loginStatus" role="alert"></div>
+      <div class="demo-note">Демонстрационный кабинет. Все компании, люди и показатели внутри отчёта вымышлены.</div>
+    </form>
+  </main>
+  <script src="./assets/stat.js"></script>
+</body>
+</html>
