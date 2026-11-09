@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Отчёт КОМ v6 — все разделы</title>
+<title>Отчёт КОМ v7 — все разделы</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -181,6 +181,14 @@ table.grid{border-collapse:separate;border-spacing:0;width:100%;font-size:12.5px
 .grid thead th a:hover{color:var(--ink)}
 .grid thead th.sorted{color:var(--accent)}
 .grid thead th .ar{font-size:9px}
+.grid thead tr.groups th{height:31px;padding:4px 10px;background:color-mix(in srgb,var(--surface-2) 78%,var(--surface));border-bottom:2px solid var(--line);text-align:left;color:var(--ink-2)}
+.grid thead tr.groups th.first{background:var(--surface-2)}
+.grid thead tr.groups th.g-ad{color:#2762bd;background:color-mix(in srgb,#e5efff 72%,var(--surface))}
+.grid thead tr.groups th.g-econ{color:#11964a;background:color-mix(in srgb,#e3f7ea 72%,var(--surface))}
+.grid thead tr.groups button{border:0;background:none;color:inherit;font:inherit;font-size:11.5px;font-weight:800;letter-spacing:.035em;text-transform:uppercase;padding:2px 0;display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.grid thead tr.groups button:hover{filter:brightness(.82)}
+.grid thead tr.groups .gchev{font-size:10px;transition:transform .15s ease}
+.grid thead tr.groups button.folded .gchev{transform:rotate(-90deg)}
 .grid th.first,.grid td.first{position:sticky;left:0;z-index:2;background:var(--surface);text-align:left;min-width:200px;border-right:1px solid var(--line)}
 .grid thead th.first{z-index:4;background:var(--surface-2);text-align:left}
 .grid td{text-align:right}
@@ -457,6 +465,27 @@ body.side-min .sbadge{display:none}
 .setbar{position:sticky;bottom:12px;display:flex;gap:10px;align-items:center;padding:10px 14px;margin-top:12px;z-index:5}
 @media (max-width:1100px){.frow{grid-template-columns:110px 1fr 80px;}.frow .ftr,.frow .floss{grid-column:2/4;text-align:left}.bnums{grid-template-columns:repeat(2,minmax(0,1fr))}.sigwrap,.setg{grid-template-columns:1fr}}
 
+/* directologist report */
+.dnote2{margin-top:10px;font-size:12.5px;color:var(--ink-2);background:var(--accent-soft);border-radius:10px;padding:10px 14px;line-height:1.5}
+.dk9{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:10px}
+.dk9 .kpi{padding:12px}
+.grow-b{font-size:10.5px;font-weight:600;color:var(--warn);background:var(--warn-soft);border-radius:999px;padding:1px 7px}
+.d3c{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.d3c .hb.wide button{grid-template-columns:130px 1fr 110px}
+.dfun5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.dfun5>div{display:flex;flex-direction:column;gap:6px}.dfun5 small{font-size:12px;color:var(--ink-2)}.dfun5 b{font-size:17px}
+.d2c{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px}
+.cflt{gap:8px}.cflt .nin{width:70px}
+.lnkb{border:0;background:none;padding:0;color:var(--accent);font-weight:600;text-align:left;white-space:nowrap!important;text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--accent) 35%,transparent);text-underline-offset:2px}
+.grid tr.selr td{background:var(--accent-soft)}
+.gcmp th.gh{text-align:center;border-left:1px solid var(--line)}
+.gcmp .gs{border-left:1px solid var(--line)}
+.gcmp td,.gcmp th{min-width:62px}
+@media (max-width:1280px){.dk9{grid-template-columns:repeat(5,minmax(0,1fr))}.d3c{grid-template-columns:1fr}}
+@media (max-width:820px){.dk9,.dfun5{grid-template-columns:repeat(2,minmax(0,1fr))}.d2c{grid-template-columns:1fr}}
+
+/* drawer */
+
 /* drawer */
 .ovl{position:fixed;inset:0;background:rgba(10,14,22,.32);z-index:50;opacity:0;pointer-events:none;transition:opacity .2s}
 .ovl.on{opacity:1;pointer-events:auto}
@@ -533,6 +562,7 @@ if(sessionStorage.getItem('agentanium-stat-auth')!=='ok'){location.replace('./lo
     <a class="s-item" href="#overview" data-page="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span class="lbl-t">Обзор</span></a>
     <a class="s-item" href="#sales" data-page="sales"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg><span class="lbl-t">Продажи</span></a>
     <a class="s-item" href="#contractors" data-page="contractors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18.5 14.8c1.7.8 2.7 2.5 3 5.2"/></svg><span class="lbl-t">Подрядчики</span></a>
+    <a class="s-item" href="#director" data-page="director"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V4M4 20h16"/><path d="M8 15l3.5-4 3 2.5L20 7"/><circle cx="20" cy="7" r="1.3"/></svg><span class="lbl-t">Отчёт директолога</span></a>
     <a class="s-item" href="#delivery" data-page="delivery"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg><span class="lbl-t">Доставка</span></a>
     <a class="s-item" href="#funnel" data-page="funnel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg><span class="lbl-t">Воронка</span></a>
     <div class="s-grp">Управление</div>
@@ -735,6 +765,18 @@ if(sessionStorage.getItem('agentanium-stat-auth')!=='ok'){location.replace('./lo
 <main class="page" id="pg-settings" hidden>
   <section class="sec" id="st-main"><div class="sec-h"><h2>Настройки отчёта</h2><span class="meta">планы, пороги и экономика — клиент настраивает отчёт под себя</span></div><div class="body"></div></section>
 </main>
+<main class="page" id="pg-director" hidden>
+  <section class="sec" id="dr-head"><div class="sec-h"><h2>Отчёт директолога</h2><span class="meta">расход и отдача по направлениям, все кампании, сравнение периодов, динамика</span></div><div class="body"></div></section>
+  <section class="sec" id="dr-kpi"><div class="body"></div></section>
+  <section class="sec" id="dr-ch"><div class="body"></div></section>
+  <section class="sec" id="dr-fun"><div class="body"></div></section>
+  <section class="sec" id="dr-tbl"><div class="sec-h"><h2>Сводная таблица</h2><span class="meta">клик по заголовку — сортировка</span></div><div class="body"></div></section>
+  <section class="sec" id="dr-camp"><div class="sec-h"><h2>Все кампании за период</h2><span class="meta">клик по названию — карточка кампании</span></div><div class="body"></div></section>
+  <section class="sec" id="dr-cmp"><div class="sec-h"><h2>Сравнение с предыдущим периодом</h2><span class="meta">окно той же длины до выбранного периода</span></div><div class="body"></div></section>
+  <section class="sec" id="dr-dir"><div class="sec-h"><h2>По направлениям</h2><span class="meta">текущий период, предыдущий и изменение</span></div><div class="body"></div></section>
+  <section class="sec" id="dr-dyn"><div class="body"></div></section>
+  <footer class="foot"><span>Только платный трафик · кампании, направления и лендинги вымышлены</span><span>Данные демонстрационные.</span></footer>
+</main>
 </div>
 <aside class="drawer" id="genDr" aria-hidden="true"></aside>
 <aside class="drawer" id="actDr" aria-label="Действие" aria-hidden="true"></aside>
@@ -835,13 +877,16 @@ for(let d=0;d<ND;d++){
       const dlv=shp*.78*mat*nz(.08);
       const cash=dlv*.97*cmat;
       const ca=(ci*3+li*2+pi)%CAM.length,ad=(ca*2+pi+d)%ADS.length,m=(ci*5+pi*2+li)%ANALYTICS_MGR.length,ds=(pi+li+ci)%ANALYTICS_DELIVERY.length;
-      R.push({d,c:ci,pl:li,ca,ad,p:pi,m,ds,spend:s,leads,qual,orders,sum,shp,dlv,cash});
+      const ctr=(.016+li*.004+ci*.0015)*nz(.12),clicks=s/(2.6+li*1.15+ci*.17)*nz(.08),impressions=clicks/ctr;
+      const cogs=sum*[.30,.34,.31,.36,.28,.42][pi],ops=orders*(310+li*35)+dlv*.018,returns=Math.max(0,shp-dlv)*.075;
+      R.push({d,c:ci,pl:li,ca,ad,p:pi,m,ds,spend:s,impressions,clicks,leads,qual,orders,sum,shp,dlv,cash,cogs,ops,returns});
     }));
   });
   PRD.forEach((p,pi)=>{
     const leads=sround(46*wk*p.w*nz(.18)*part), qual=sround(leads*.62), orders=sround(leads*.2*nz(.2));
     const sum=orders*p.chk*nz(.15), shp=sum*.9, dlv=shp*.8*mat, cash=dlv*.97*cmat;
-    R.push({d,c:-1,pl:ORG,ca:-1,ad:-1,p:pi,m:(pi+d)%ANALYTICS_MGR.length,ds:pi%ANALYTICS_DELIVERY.length,spend:0,leads,qual,orders,sum,shp,dlv,cash});
+    const cogs=sum*[.30,.34,.31,.36,.28,.42][pi],ops=orders*280+dlv*.016,returns=Math.max(0,shp-dlv)*.065;
+    R.push({d,c:-1,pl:ORG,ca:-1,ad:-1,p:pi,m:(pi+d)%ANALYTICS_MGR.length,ds:pi%ANALYTICS_DELIVERY.length,spend:0,impressions:0,clicks:0,leads,qual,orders,sum,shp,dlv,cash,cogs,ops,returns});
   });
   BASE[d]=14000*wk*(.55+R0()*.9)*part;
 }
@@ -852,14 +897,21 @@ const PLAN={spend:118000,sum:860000,roas:620,leads:310,cr:24,avg:15600,buy:78};
 /* ---------- state ---------- */
 const COLS=[
  {k:'spend',t:'Расход, ₽',g:'Реклама',f:o=>o.spend||null,fm:fN},
- {k:'sum',t:'Сумма заказов, ₽',g:'Продажи',f:o=>o.sum,fm:fN,bar:1},
- {k:'roas',t:'ROAS, %',g:'Реклама',f:o=>o.spend?o.sum/o.spend*100:null,fm:v=>fP(v,0),tl:'roas'},
- {k:'drr',t:'ДРР, %',g:'Реклама',f:o=>o.spend&&o.sum?o.spend/o.sum*100:null,fm:v=>fP(v,1),tl:'drr'},
- {k:'leads',t:'Лиды, шт',g:'Реклама',f:o=>o.leads,fm:fN},
+ {k:'impressions',t:'Показы, шт',g:'Реклама',f:o=>o.impressions||null,fm:fN},
+ {k:'cpm',t:'CPM, ₽',g:'Реклама',f:o=>o.spend&&o.impressions?o.spend/o.impressions*1000:null,fm:fN},
+ {k:'clicks',t:'Клики, шт',g:'Реклама',f:o=>o.clicks||null,fm:fN},
+ {k:'ctr',t:'CTR, %',g:'Реклама',f:o=>o.impressions?o.clicks/o.impressions*100:null,fm:v=>fP(v,1)},
+ {k:'cpc',t:'CPC, ₽',g:'Реклама',f:o=>o.clicks?o.spend/o.clicks:null,fm:v=>nfd(1).format(v)},
+ {k:'landcr',t:'CR лендинга, %',g:'Реклама',f:o=>o.clicks?o.leads/o.clicks*100:null,fm:v=>fP(v,2)},
+ {k:'leads',t:'Лиды CRM, шт',g:'Реклама',f:o=>o.leads,fm:fN},
+ {k:'cac',t:'CAC, ₽',g:'Реклама',f:o=>o.spend&&o.orders?o.spend/o.orders:null,fm:fN},
  {k:'cpl',t:'CPL, ₽',g:'Реклама',f:o=>o.spend&&o.leads?o.spend/o.leads:null,fm:fN},
  {k:'qual',t:'Квал. лиды, шт',g:'Реклама',f:o=>o.qual,fm:fN},
  {k:'qsh',t:'Доля квал., %',g:'Реклама',f:o=>o.leads?o.qual/o.leads*100:null,fm:v=>fP(v,1)},
  {k:'cpql',t:'Цена квал. лида, ₽',g:'Реклама',f:o=>o.spend&&o.qual?o.spend/o.qual:null,fm:fN},
+ {k:'roas',t:'ROAS, %',g:'Реклама',f:o=>o.spend?o.sum/o.spend*100:null,fm:v=>fP(v,0),tl:'roas'},
+ {k:'drr',t:'ДРР, %',g:'Реклама',f:o=>o.spend&&o.sum?o.spend/o.sum*100:null,fm:v=>fP(v,1),tl:'drr'},
+ {k:'sum',t:'Сумма заказов, ₽',g:'Продажи',f:o=>o.sum,fm:fN,bar:1},
  {k:'orders',t:'Заказы, шт',g:'Продажи',f:o=>o.orders,fm:fN},
  {k:'cr',t:'CR лид → заказ, %',g:'Продажи',f:o=>o.leads?o.orders/o.leads*100:null,fm:v=>fP(v,1)},
  {k:'crq',t:'CR квал → заказ, %',g:'Продажи',f:o=>o.qual?o.orders/o.qual*100:null,fm:v=>fP(v,1)},
@@ -868,10 +920,18 @@ const COLS=[
  {k:'shp',t:'Отгружено, %',g:'Логистика',f:o=>o.sum?o.shp/o.sum*100:null,fm:v=>fP(v,1)},
  {k:'buy',t:'Выкуп, %',g:'Логистика',f:o=>o.shp?o.dlv/o.shp*100:null,fm:v=>fP(v,1)},
  {k:'dlv',t:'Вручено, ₽',g:'Логистика',f:o=>o.dlv,fm:fN},
- {k:'cash',t:'Касса, ₽',g:'Логистика',f:o=>o.cash,fm:fN}
+ {k:'cash',t:'Касса, ₽',g:'Логистика',f:o=>o.cash,fm:fN},
+ {k:'adcost',t:'Реклама, ₽',g:'Экономика',f:o=>o.spend||null,fm:fN},
+ {k:'cogs',t:'Себестоимость продукции, ₽',g:'Экономика',f:o=>o.cogs||null,fm:fN},
+ {k:'cogsp',t:'Себестоимость, %',g:'Экономика',f:o=>o.sum?o.cogs/o.sum*100:null,fm:v=>fP(v,1)},
+ {k:'ops',t:'ОП + выкуп, ₽',g:'Экономика',f:o=>o.ops||null,fm:fN},
+ {k:'returns',t:'Возвратная логистика, ₽',g:'Экономика',f:o=>o.returns||null,fm:fN},
+ {k:'totalcost',t:'Общие расходы, ₽',g:'Экономика',f:o=>(o.spend||0)+(o.cogs||0)+(o.ops||0)+(o.returns||0),fm:fN},
+ {k:'margin',t:'Маржа, ₽',g:'Экономика',f:o=>(o.cash||0)-((o.spend||0)+(o.cogs||0)+(o.ops||0)+(o.returns||0)),fm:fN},
+ {k:'marginp',t:'Маржинальность, %',g:'Экономика',f:o=>o.cash?((o.cash||0)-((o.spend||0)+(o.cogs||0)+(o.ops||0)+(o.returns||0)))/o.cash*100:null,fm:v=>fP(v,1)}
 ];
 const CMAP=Object.fromEntries(COLS.map(c=>[c.k,c]));
-const DEF_ORDER=COLS.map(c=>c.k), DEF_HIDDEN=['cpql','crq','epl','cash'];
+const DEF_ORDER=COLS.map(c=>c.k), DEF_HIDDEN=['spend','cpl','qual','qsh','roas','drr','crq','epl','cash'];
 const DIMS={
  c:{n:'Подрядчик',list:CON.map((c,i)=>i)},
  pl:{n:'Площадка',list:[0,1,2,3]},
@@ -883,14 +943,14 @@ const DIMS={
 };
 const dimName=(dim,v)=>dim==='c'?(v<0?'Без подрядчика':CON[v].n):dim==='pl'?PLT[v].n:dim==='ca'?CAM[v]:dim==='ad'?ADS[v]:dim==='p'?PRD[v].n:dim==='m'?ANALYTICS_MGR[v]:ANALYTICS_DELIVERY[v];
 
-const S={preset:'month',a:TI-29,b:TI,axis:'order',dim:'c',dim2:'pl',sort:{k:'sum',dir:-1},exp:new Set(),cols:[...DEF_ORDER],hidden:new Set(DEF_HIDDEN),mx:'p'};
+const S={preset:'month',a:TI-29,b:TI,axis:'order',dim:'c',dim2:'pl',sort:{k:'sum',dir:-1},exp:new Set(),fold:new Set(),cols:[...DEF_ORDER],hidden:new Set(DEF_HIDDEN),mx:'p'};
 try{const sv=JSON.parse(localStorage.getItem('kom-cols')||'null');if(sv&&Array.isArray(sv.cols)&&sv.cols.every(k=>CMAP[k])&&sv.cols.length===COLS.length){S.cols=sv.cols;S.hidden=new Set(sv.hidden)}}catch(e){}
 
 const AXSH={order:0,lead:2,deliv:-8};
 const AXN={order:'по заказу',lead:'по лиду',deliv:'по вручению'};
 
 /* ---------- aggregation ---------- */
-const blank=()=>({spend:0,leads:0,qual:0,orders:0,sum:0,shp:0,dlv:0,cash:0});
+const blank=()=>({spend:0,impressions:0,clicks:0,leads:0,qual:0,orders:0,sum:0,shp:0,dlv:0,cash:0,cogs:0,ops:0,returns:0});
 const add=(t,o)=>{for(const k in t)t[k]+=o[k];return t};
 function cube(a,b){
   const sh=AXSH[S.axis], m=new Map();
@@ -900,8 +960,8 @@ function cube(a,b){
     if(!inB&&!inM)continue;
     const k=[r.c,r.pl,r.ca,r.ad,r.p,r.m,r.ds].join('|');
     let o=m.get(k); if(!o){o=blank();o.c=r.c;o.pl=r.pl;o.ca=r.ca;o.ad=r.ad;o.p=r.p;o.m=r.m;o.ds=r.ds;m.set(k,o)}
-    if(inB){o.spend+=r.spend;o.leads+=r.leads;o.qual+=r.qual}
-    if(inM){o.orders+=r.orders;o.sum+=r.sum;o.shp+=r.shp;o.dlv+=r.dlv;o.cash+=r.cash}
+    if(inB){o.spend+=r.spend;o.impressions+=r.impressions;o.clicks+=r.clicks;o.leads+=r.leads;o.qual+=r.qual}
+    if(inM){o.orders+=r.orders;o.sum+=r.sum;o.shp+=r.shp;o.dlv+=r.dlv;o.cash+=r.cash;o.cogs+=r.cogs;o.ops+=r.ops;o.returns+=r.returns}
   }
   let base=0;for(let d=a;d<=b;d++)base+=BASE[d]||0;
   return {cells:[...m.values()],base,a,b};
@@ -1004,7 +1064,7 @@ $('#mxBy').addEventListener('click',e=>{const b=e.target.closest('button');if(!b
 $('#themeBtn').addEventListener('click',()=>{const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=dark?'light':'dark';renderCharts(document.querySelector('#sec-charts .body'));renderKpi(document.querySelector('#sec-kpi .body'))});
 
 /* nav scrollspy */
-function buildNav(){const PG=PAGES[S.page];$('#nav').innerHTML=PG.secs.map((x,i)=>`<button data-go="${x[0]}" class="${i?'':'on'}">${PG.nav[i]}</button>`).join('');$('#ptitle').textContent=PG.t;document.title='Отчёт КОМ v6 · '+PG.t;$$('.s-item[data-page]').forEach(a=>a.classList.toggle('on',a.dataset.page===S.page))}
+function buildNav(){const PG=PAGES[S.page];$('#nav').innerHTML=PG.secs.map((x,i)=>`<button data-go="${x[0]}" class="${i?'':'on'}">${PG.nav[i]}</button>`).join('');$('#ptitle').textContent=PG.t;document.title='Отчёт КОМ v7 · '+PG.t;$$('.s-item[data-page]').forEach(a=>a.classList.toggle('on',a.dataset.page===S.page))}
 function go(page){if(!PAGES[page])page='overview';$$('.drawer.on').forEach(d=>{d.classList.remove('on');d.setAttribute('aria-hidden','true')});$('#ovl').classList.remove('on');const ch=page!==S.page||!$('#nav').children.length;S.page=page;Object.keys(PAGES).forEach(k=>{document.getElementById('pg-'+k).hidden=k!==page});document.body.classList.remove('side-open');$('.period').hidden=['growth','brief','signals','settings'].includes(page);if(ch){buildNav();scrollTo(0,0);refresh()}}
 addEventListener('hashchange',()=>go(location.hash.slice(1)));
 $$('.s-item[data-soon]').forEach(b=>b.addEventListener('click',()=>toast(`Раздел «${b.dataset.soon}» появится в следующей версии`)));
@@ -1165,7 +1225,9 @@ function renderIns(el){
 
 /* ---------- Main table ---------- */
 function renderTable(el){
-  const cols=S.cols.filter(k=>!S.hidden.has(k)).map(k=>CMAP[k]);
+  const allCols=S.cols.filter(k=>!S.hidden.has(k)).map(k=>CMAP[k]);
+  const anchor={Реклама:'cpql',Продажи:'sum',Логистика:'dlv',Экономика:'margin'};
+  const cols=allCols.filter(c=>!S.fold.has(c.g)||c.k===anchor[c.g]||!allCols.some(x=>x.g===c.g&&x.k===anchor[c.g]));
   const C=CUR.cells, dim=S.dim, dim2=S.dim2;
   const rows=DIMS[dim].list.map(v=>{const o=pick(C,x=>x.c>=0&&x[dim]===v);return{v,o,arch:dim==='c'&&CON[v].archFrom!=null}});
   const sc=CMAP[S.sort.k];
@@ -1175,7 +1237,10 @@ function renderTable(el){
     if(c.tl){const cl=c.tl==='roas'?roasCls(v):drrCls(v);return`<td><span class="tl ${cl}">${c.fm(v)}</span></td>`}
     if(c.bar&&isRow)return`<td class="withbar">${c.fm(v)}<span class="b" style="width:${Math.max(2,o.sum/maxSum*60)}px"></span></td>`;
     return`<td>${c.fm(v)}</td>`};
-  const head=`<tr><th class="first">${DIMS[dim].n}<span style="font-weight:400"> → ${DIMS[dim2].n.toLowerCase()}</span></th>${cols.map(c=>`<th class="${S.sort.k===c.k?'sorted':''}"><a href="?sort=${c.k}" data-sort="${c.k}">${c.t}${S.sort.k===c.k?`<span class="ar">${S.sort.dir<0?'▼':'▲'}</span>`:''}</a></th>`).join('')}</tr>`;
+  const groups=[];cols.forEach(c=>{const last=groups[groups.length-1];if(last&&last.g===c.g)last.n++;else groups.push({g:c.g,n:1})});
+  const gcls=g=>g==='Реклама'?'g-ad':g==='Экономика'?'g-econ':'';
+  const ghead=`<tr class="groups"><th class="first" rowspan="2">${DIMS[dim].n}<span style="font-weight:400"> → ${DIMS[dim2].n.toLowerCase()}</span></th>${groups.map(x=>`<th colspan="${x.n}" class="${gcls(x.g)}"><button data-fold="${x.g}" class="${S.fold.has(x.g)?'folded':''}" title="${S.fold.has(x.g)?'Развернуть':'Свернуть'} группу «${x.g}»"><span>${x.g} ${allCols.filter(c=>c.g===x.g).length}</span><span class="gchev">▼</span></button></th>`).join('')}</tr>`;
+  const head=`${ghead}<tr>${cols.map(c=>`<th class="${S.sort.k===c.k?'sorted':''}"><a href="?sort=${c.k}" data-sort="${c.k}">${c.t}${S.sort.k===c.k?`<span class="ar">${S.sort.dir<0?'▼':'▲'}</span>`:''}</a></th>`).join('')}</tr>`;
   const tr=(cls,name,o,isRow)=>`<tr class="${cls}"><td class="first">${name}</td>${cols.map(c=>cell(c,o,isRow)).join('')}</tr>`;
   let body=tr('tot','Всего по CRM',TC.all)+tr('tot soft','Органика и прочее',TC.org)+tr('tot sep','Итого по разрезу',TC.paid);
   rows.forEach(r=>{
@@ -1190,6 +1255,7 @@ function renderTable(el){
   el.innerHTML=`<div class="twrap"><table class="grid"><thead>${head}</thead><tbody>${body}</tbody></table></div>
    <div class="tnote"><span>${hid.length?'Скрыто: '+hid.join(', '):'Показаны все столбцы'}</span><span>ROAS и ДРР считаются только по платному трафику</span></div>`;
   el.querySelectorAll('[data-sort]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const k=a.dataset.sort;if(S.sort.k===k)S.sort.dir*=-1;else{S.sort.k=k;S.sort.dir=-1}renderTable(el)}));
+  el.querySelectorAll('[data-fold]').forEach(b=>b.addEventListener('click',()=>{const g=b.dataset.fold;S.fold.has(g)?S.fold.delete(g):S.fold.add(g);const sc=el.querySelector('.twrap').scrollLeft;renderTable(el);el.querySelector('.twrap').scrollLeft=sc}));
   el.querySelectorAll('[data-exp]').forEach(b=>b.addEventListener('click',()=>{const v=+b.dataset.exp;S.exp.has(v)?S.exp.delete(v):S.exp.add(v);const sc=el.querySelector('.twrap').scrollLeft;renderTable(el);el.querySelector('.twrap').scrollLeft=sc}));
 }
 
@@ -2357,7 +2423,7 @@ function renderSet(el){
    <div class="card ch"><div><h3>Подключения</h3><div class="ch-s">Откуда отчёт берёт данные</div></div>
     ${[['Яндекс Директ','12 кабинетов'],['VK Реклама','5 кабинетов'],['Telegram Ads','2 кабинета'],['Авито','2 кабинета'],['CRM','заказы, лиды, менеджеры'],['Телефония','звонки и время реакции'],['СДЭК','статусы и реестры оплат'],['Почта России','статусы посылок']].map(x=>`<div class="conn"><span class="dot" style="background:var(--good)"></span><b>${x[0]}</b><span class="cnt-s">${x[1]}</span><span class="cnt-s" style="margin-left:auto">08.11 19:20</span></div>`).join('')}</div>
    <div class="card ch"><div><h3>Доступы</h3><div class="ch-s">Кто какие разделы видит</div></div>
-    ${[['Собственник','все разделы'],['Коммерческий директор','все, кроме настроек'],['Директолог','Обзор, Подрядчики, Воронка'],['РОП','Продажи, Сигналы'],['Логист','Доставка']].map(x=>`<div class="conn"><b>${x[0]}</b><span class="cnt-s" style="margin-left:auto">${x[1]}</span></div>`).join('')}</div></div>
+    ${[['Собственник','все разделы'],['Коммерческий директор','все, кроме настроек'],['Директолог','Отчёт директолога, Обзор, Подрядчики'],['РОП','Продажи, Сигналы'],['Логист','Доставка']].map(x=>`<div class="conn"><b>${x[0]}</b><span class="cnt-s" style="margin-left:auto">${x[1]}</span></div>`).join('')}</div></div>
    <div class="setbar card"><span class="cnt-s">Изменения применяются ко всем разделам после сохранения</span><span class="grow"></span><button class="btn" id="cfRst">Вернуть по умолчанию</button><button class="btn primary" id="cfSave">Сохранить</button></div>`;
   $('#cfSave').addEventListener('click',()=>{let bad=null;el.querySelectorAll('input[data-p]').forEach(i=>{const v=parseFloat(i.value.replace(/[\s ]/g,'').replace(',','.'));if(!isFinite(v)||v<0){bad=bad||i;return}spath(CFG,i.dataset.p,v)});
     if(bad){bad.focus();toast('Проверьте значение в выделенном поле');return}
@@ -2365,6 +2431,185 @@ function renderSet(el){
   $('#cfRst').addEventListener('click',()=>{CFG=clone(CFG_DEF);try{localStorage.removeItem('kom-cfg')}catch(e){}applyCfg();renderSet(el);toast('Настройки по умолчанию')});
 }
 PAGES.settings={t:'Настройки',compute:()=>{},nav:['Настройки'],secs:[['st-main','Настройки',renderSet]]};
+
+/* =================== DIRECTOLOGIST REPORT =================== */
+const SLUG=['son','osanka','sustav','stopy','spina','aks'];
+const LANDS=['demo-son.ru','demo-osanka.ru','demo-sustav.ru','demo-stopy.ru','demo-spina.ru','demo-shop.ru','demo-health.ru','demo-blog.ru','demo-vitrina.ru'];
+const RC=rng(4242);
+const CAMP=[];let CID=118204310;
+const CTPL=[
+ (p,s)=>`ЯДРО ${p2(1+Math.floor(RC()*9))}`,(p,s)=>`SP ${p2(1+Math.floor(RC()*28))}.${p2(8+Math.floor(RC()*3))} МаксПР // ${p} // бюджет`,(p,s)=>`yd_mk_kw_${s}_rf_${['clip','reg','msk','cpa'][Math.floor(RC()*4)]}`,
+ (p,s)=>`Тест ${p2(1+Math.floor(RC()*28))}.${p2(7+Math.floor(RC()*4))} Лид+заказ // ${p} // конверсия`,(p,s)=>`${p} (копия ${2+Math.floor(RC()*8)})`,(p,s)=>`04.11 Клики // ${p} // ${['врачи','домашнее','гимнастика','отзывы'][Math.floor(RC()*4)]}`,
+ (p,s)=>`yd_ne_autotargeting_${s}_${['woman','55+','msk'][Math.floor(RC()*3)]}`,(p,s)=>`var_${s}_CPA_${['MK','fix','lid'][Math.floor(RC()*3)]}_${p2(1+Math.floor(RC()*28))}${p2(9+Math.floor(RC()*2))}`,(p,s)=>`vk_${s}_lookalike_${1+Math.floor(RC()*5)}`,(p,s)=>`tg_${s}_channels_${1+Math.floor(RC()*4)}`
+];
+CON.forEach((c,ci)=>PRD.forEach((p,pi)=>[0,1,2,3].forEach(pl=>{if(!c.pl[pl])return;const n=1+Math.floor(RC()*(c.share>.12?4:2.4));
+  for(let k=0;k<n;k++){const dir=RC()<.12?-1:pi;const t=pl===1?CTPL[8]:pl===2?CTPL[9]:CTPL[Math.floor(RC()*8)];
+    CAMP.push({id:CID+=17+Math.floor(RC()*900),name:t(p.n,SLUG[pi]),c:ci,p:pi,pl,dir,land:dir<0?(RC()<.5?-1:6+Math.floor(RC()*3)):(RC()<.8?pi:6),w:.25+RC(),e:.35+RC()*1.3,el:.7+RC()*.6,pf:.62+RC()*.2})}})));
+const CGRP={};CAMP.forEach(x=>{const k=x.c+'|'+x.p+'|'+x.pl;(CGRP[k]=CGRP[k]||{w:0,we:0,wl:0});CGRP[k].w+=x.w;CGRP[k].we+=x.w*x.e;CGRP[k].wl+=x.w*x.el});
+const DS={c:'all',attr:'lead',dir:'all',q:'',land:'all',dim:'dir',dim2:'',sort:{k:'spend',dir:-1},cf:{q:'',dir:'all',land:'all',s1:'',s2:'',r1:'',r2:''},cs:{k:'spend',dir:-1},page:0,ps:50,sel:new Set()};
+const dirName=v=>v<0?'(направление не определено)':PRD[v].n;
+const landName=v=>v<0?'—':LANDS[v];
+function dCamps(a,b){
+  const sh=DS.attr==='ship'?-1:0,g={};
+  for(const r of R){if(r.c<0)continue;const inB=r.d>=a&&r.d<=b,md=r.d-sh,inM=md>=a&&md<=b;if(!inB&&!inM)continue;const k=r.c+'|'+r.p+'|'+r.pl;const o=g[k]||(g[k]={spend:0,leads:0,qual:0,orders:0,sum:0,shp:0});
+    if(inB){o.spend+=r.spend;o.leads+=r.leads;o.qual+=r.qual}if(inM){if(DS.attr==='ship'){o.orders+=r.orders*(r.sum?r.shp/r.sum:0);o.sum+=r.shp}else{o.orders+=r.orders;o.sum+=r.sum}o.shp+=r.shp}}
+  return CAMP.map(x=>{const o=g[x.c+'|'+x.p+'|'+x.pl],G=CGRP[x.c+'|'+x.p+'|'+x.pl];if(!o)return{...x,spend:0,leads:0,qual:0,orders:0,sum:0,pleads:0,clk:0};
+    const ws=x.w/G.w,wl=x.w*x.el/G.wl,we=x.w*x.e/G.we,sp=o.spend*ws;
+    return{...x,spend:sp,leads:o.leads*wl,qual:o.qual*wl,orders:o.orders*we,sum:o.sum*we,pleads:o.leads*wl*x.pf,clk:sp/CPC[x.pl]}})
+   .filter(x=>(DS.c==='all'||x.c===+DS.c)&&(DS.dir==='all'||x.dir===+DS.dir)&&(DS.land==='all'||x.land===+DS.land)&&(!DS.q||String(x.id).includes(DS.q)));
+}
+const dsum=ls=>{const o={spend:0,leads:0,qual:0,orders:0,sum:0,pleads:0,clk:0};ls.forEach(x=>{for(const k in o)o[k]+=x[k]});return o};
+const dm={roas:o=>o.spend?o.sum/o.spend*100:null,drr:o=>o.sum?o.spend/o.sum*100:null,cpl:o=>o.leads?o.spend/o.leads:null,cpql:o=>o.qual?o.spend/o.qual:null,cps:o=>o.orders>=.5?o.spend/o.orders:null,crl:o=>o.clk?o.pleads/o.clk*100:null,cr:o=>o.leads?o.orders/o.leads*100:null,avg:o=>o.orders>=.5?o.sum/o.orders:null};
+let DC,DCP,DT_,DTP;
+function dirCompute(){const len=S.b-S.a+1;DC=dCamps(S.a,S.b);DCP=dCamps(S.a-len,S.b-len);DT_=dsum(DC);DTP=dsum(DCP)}
+const imm=()=>S.b>TI-10;
+const keyOf=(x,dim)=>dim==='dir'?x.dir:dim==='c'?x.c:dim==='pl'?x.pl:dim==='land'?x.land:x.id;
+const keyName=(k,dim)=>dim==='dir'?dirName(k):dim==='c'?CON[k].n:dim==='pl'?PLT[k].n:dim==='land'?landName(k):(CAMP.find(x=>x.id===k)||{}).name;
+function groupBy(ls,dim){const m=new Map();ls.forEach(x=>{let k=keyOf(x,dim);const o=m.get(k)||{k,ls:[]};o.ls.push(x);m.set(k,o)});return[...m.values()].map(g=>{const o=dsum(g.ls);
+  if(dim==='dir'&&g.k===-1){o.sum=0;o.orders=0}o.k=g.k;o.ls=g.ls;return o})}
+function dirByDir(ls){const g=groupBy(ls,'dir');const un=ls.filter(x=>x.dir<0);PRD.forEach((p,i)=>{const t=g.find(o=>o.k===i);if(!t)return;un.filter(x=>x.p===i).forEach(x=>{t.sum+=x.sum;t.orders+=x.orders})});return g}
+
+function renderDHead(el){
+  const cOpt=`<option value="all">Все подрядчики</option>${CON.map((c,i)=>`<option value="${i}" ${DS.c==i?'selected':''}>${c.n}</option>`).join('')}`;
+  el.innerHTML=`<div class="card gbar">
+   <label class="sel"><span class="lbl">Чей кабинет</span><select id="dC">${cOpt}</select></label>
+   <span class="sel"><span class="lbl">Продажу считаем</span><div class="seg sm" id="dAttr"><button data-a="lead" class="${DS.attr==='lead'?'on':''}">в день прихода заявки</button><button data-a="ship" class="${DS.attr==='ship'?'on':''}">в день отправки в доставку</button></div></span>
+   <span class="grow"></span>
+   <label class="sel"><span class="lbl">Показать только</span><select id="dDir"><option value="all">Все направления</option>${[...PRD.map((p,i)=>[i,p.n]),[-1,'(направление не определено)']].map(x=>`<option value="${x[0]}" ${DS.dir==x[0]?'selected':''}>${x[1]}</option>`).join('')}</select></label>
+   <input id="dQ" class="fsel" placeholder="№ кампании" value="${esc(DS.q)}" style="width:120px" aria-label="Номер кампании">
+   <select id="dLand" class="fsel" aria-label="Лендинг"><option value="all">Все лендинги</option>${LANDS.map((l,i)=>`<option value="${i}" ${DS.land==i?'selected':''}>${l}</option>`).join('')}</select>
+   <button class="btn primary" id="dGo">Применить</button></div>
+   <div class="dnote2">Направление — продукт лендинга. Расход раскладывается по направлениям через карту кампаний, заявки и продажи — через атрибуцию заказа. Расход кампаний, у которых направление не размечено, стоит отдельной строкой «(направление не определено)» и не размазывается по другим строкам.</div>`;
+  $('#dC').addEventListener('change',e=>{DS.c=e.target.value;DS.sel.clear();DS.page=0;refresh()});
+  $$('#dAttr button').forEach(b=>b.addEventListener('click',()=>{DS.attr=b.dataset.a;refresh()}));
+  $('#dGo').addEventListener('click',()=>{DS.dir=$('#dDir').value;DS.q=$('#dQ').value.trim();DS.land=$('#dLand').value;DS.page=0;DS.sel.clear();refresh()});
+  $('#dQ').addEventListener('keydown',e=>{if(e.key==='Enter')$('#dGo').click()});
+}
+function renderDKpi2(el){
+  const o=DT_,p=DTP,gr=imm()?'<span class="grow-b">ещё растёт</span>':'';
+  const fM2=v=>v>=1e7?`<span title="${fR(v)}">${fS(v)}</span>`:fN(v);const K=[['Расход',fM2(o.spend),'₽',delta(o.spend,p.spend,true),''],['Выручка',fM2(o.sum),'₽',delta(o.sum,p.sum),gr],['ROAS',`<span class="c-${roasCls(dm.roas(o))}">${fP(dm.roas(o),0)}</span>`,'',delta(dm.roas(o),dm.roas(p)),gr],
+   ['Лиды',fN(o.leads),'',delta(o.leads,p.leads),''],['Квал. лиды',fN(o.qual),'',delta(o.qual,p.qual),gr],['Продажи',fN(o.orders),'',delta(o.orders,p.orders),gr],
+   ['CPL',fN(dm.cpl(o)),'₽',delta(dm.cpl(o),dm.cpl(p),false,true),''],['CPQL',fN(dm.cpql(o)),'₽',delta(dm.cpql(o),dm.cpql(p),false,true),gr],['CPS (CAC)',fN(dm.cps(o)),'₽',delta(dm.cps(o),dm.cps(p),false,true),gr]];
+  el.innerHTML=`<div class="dk9">${K.map(k=>`<div class="card kpi"><div class="k-top"><span class="k-name">${k[0]}${k[2]?', '+k[2]:''}</span></div><div class="k-val" style="font-size:21px">${k[1]}</div><div class="k-row">${k[3]}${k[4]}</div></div>`).join('')}</div>`;
+}
+function renderDCharts(el){
+  const g=dirByDir(DC).filter(o=>o.spend>0).sort((a,b)=>b.spend-a.spend),tot=DT_.spend||1,un=g.find(o=>o.k===-1);
+  const col=k=>k<0?'var(--c7)':CCOL(k);
+  const bars=g.map(o=>({l:dirName(o.k).replace('(направление не определено)','(не определено)'),v:o.spend,t:fS(o.spend)+' · '+fP(o.spend/tot*100,1),c:o.k<0?'c7':'accent'}));
+  const W=Math.max(260,(el.clientWidth||1100)/3-40),H=230,m={l:44,r:14,t:12,b:30},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const gs=g.filter(o=>o.k>=0),xm=Math.max(...g.map(o=>o.spend))*1.12,ym=nice(Math.max(200,...gs.map(o=>dm.roas(o)||0))*1.1),x=v=>m.l+v/xm*iw,y=v=>m.t+ih-Math.min(v,ym.max)/ym.max*ih,sm=Math.max(...g.map(o=>o.sum))||1;
+  let sc=`<svg viewBox="0 0 ${W} ${H}" height="${H}">`;ym.ticks.forEach(t=>sc+=`<line class="gl" x1="${m.l}" x2="${W-m.r}" y1="${y(t)}" y2="${y(t)}"/><text x="${m.l-6}" y="${y(t)+3.5}" text-anchor="end">${t}%</text>`);
+  sc+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(100)}" y2="${y(100)}" stroke="var(--bad)" stroke-dasharray="4 3"/><text x="${W-m.r}" y="${y(100)-4}" text-anchor="end" style="fill:var(--bad)">100%</text>`;
+  [0,.25,.5,.75,1].forEach(f=>sc+=`<text x="${x(xm*f/1.12)}" y="${H-12}" text-anchor="middle">${fS(xm*f/1.12)}</text>`);
+  g.forEach(o=>{const r=4+Math.sqrt((o.sum||0)/sm)*14,R_=dm.roas(o)||0;sc+=`<circle cx="${x(o.spend)}" cy="${y(R_)}" r="${r}" fill="${col(o.k)}" fill-opacity=".75" stroke="var(--surface)"/><text x="${x(o.spend)+r+3}" y="${y(R_)+4}" style="fill:var(--ink-2);font-size:10.5px">${dirName(o.k).replace('(направление не определено)','(не опр.)')}</text>`});
+  sc+='</svg>';
+  const rb=gs.slice().sort((a,b)=>(dm.roas(b)||0)-(dm.roas(a)||0)),rm=Math.max(...rb.map(o=>dm.roas(o)||0))*1.15||1,bw=iw/rb.length;
+  let rs=`<svg viewBox="0 0 ${W} ${H}" height="${H}">`;rb.forEach((o,i)=>{const v=dm.roas(o)||0,h=v/rm*(ih-10),X=m.l+i*bw+bw*.18,w=bw*.64;rs+=`<rect class="hv2" data-k="${o.k}" x="${X}" y="${m.t+ih-h}" width="${w}" height="${h}" rx="3" fill="var(--${roasCls(v)||'accent'})" opacity=".85"/><text x="${X+w/2}" y="${m.t+ih-h-5}" text-anchor="middle" style="fill:var(--ink);font-weight:700;font-size:10.5px">${fP(v,0)}</text><text x="${X+w/2}" y="${H-12}" text-anchor="middle" style="font-size:10px">${PRD[o.k].n.split(' ')[0]}</text>`});
+  rs+=`<line x1="${m.l}" x2="${W-m.r}" y1="${m.t+ih-CFG.roasLo/rm*(ih-10)}" y2="${m.t+ih-CFG.roasLo/rm*(ih-10)}" stroke="var(--muted)" stroke-dasharray="3 3"/></svg>`;
+  el.innerHTML=`<div class="d3c"><div class="card ch"><div><h3>Куда ушёл бюджет</h3><div class="ch-s">Расход по направлениям и доля в бюджете.${un?` Направление не определено у ${fR(un.spend)} (${fP(un.spend/tot*100,1)})`:''}</div></div>${hbars(bars,'wide')}</div>
+   <div class="card ch"><div><h3>Расход × ROAS</h3><div class="ch-s">По горизонтали — расход, по вертикали — ROAS, размер — выручка. Ниже пунктира 100% расход не отбит</div></div><div class="plot">${sc}</div></div>
+   <div class="card ch"><div><h3>ROAS по направлениям</h3><div class="ch-s">От большего к меньшему, пунктир — порог ${CFG.roasLo}%. Наведите на столбец</div></div><div class="plot">${rs}</div></div></div>`;
+  el.querySelectorAll('.hv2').forEach(r=>{r.addEventListener('mousemove',e=>{const o=rb.find(x=>x.k===+r.dataset.k);showTip(e,`<div class="tt">${PRD[o.k].n}</div><div class="tr"><span>Расход</span><b>${fR(o.spend)}</b></div><div class="tr"><span>Выручка</span><b>${fR(o.sum)}</b></div><div class="tr"><span>Лиды / квал</span><b>${fN(o.leads)} / ${fN(o.qual)}</b></div><div class="tr"><span>Продажи</span><b>${fN(o.orders)}</b></div>`)});r.addEventListener('mouseleave',hideTip)});
+}
+function renderDFun(el){
+  const o=DT_,st=[['Расход',fR(o.spend),1,'var(--c7)'],['Лиды',fN(o.leads),1,'var(--c1)'],['Квал. лиды',fN(o.qual),o.qual/o.leads,'var(--c1)'],['Продажи',fN(o.orders),o.orders/o.leads,'var(--c1)'],['Выручка',fR(o.sum),1,'var(--c7)']];
+  el.innerHTML=`<div class="card ch"><div class="ch-h"><h3>Воронка периода</h3><span class="ch-s">расход → лиды → квал. лиды → продажи → выручка</span></div>
+   <div class="dfun5">${st.map(s=>`<div><small>${s[0]}</small><span class="prog" style="height:16px;border-radius:5px"><span style="width:${s[2]*100}%;background:${s[3]};border-radius:5px"></span></span><b>${s[1]}</b></div>`).join('')}</div>
+   <div class="ch-s">Лид → квал: <b>${fP(o.qual/o.leads*100,1)}</b> · Квал → продажа: <b>${fP(o.orders/o.qual*100,1)}</b> · Лид → продажа: <b>${fP(o.orders/o.leads*100,1)}</b> · ROAS: <b>${fP(dm.roas(o),0)}</b></div></div>`;
+}
+const DCOL=[['spend','Расход, ₽',o=>o.spend,fN],['sum','Сумма заказов, ₽',o=>o.sum,fN],['roas','ROAS',dm.roas,v=>fP(v,0),'roas'],['drr','ДРР',dm.drr,v=>fP(v,1),'drr'],['pleads','Лиды',o=>o.pleads,fN],['leads','Лиды CRM',o=>o.leads,fN],['crl','CR лендинга',dm.crl,v=>fP(v,2)],['cpl','CPL, ₽',dm.cpl,fN],['qual','Квал. лиды',o=>o.qual,fN],['cpql','CPQL, ₽',dm.cpql,fN],['orders','Заказы',o=>o.orders,fN],['cr','CR лид → заказ',dm.cr,v=>fP(v,1)],['cps','CAC, ₽',dm.cps,fN],['avg','Средний чек, ₽',dm.avg,fN]];
+const dcell=(c,o)=>{const v=c[2](o);if(!ok(v)||(v===0&&!['spend','sum','leads','orders','qual','pleads'].includes(c[0])))return'<td class="dash">—</td>';if(c[4]==='roas')return`<td><span class="tl ${roasCls(v)}">${c[3](v)}</span></td>`;if(c[4]==='drr')return`<td><span class="tl ${drrCls(v)}">${c[3](v)}</span></td>`;return`<td>${c[3](v)}</td>`};
+const DDIM={dir:'Направление',c:'Подрядчик',pl:'Площадка',land:'Лендинг',camp:'Кампания'};
+function renderDTable(el){
+  const g=(DS.dim==='dir'?dirByDir(DC):groupBy(DC,DS.dim)).filter(o=>o.spend>0||o.sum>0);
+  const sc=DCOL.find(c=>c[0]===DS.sort.k);g.sort((a,b)=>{const x=sc[2](a),y=sc[2](b);if(!ok(x))return 1;if(!ok(y))return-1;return(x-y)*DS.sort.dir});
+  const sel=(id,v,opts)=>`<select id="${id}" class="fsel">${opts.map(o=>`<option value="${o[0]}" ${v===o[0]?'selected':''}>${o[1]}</option>`).join('')}</select>`;
+  let body=`<tr class="tot sep"><td class="first">Итого</td>${DCOL.map(c=>dcell(c,DT_)).join('')}</tr>`;
+  g.forEach(o=>{body+=`<tr><td class="first"><b style="font-weight:600">${esc(keyName(o.k,DS.dim))}</b></td>${DCOL.map(c=>dcell(c,o)).join('')}</tr>`;
+    if(DS.dim2){groupBy(o.ls,DS.dim2).filter(x=>x.spend>0).sort((a,b)=>b.spend-a.spend).slice(0,12).forEach(x=>{body+=`<tr class="child"><td class="first">${esc(keyName(x.k,DS.dim2))}</td>${DCOL.map(c=>dcell(c,x)).join('')}</tr>`})}});
+  el.innerHTML=`<div class="card tcard"><div class="toolbar">${sel('dDim',DS.dim,Object.entries(DDIM).filter(x=>x[0]!=='camp'))}${sel('dDim2',DS.dim2,[['','Не раскрывать'],...Object.entries(DDIM).filter(x=>x[0]!==DS.dim).map(x=>[x[0],'Раскрыть по: '+x[1].toLowerCase()])])}<span class="grow"></span><div class="legend-inline"><span><i class="dot" style="background:var(--bad)"></i>ROAS ниже ${CFG.roasLo}%</span><span><i class="dot" style="background:var(--warn)"></i>${CFG.roasLo}–${CFG.roasHi}%</span><span><i class="dot" style="background:var(--good)"></i>выше ${CFG.roasHi}%</span></div></div>
+   <div class="twrap" style="max-height:560px"><table class="grid"><thead><tr><th class="first">${DDIM[DS.dim]}</th>${DCOL.map(c=>`<th class="${DS.sort.k===c[0]?'sorted':''}"><a href="?s=${c[0]}" data-s="${c[0]}">${c[1]}${DS.sort.k===c[0]?`<span class="ar">${DS.sort.dir<0?'▼':'▲'}</span>`:''}</a></th>`).join('')}</tr></thead><tbody>${body}</tbody></table></div>
+   <div class="tnote"><span>Лиды — конверсии площадки, Лиды CRM — заявки в CRM. ROAS, CPL, CPQL, CAC посчитаны из сложенного</span></div></div>`;
+  $('#dDim').addEventListener('change',e=>{DS.dim=e.target.value;if(DS.dim2===DS.dim)DS.dim2='';renderDTable(el)});$('#dDim2').addEventListener('change',e=>{DS.dim2=e.target.value;renderDTable(el)});
+  el.querySelectorAll('[data-s]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const k=a.dataset.s;if(DS.sort.k===k)DS.sort.dir*=-1;else DS.sort={k,dir:-1};renderDTable(el)}));
+}
+const CCOLS=[['spend','Расход, ₽',o=>o.spend,fN],['leads','Лиды',o=>o.leads,fN],['qual','Квал. лиды',o=>o.qual,fN],['orders','Продажи',o=>o.orders,fN],['sum','Сумма продаж, ₽',o=>o.sum,fN],['roas','ROAS',dm.roas,v=>fP(v,0),'roas'],['cpl','CPL, ₽',dm.cpl,fN],['cpql','CPQL, ₽',dm.cpql,fN],['cps','CPS, ₽',dm.cps,fN]];
+function renderDCamps(el){
+  const F=DS.cf,num=v=>{const x=parseFloat(String(v).replace(/[\s ]/g,'').replace(',','.'));return isFinite(x)?x:null};
+  let ls=DC.filter(x=>x.spend>0||x.sum>0).filter(x=>(!F.q||x.name.toLowerCase().includes(F.q.toLowerCase())||String(x.id).includes(F.q))&&(F.dir==='all'||x.dir===+F.dir)&&(F.land==='all'||x.land===+F.land)&&(num(F.s1)==null||x.spend>=num(F.s1))&&(num(F.s2)==null||x.spend<=num(F.s2))&&(num(F.r1)==null||(dm.roas(x)||0)>=num(F.r1))&&(num(F.r2)==null||(dm.roas(x)||0)<=num(F.r2)));
+  const sc=CCOLS.find(c=>c[0]===DS.cs.k);ls.sort((a,b)=>{const x=sc[2](a),y=sc[2](b);if(!ok(x))return 1;if(!ok(y))return-1;return(x-y)*DS.cs.dir});
+  const pages=Math.max(1,Math.ceil(ls.length/DS.ps));DS.page=Math.min(DS.page,pages-1);const pg=ls.slice(DS.page*DS.ps,(DS.page+1)*DS.ps);
+  const tot=dsum(ls),selL=ls.filter(x=>DS.sel.has(x.id)),st=dsum(selL);
+  const cc=(c,o)=>{const v=c[2](o);if(!ok(v))return'<td class="dash">—</td>';if(c[4])return`<td><span class="tl ${roasCls(v)}">${c[3](v)}</span></td>`;return`<td>${c[3](v)}</td>`};
+  const dOpt=[['all','Все направления'],...PRD.map((p,i)=>[String(i),p.n]),['-1','(не определено)']],lOpt=[['all','Все лендинги'],...LANDS.map((l,i)=>[String(i),l])];
+  el.innerHTML=`<div class="card tcard"><div class="toolbar cflt">
+    <input id="cQ" class="fsel" placeholder="Поиск по названию или номеру" value="${esc(F.q)}" style="width:220px" aria-label="Поиск кампании">
+    <select id="cDir" class="fsel" aria-label="Направление">${dOpt.map(o=>`<option value="${o[0]}" ${F.dir===o[0]?'selected':''}>${o[1]}</option>`).join('')}</select>
+    <select id="cLand" class="fsel" aria-label="Лендинг">${lOpt.map(o=>`<option value="${o[0]}" ${F.land===o[0]?'selected':''}>${o[1]}</option>`).join('')}</select>
+    <span class="cnt-s">расход</span><input id="cS1" class="fsel nin" placeholder="от" value="${esc(F.s1)}"><input id="cS2" class="fsel nin" placeholder="до" value="${esc(F.s2)}">
+    <span class="cnt-s">ROAS</span><input id="cR1" class="fsel nin" placeholder="от" value="${esc(F.r1)}"><input id="cR2" class="fsel nin" placeholder="до" value="${esc(F.r2)}"><span class="cnt-s">%</span>
+    <button class="btn primary" id="cGo">Показать</button><span class="grow"></span><span class="cnt-s">Отмечено: <b>${DS.sel.size}</b>${DS.sel.size?' <button class="btn ghost" id="cClr" style="padding:2px 8px">снять</button>':''}</span></div>
+   <div class="twrap" style="max-height:640px"><table class="grid"><thead><tr><th class="first" style="min-width:330px"><span class="rowname"><input type="checkbox" id="cAll" aria-label="Отметить все на странице" ${pg.length&&pg.every(x=>DS.sel.has(x.id))?'checked':''}>Кампания</span></th><th style="text-align:left">Направление</th><th style="text-align:left">Лендинг</th><th style="text-align:left">Подрядчик</th>
+    ${CCOLS.map(c=>`<th class="${DS.cs.k===c[0]?'sorted':''}"><a href="?c=${c[0]}" data-cs="${c[0]}">${c[1]}${DS.cs.k===c[0]?`<span class="ar">${DS.cs.dir<0?'▼':'▲'}</span>`:''}</a></th>`).join('')}</tr></thead><tbody>
+    ${pg.map(x=>`<tr class="${DS.sel.has(x.id)?'selr':''}"><td class="first"><span class="rowname"><input type="checkbox" data-id="${x.id}" ${DS.sel.has(x.id)?'checked':''} aria-label="Отметить ${esc(x.name)}"><button class="lnkb" data-cp="${x.id}">${esc(x.name)}</button> <span class="cnt-s">${x.id}</span></span></td><td class="l">${x.dir<0?'<span class="dash">—</span>':PRD[x.dir].n}</td><td class="l">${landName(x.land)}</td><td class="l">${CON[x.c].n} · ${PLT[x.pl].n.split(' ')[0]}</td>${CCOLS.map(c=>cc(c,x)).join('')}</tr>`).join('')}
+    ${DS.sel.size?`<tr class="tot"><td class="first">Отмечено (${selL.length})</td><td></td><td></td><td></td>${CCOLS.map(c=>cc(c,st)).join('')}</tr>`:''}
+    <tr class="tot sep"><td class="first">Итого по фильтру (${ls.length})</td><td></td><td></td><td></td>${CCOLS.map(c=>cc(c,tot)).join('')}</tr></tbody></table></div>
+   <div class="tnote"><span>стр. ${DS.page+1} из ${pages} · строки ${ls.length?DS.page*DS.ps+1:0}–${Math.min(ls.length,(DS.page+1)*DS.ps)} из ${ls.length} <button class="btn ghost" id="cPrev" ${DS.page?'':'disabled'}>← назад</button><button class="btn ghost" id="cNext" ${DS.page<pages-1?'':'disabled'}>вперёд →</button></span><span>строк: ${[25,50,100,200].map(n=>`<button class="btn ghost ${DS.ps===n?'c-acc':''}" data-ps="${n}" style="padding:2px 6px;${DS.ps===n?'font-weight:700':''}">${n}</button>`).join('')}</span></div></div>`;
+  const go=()=>{Object.assign(DS.cf,{q:$('#cQ').value.trim(),dir:$('#cDir').value,land:$('#cLand').value,s1:$('#cS1').value,s2:$('#cS2').value,r1:$('#cR1').value,r2:$('#cR2').value});DS.page=0;renderDCamps(el)};
+  $('#cGo').addEventListener('click',go);el.querySelectorAll('.cflt input').forEach(i=>i.addEventListener('keydown',e=>{if(e.key==='Enter')go()}));
+  el.querySelectorAll('[data-cs]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const k=a.dataset.cs;if(DS.cs.k===k)DS.cs.dir*=-1;else DS.cs={k,dir:-1};renderDCamps(el)}));
+  el.querySelectorAll('input[data-id]').forEach(c=>c.addEventListener('change',()=>{const id=+c.dataset.id;c.checked?DS.sel.add(id):DS.sel.delete(id);renderDCamps(el)}));
+  $('#cAll').addEventListener('change',e=>{pg.forEach(x=>e.target.checked?DS.sel.add(x.id):DS.sel.delete(x.id));renderDCamps(el)});
+  const cl=$('#cClr');if(cl)cl.addEventListener('click',()=>{DS.sel.clear();renderDCamps(el)});
+  $('#cPrev').addEventListener('click',()=>{DS.page--;renderDCamps(el)});$('#cNext').addEventListener('click',()=>{DS.page++;renderDCamps(el)});
+  el.querySelectorAll('[data-ps]').forEach(b=>b.addEventListener('click',()=>{DS.ps=+b.dataset.ps;DS.page=0;renderDCamps(el)}));
+  el.querySelectorAll('[data-cp]').forEach(b=>b.addEventListener('click',()=>openCamp(+b.dataset.cp)));
+}
+function openCamp(id){
+  const x=DC.find(c=>c.id===id);const days=[];for(let d=Math.max(0,S.b-Math.max(13,S.b-S.a));d<=S.b;d++){const G=CGRP[x.c+'|'+x.p+'|'+x.pl];const o=rAgg(d,d,r=>r.c===x.c&&r.p===x.p&&r.pl===x.pl);days.push({s:o.spend*x.w/G.w,v:o.sum*x.w*x.e/G.we})}
+  openDr(`<div class="dr-h"><div><h3 style="word-break:break-word">${esc(x.name)}</h3><div style="font-size:12px;color:var(--muted)">№${x.id} · ${CON[x.c].n} · ${PLT[x.pl].n} · ${landName(x.land)}</div></div><button class="icon-btn" data-close aria-label="Закрыть">✕</button></div>
+   <div class="mc-kp"><div><small>Расход</small><b>${fR(x.spend)}</b></div><div><small>Сумма продаж</small><b>${fR(x.sum)}</b></div><div><small>ROAS</small><b class="c-${roasCls(dm.roas(x))}">${fP(dm.roas(x),0)}</b></div><div><small>Продажи</small><b>${fN(x.orders)}</b></div><div><small>CPL</small><b>${fR(dm.cpl(x))}</b></div><div><small>CPS</small><b>${fR(dm.cps(x))}</b></div></div>
+   <div class="mc-sec"><h4>Расход по дням</h4><div class="kpi" style="padding:0"><div class="spark" style="height:50px">${spark(days.map(d=>d.s),'var(--ink-2)')}</div></div></div>
+   <div class="mc-sec"><h4>Выручка по дням</h4><div class="kpi" style="padding:0"><div class="spark" style="height:50px">${spark(days.map(d=>d.v),'var(--accent)')}</div></div></div>
+   <div class="mc-sec"><h4>Направление</h4><div style="font-size:13px">${x.dir<0?'<span class="neg">Не размечено</span> — расход кампании стоит в строке «(направление не определено)». Разметьте кампанию в карте кампаний.':PRD[x.dir].n}</div></div>`);
+}
+function renderDCmp(el){
+  const c=DT_,p=DTP,len=S.b-S.a+1,per=(a,b)=>a===b?fD(a):fDs(a)+' – '+fD(b);
+  const R_=[['Расход, ₽',c.spend,p.spend,fN,'neu'],['Выручка, ₽',c.sum,p.sum,fN],['ROAS',dm.roas(c),dm.roas(p),v=>fP(v,0),'pp'],['Лиды',c.leads,p.leads,fN],['Квал. лиды',c.qual,p.qual,fN],['Продажи',c.orders,p.orders,fN],['CPL, ₽',dm.cpl(c),dm.cpl(p),fN,'inv'],['CPQL, ₽',dm.cpql(c),dm.cpql(p),fN,'inv'],['CPS (CAC), ₽',dm.cps(c),dm.cps(p),fN,'inv']];
+  el.innerHTML=`<div class="card tcard"><div class="twrap"><table class="grid"><thead><tr><th class="first">Показатель</th><th>${per(S.a,S.b)}</th><th>${per(S.a-len,S.b-len)}</th><th>Разница</th><th>%</th></tr></thead><tbody>
+   ${R_.map(r=>{const d=r[1]-r[2],pc=r[2]?d/Math.abs(r[2])*100:null,good=r[4]==='inv'?d<0:d>0,cl=r[4]==='neu'?'':Math.abs(d)<1e-9?'':good?'pos':'neg';
+     return`<tr><td class="first">${r[0]}</td><td>${r[0]==='ROAS'?pill(r[3](r[1]),roasCls(r[1])):r[3](r[1])}</td><td>${r[3](r[2])}</td><td class="${cl}" style="${r[4]==='neu'?'color:var(--muted)':''}">${r[4]==='pp'?(d>=0?'+':'−')+NF0.format(Math.abs(d))+' п.п.':sgn(d)}</td><td class="${cl}" style="${r[4]==='neu'?'color:var(--muted)':''}">${ok(pc)?(pc>=0?'+':'−')+nfd(1).format(Math.abs(pc))+'%':'—'}</td></tr>`}).join('')}</tbody></table></div>
+   <div class="tnote"><span>Разница по расходу серая: вырос он или упал — решение о закупке, а не результат. У стоимостей (CPL, CPQL, CPS) рост подсвечен как ухудшение</span></div></div>`;
+}
+function renderDByDir(el){
+  const g=dirByDir(DC),gp=dirByDir(DCP),keys=[...new Set([...g.map(o=>o.k),...gp.map(o=>o.k)])].sort((a,b)=>((g.find(o=>o.k===b)||{}).spend||0)-((g.find(o=>o.k===a)||{}).spend||0));
+  const M=[['Расход, ₽',o=>o.spend,fN,'neu'],['ROAS',dm.roas,v=>fP(v,0),'roas'],['Лиды',o=>o.leads,fN],['Квал. лиды',o=>o.qual,fN],['Продажи',o=>o.orders,fN],['Выручка, ₽',o=>o.sum,fN]];
+  const cell=(m,a,b)=>{const x=a?m[1](a):null,y=b?m[1](b):null,pc=ok(x)&&ok(y)&&y?(x-y)/Math.abs(y)*100:null;const cl=m[3]==='neu'||!ok(pc)?'':pc>0?'pos':'neg';
+    const f=v=>!ok(v)||(v===0&&m[3]==='roas')?'<span class="dash">—</span>':m[3]==='roas'?`<span class="tl ${roasCls(v)}" style="min-width:0">${m[2](v)}</span>`:m[2](v);
+    return`<td class="gs">${f(x)}</td><td>${f(y)}</td><td class="${cl}" style="${m[3]==='neu'?'color:var(--muted)':''}">${ok(pc)?(pc>=0?'+':'−')+nfd(1).format(Math.abs(pc))+'%':'<span class="dash">—</span>'}</td>`};
+  el.innerHTML=`<div class="card tcard"><div class="twrap" style="max-height:560px"><table class="grid gcmp"><thead><tr><th class="first" rowspan="2">Направление</th>${M.map(m=>`<th colspan="3" class="gh">${m[0]}</th>`).join('')}</tr><tr>${M.map(()=>'<th class="gs">тек.</th><th>пред.</th><th>%</th>').join('')}</tr></thead><tbody>
+   ${keys.map(k=>`<tr><td class="first">${dirName(k)}</td>${M.map(m=>cell(m,g.find(o=>o.k===k),gp.find(o=>o.k===k))).join('')}</tr>`).join('')}
+   <tr class="tot"><td class="first">Итого</td>${M.map(m=>cell(m,DT_,DTP)).join('')}</tr></tbody></table></div></div>`;
+}
+function renderDDyn(el){
+  const len=S.b-S.a+1,a=len>=7?S.a:Math.max(0,S.b-13),days=[];
+  for(let d=a;d<=S.b;d++){const o=dsum(dCampsDay(d));days.push({d,...o})}
+  const W=Math.max(300,(el.clientWidth||1100)/2-40),H=170,m={l:48,r:10,t:10,b:22},iw=W-m.l-m.r,ih=H-m.t-m.b,n=days.length,x=i=>m.l+(n<2?iw/2:i/(n-1)*iw);
+  const ch=(series,fmt,ref)=>{const mx=nice(Math.max(1,...series.flatMap(s=>s.v)));const y=v=>m.t+ih-v/mx.max*ih;let s=`<svg viewBox="0 0 ${W} ${H}" height="${H}">`;
+    mx.ticks.forEach(t=>s+=`<line class="gl" x1="${m.l}" x2="${W-m.r}" y1="${y(t)}" y2="${y(t)}"/><text x="${m.l-6}" y="${y(t)+3.5}" text-anchor="end">${fmt(t)}</text>`);
+    if(ref)s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y(ref)}" y2="${y(ref)}" stroke="var(--bad)" stroke-dasharray="4 3" opacity=".7"/>`;
+    series.forEach(se=>{s+=`<path d="${se.v.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join('')}" fill="none" stroke="${se.c}" stroke-width="2"/>`});
+    const st=Math.ceil(n/8);days.forEach((d,i)=>{if((i%st===0&&n-1-i>=st/2)||i===n-1)s+=`<text x="${x(i)}" y="${H-5}" text-anchor="middle">${fDs(d.d)}</text>`});return s+'</svg>'};
+  el.innerHTML=`<div class="card ch"><div class="ch-h"><div><h3>Динамика по дням</h3><div class="ch-s">${len<7?'Период короче недели — показаны 14 дней до конца периода':'По дням выбранного периода'}. Последние дни ещё дорастут: продажи по свежим заявкам приходят позже</div></div></div>
+   <div class="d2c"><div><div class="ch-s">Расход и выручка, ₽ <span class="lg" style="display:inline-flex"><span><i class="ln" style="background:var(--c7)"></i>расход</span><span><i class="ln" style="background:var(--c1)"></i>выручка</span></span></div>${ch([{v:days.map(d=>d.spend),c:'var(--c7)'},{v:days.map(d=>d.sum),c:'var(--c1)'}],fS)}</div>
+   <div><div class="ch-s">ROAS, % · пунктир — 100%</div>${ch([{v:days.map(d=>dm.roas(d)||0),c:'var(--c1)'}],t=>t+'%',100)}</div>
+   <div><div class="ch-s">Лиды</div>${ch([{v:days.map(d=>d.leads),c:'var(--accent)'}],fN)}</div>
+   <div><div class="ch-s">Продажи</div>${ch([{v:days.map(d=>d.orders),c:'var(--c3)'}],fN)}</div></div></div>`;
+}
+const dCampsDay=d=>dCamps(d,d);
+PAGES.director={t:'Отчёт директолога',compute:dirCompute,nav:['Фильтры','Итоги','Графики','Воронка','Направления','Кампании','Сравнение','Динамика'],secs:[
+ ['dr-head','Фильтры',renderDHead],['dr-kpi','Итоги',renderDKpi2],['dr-ch','Графики',renderDCharts],['dr-fun','Воронка периода',renderDFun],['dr-tbl','Сводная таблица',renderDTable],['dr-camp','Кампании',renderDCamps],['dr-cmp','Сравнение',el=>{renderDCmp(el)}],['dr-dir','По направлениям',renderDByDir],['dr-dyn','Динамика',renderDDyn]]};
+PAGES.director.nav=['Фильтры','Итоги','Графики','Воронка','Направления','Кампании','Сравнение','По направлениям','Динамика'];
 
 /* resize charts */
 let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{if($('#pDyn'))renderCharts(document.querySelector('#sec-charts .body'))},150)});
@@ -2377,3 +2622,4 @@ go(location.hash.slice(1)||'overview');
 </script>
 </body>
 </html>
+
