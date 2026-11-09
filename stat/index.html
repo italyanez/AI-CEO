@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Отчёт КОМ v7 — все разделы</title>
+<title>Отчёт КОМ v8 — Карта прибыли</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -484,6 +484,68 @@ body.side-min .sbadge{display:none}
 @media (max-width:1280px){.dk9{grid-template-columns:repeat(5,minmax(0,1fr))}.d3c{grid-template-columns:1fr}}
 @media (max-width:820px){.dk9,.dfun5{grid-template-columns:repeat(2,minmax(0,1fr))}.d2c{grid-template-columns:1fr}}
 
+/* profit map */
+body.present .side,body.present .top,body.present #sideOvl{display:none}body.present .shell{margin-left:0}
+.data-l{font-size:10.5px;font-weight:600;color:var(--warn);background:var(--warn-soft);border-radius:5px;padding:1px 6px;white-space:nowrap}
+.pmhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between}
+.pmk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.pmk .pmd{background:color-mix(in srgb,var(--good) 6%,var(--surface));border-color:color-mix(in srgb,var(--good) 30%,var(--line))}
+.pmw{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px;align-items:start}
+.pmL{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pdiag{display:flex;gap:12px;padding:12px 16px;border-left:3px solid var(--warn);border-radius:4px var(--r) var(--r) 4px;font-size:13px;color:var(--ink-2)}
+.pdiag b{color:var(--ink);font-size:14px;display:block}.pdiag.okd{border-left-color:var(--good)}
+.pdn{width:24px;height:24px;border-radius:50%;background:var(--warn-soft);color:var(--warn);display:grid;place-items:center;font-weight:800;flex:none}
+.pmbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;position:relative}
+.pturn{grid-column:1/-1;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;align-items:center}.pturn::after{content:"";flex:1;border-top:1px dashed var(--line)}
+.pst{position:relative;text-align:left;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--dc);border-radius:10px;padding:10px 10px 9px;display:flex;flex-direction:column;gap:2px;min-width:0;box-shadow:var(--shadow);transition:opacity .2s,transform .15s}
+.pst:hover{transform:translateY(-2px);border-color:var(--accent);border-top-color:var(--dc)}
+.pst.dim{opacity:.28}
+.pst.lim{background:color-mix(in srgb,var(--warn) 7%,var(--surface));border-color:var(--warn)}
+.pflag{position:absolute;top:-10px;left:8px;background:var(--warn);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:1px 6px;border-radius:4px}
+.pno{font-size:10px;color:var(--muted);letter-spacing:.04em}
+.pn{font-size:12.5px;font-weight:700;line-height:1.2;min-height:30px}
+.pv{font-size:18px;font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+.pdv{font-size:11px;font-weight:700}
+.psub{font-size:10.5px;color:var(--muted);line-height:1.3}
+.pconv{font-size:10.5px;color:var(--ink-2)}
+.pq{font-size:10.5px;color:var(--warn);font-weight:700}
+.ppot{font-size:10.5px;color:var(--warn);margin-top:3px;border-top:1px dashed var(--line);padding-top:4px}.ppot b{color:var(--good)}.ppot.muted2{color:var(--muted)}
+.h3t{font-size:14px;font-weight:700;margin:10px 2px 0}
+.pcts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pct{padding:12px 14px;display:flex;flex-direction:column;gap:8px;border-style:dashed}
+.pct.on{border-style:solid;border-color:var(--accent)}
+.pct-h{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13.5px}
+.sw{display:inline-flex;gap:6px;align-items:center;font-size:12px;color:var(--ink-2);cursor:pointer}.sw input{accent-color:var(--accent)}
+.pchain{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.pchain span{background:var(--surface-2);border-radius:7px;padding:3px 7px;display:flex;flex-direction:column;line-height:1.2}
+.pchain small{font-size:9.5px;color:var(--muted)}.pchain b{font-size:12px}.pchain i{color:var(--muted);font-style:normal;font-size:11px}
+.pres{font-size:12.5px}
+.pmR .ch{gap:10px}
+.pscs{display:flex;flex-wrap:wrap}
+.plv{display:flex;flex-direction:column;gap:2px;max-height:520px;overflow:auto;margin:0 -4px;padding:0 4px}
+.plr{padding:7px 8px;border-radius:8px;display:flex;flex-direction:column;gap:3px}
+.plr.act{background:var(--accent-soft)}
+.plt{display:flex;gap:8px;align-items:center;font-size:12.5px;font-weight:600;cursor:pointer}.plt span{flex:1}.plt input{accent-color:var(--accent)}
+.plv2{display:flex;gap:8px;align-items:center}.plv2 input{flex:1;accent-color:var(--accent)}.pla{font-size:12px;min-width:70px;text-align:right}
+.plvv{font-size:11.5px;color:var(--ink-2)}
+.psol{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;border:1px solid var(--line);border-radius:8px;padding:7px 9px;cursor:pointer}
+.psol.on{border-color:var(--accent);background:var(--accent-soft)}.psol small{display:block;color:var(--muted);font-size:11px}.psol input{accent-color:var(--accent);margin-top:2px}
+.pres2{display:flex;flex-direction:column;gap:5px;border-top:1px solid var(--line);padding-top:10px}
+.pres2 div{display:flex;justify-content:space-between;font-size:13px;gap:8px}.pres2 span{color:var(--muted)}.big2{font-size:22px}
+.kvx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.kvx div{background:var(--surface-2);border-radius:8px;padding:9px 11px}.kvx small{display:block;font-size:11px;color:var(--muted)}.kvx b{font-size:16px}
+.pmmini{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:11px}.pmmini span{padding:3px 7px;border-radius:6px;background:var(--surface-2);color:var(--muted)}.pmmini span.on{background:color-mix(in srgb,var(--dc) 18%,var(--surface));color:var(--ink);font-weight:600;box-shadow:inset 0 0 0 1px var(--dc)}.pmmini i{color:var(--muted);font-style:normal}
+.pflow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px}.pflow span{background:var(--surface-2);border-radius:8px;padding:5px 9px;display:inline-flex;gap:6px;align-items:center}.pflow b{color:var(--accent)}.pflow i{color:var(--muted);font-style:normal}
+.plg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+.plm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.plm div{background:var(--surface-2);border-radius:8px;padding:8px 10px}.plm small{display:block;font-size:11px;color:var(--muted)}.plm b{font-size:15px}
+.dl2{font-size:11px;font-weight:700;margin-left:4px}
+.plf{display:flex;flex-direction:column;gap:4px}.plf label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.plf textarea{border:1px solid var(--line);border-radius:8px;padding:7px 9px;background:var(--surface);font:inherit;font-size:13px;resize:vertical;color:var(--ink)}
+.ple{font-size:13px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+@media (max-width:1400px){.pmw{grid-template-columns:1fr}.pgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.pturn{display:none}}
+@media (max-width:1100px){.pmk,.pcts,.plg{grid-template-columns:1fr 1fr}}
+@media (max-width:700px){.pmk,.pcts,.plg,.pgrid{grid-template-columns:1fr 1fr}}
+
 /* drawer */
 
 /* drawer */
@@ -566,6 +628,7 @@ if(sessionStorage.getItem('agentanium-stat-auth')!=='ok'){location.replace('./lo
     <a class="s-item" href="#delivery" data-page="delivery"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg><span class="lbl-t">Доставка</span></a>
     <a class="s-item" href="#funnel" data-page="funnel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg><span class="lbl-t">Воронка</span></a>
     <div class="s-grp">Управление</div>
+    <a class="s-item" href="#profitmap" data-page="profitmap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7 6h10M6 8l5 8.5M18 8l-5 8.5"/></svg><span class="lbl-t">Карта прибыли</span></a>
     <a class="s-item" href="#brief" data-page="brief"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span class="lbl-t">Сводка руководителю</span></a>
     <a class="s-item" href="#signals" data-page="signals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg><span class="lbl-t">Сигналы</span><span class="sbadge" id="sigBadge" hidden></span></a>
     <a class="s-item" href="#growth" data-page="growth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg><span class="lbl-t">План роста</span></a>
@@ -776,6 +839,12 @@ if(sessionStorage.getItem('agentanium-stat-auth')!=='ok'){location.replace('./lo
   <section class="sec" id="dr-dir"><div class="sec-h"><h2>По направлениям</h2><span class="meta">текущий период, предыдущий и изменение</span></div><div class="body"></div></section>
   <section class="sec" id="dr-dyn"><div class="body"></div></section>
   <footer class="foot"><span>Только платный трафик · кампании, направления и лендинги вымышлены</span><span>Данные демонстрационные.</span></footer>
+</main>
+<main class="page" id="pg-profitmap" hidden>
+  <section class="sec" id="pm-head"><div class="body"></div></section>
+  <section class="sec" id="pm-kpi"><div class="body"></div></section>
+  <section class="sec" id="pm-body"><div class="body"></div></section>
+  <footer class="foot"><span>Основа — карта ArtTrade (AI Директор, прототип 1.0): исходная модель и допущения сохранены, новые значения помечены «демо»</span><span>Демонстрационные данные и гипотезы, не фактическая отчётность.</span></footer>
 </main>
 </div>
 <aside class="drawer" id="genDr" aria-hidden="true"></aside>
@@ -1064,8 +1133,8 @@ $('#mxBy').addEventListener('click',e=>{const b=e.target.closest('button');if(!b
 $('#themeBtn').addEventListener('click',()=>{const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=dark?'light':'dark';renderCharts(document.querySelector('#sec-charts .body'));renderKpi(document.querySelector('#sec-kpi .body'))});
 
 /* nav scrollspy */
-function buildNav(){const PG=PAGES[S.page];$('#nav').innerHTML=PG.secs.map((x,i)=>`<button data-go="${x[0]}" class="${i?'':'on'}">${PG.nav[i]}</button>`).join('');$('#ptitle').textContent=PG.t;document.title='Отчёт КОМ v7 · '+PG.t;$$('.s-item[data-page]').forEach(a=>a.classList.toggle('on',a.dataset.page===S.page))}
-function go(page){if(!PAGES[page])page='overview';$$('.drawer.on').forEach(d=>{d.classList.remove('on');d.setAttribute('aria-hidden','true')});$('#ovl').classList.remove('on');const ch=page!==S.page||!$('#nav').children.length;S.page=page;Object.keys(PAGES).forEach(k=>{document.getElementById('pg-'+k).hidden=k!==page});document.body.classList.remove('side-open');$('.period').hidden=['growth','brief','signals','settings'].includes(page);if(ch){buildNav();scrollTo(0,0);refresh()}}
+function buildNav(){const PG=PAGES[S.page];$('#nav').innerHTML=PG.secs.map((x,i)=>`<button data-go="${x[0]}" class="${i?'':'on'}">${PG.nav[i]}</button>`).join('');$('#ptitle').textContent=PG.t;document.title='Отчёт КОМ v8 · '+PG.t;$$('.s-item[data-page]').forEach(a=>a.classList.toggle('on',a.dataset.page===S.page))}
+function go(page){if(!PAGES[page])page='overview';$$('.drawer.on').forEach(d=>{d.classList.remove('on');d.setAttribute('aria-hidden','true')});$('#ovl').classList.remove('on');const ch=page!==S.page||!$('#nav').children.length;S.page=page;Object.keys(PAGES).forEach(k=>{document.getElementById('pg-'+k).hidden=k!==page});document.body.classList.remove('side-open');$('.period').hidden=['growth','brief','signals','settings','profitmap'].includes(page);if(ch){buildNav();scrollTo(0,0);refresh()}}
 addEventListener('hashchange',()=>go(location.hash.slice(1)));
 $$('.s-item[data-soon]').forEach(b=>b.addEventListener('click',()=>toast(`Раздел «${b.dataset.soon}» появится в следующей версии`)));
 $('#burger').addEventListener('click',()=>document.body.classList.add('side-open'));
@@ -2610,6 +2679,285 @@ const dCampsDay=d=>dCamps(d,d);
 PAGES.director={t:'Отчёт директолога',compute:dirCompute,nav:['Фильтры','Итоги','Графики','Воронка','Направления','Кампании','Сравнение','Динамика'],secs:[
  ['dr-head','Фильтры',renderDHead],['dr-kpi','Итоги',renderDKpi2],['dr-ch','Графики',renderDCharts],['dr-fun','Воронка периода',renderDFun],['dr-tbl','Сводная таблица',renderDTable],['dr-camp','Кампании',renderDCamps],['dr-cmp','Сравнение',el=>{renderDCmp(el)}],['dr-dir','По направлениям',renderDByDir],['dr-dyn','Динамика',renderDDyn]]};
 PAGES.director.nav=['Фильтры','Итоги','Графики','Воронка','Направления','Кампании','Сравнение','По направлениям','Динамика'];
+
+/* =================== PROFIT MAP (from ArtTrade Business Map) =================== */
+// Original model kept: budget/CPM/CTR → clicks, siteCR, managers×hours×rate capacity, conversion, production & shipping capacity, buyout, check, variable/fee/returnCost/fixed, AI solutions.
+// Additions are marked demo (dm:1): CPC parametrisation (same 6M / 25 ₽ = 240k clicks as CPM 500 & CTR 2%), cancels, COGS/delivery split of the original 4 200 ₽ variable cost, contours.
+const PM0={budget:6000000,cpc:25,ctr:2,siteCR:3.3333333333,managers:10,hours:120,rate:5,conversion:30,cancel:4,production:2400,shipping:2800,buyout:80,check:14500,cogs:3000,delivery:1200,fee:300,returnCost:600,fixed:3000000,
+  repBase:18000,repContact:12,repConv:15,hireCand:40,hireSel:30,hireTest:50,hireOn:70,hireNorm:60,hireCost:90000,devCalls:240,devErr:35,devTrain:60,devUplift:2,devCost:50000};
+let PM={...PM0};try{const s=JSON.parse(localStorage.getItem('kom-pm')||'null');if(s)PM=Object.assign({...PM0},s)}catch(e){}
+const PSOL=[{id:'assistant',name:'AI-помощник менеджера',effect:'−25% времени на обработку',cost:60000,setup:90000},{id:'rop',name:'AI-РОП',effect:'+4 п.п. к конверсии',cost:90000,setup:120000},{id:'quality',name:'AI-контроль качества',effect:'+2 п.п. к конверсии',cost:60000,setup:60000},
+  {id:'hire',name:'Контур найма',effect:'менеджеры, вышедшие на норму',cost:0,setup:0,ct:1},{id:'dev',name:'Контур развития',effect:'разбор звонков → обучение',cost:0,setup:0,ct:1},{id:'rep',name:'Повторные продажи',effect:'демо-оценка, нет когорт',cost:0,setup:0,ct:1}];
+const PLV=[
+ {k:'cpc',n:'Цена клика (CPC)',d:-1,dept:'mk',u:'₽',dec:1,acts:'Минус-слова, ставки по времени и гео, креативы с высоким CTR',as:'Средняя',ach:'Средняя'},
+ {k:'siteCR',n:'Конверсия сайта в лид',d:1,cap:60,dept:'mk',u:'%',dec:2,acts:'A/B-тесты лендингов, скорость загрузки, оффер, квиз',as:'Высокая: при ограничении продаж эффект упирается в мощность',ach:'Высокая'},
+ {k:'rate',n:'Скорость обработки, лидов в час',d:1,cap:15,dept:'sales',u:'',dec:1,acts:'AI-помощник, автодозвон, шаблоны, меньше ручного ввода в CRM',as:'Средняя',ach:'Средняя'},
+ {k:'conversion',n:'Конверсия обработанного лида в заказ',d:1,cap:95,dept:'sales',u:'%',dec:1,acts:'Разбор звонков, скрипт, скорость первого звонка, обучение',as:'Средняя',ach:'Средняя'},
+ {k:'check',n:'Средний чек',d:1,dept:'sales',u:'₽',dec:0,acts:'Допродажи, комплекты, контроль скидок',as:'Средняя: рост чека может снизить конверсию',ach:'Средняя'},
+ {k:'cancel',n:'Отмены до отправки',d:-1,dept:'sales',u:'%',dec:1,dm:1,acts:'Подтверждающий звонок, SMS, предоплата',as:'Высокая: демо-значение',ach:'Высокая'},
+ {k:'buyout',n:'Выкуп',d:1,cap:99,dept:'log',u:'%',dec:1,acts:'Звонок на 3-й день хранения, сроки доставки, честные обещания продавца',as:'Средняя',ach:'Средняя'},
+ {k:'delivery',n:'Стоимость доставки за заказ',d:-1,dept:'log',u:'₽',dec:0,dm:1,acts:'Тарифы, выбор службы по региону, упаковка',as:'Высокая: демо-разделение затрат',ach:'Низкая'},
+ {k:'cogs',n:'Себестоимость товара за заказ',d:-1,dept:'prod',u:'₽',dec:0,dm:1,acts:'Закупка материалов, брак, технологичность',as:'Высокая: демо-разделение затрат',ach:'Низкая'},
+ {k:'repConv',n:'Конверсия базы в повторную покупку',d:1,cap:60,dept:'sales',u:'%',dec:1,dm:1,req:'rep',acts:'Рассылки и звонки по базе, программа лояльности',as:'Очень высокая: нет данных когорт',ach:'Высокая'}
+];
+const PDEP={mk:['Маркетинг','var(--c0)'],sales:['Продажи · РОП','var(--c2)'],prod:['Производство и закупки','var(--c6)'],log:['Логистика и склад','var(--c1)'],hr:['HR и РОП: команда','var(--c4)'],fin:['Финансы','var(--c5)']};
+const PS={tab:'map',pct:10,sc:'now',on:new Set(['siteCR','rate','conversion','check','buyout']),adj:{},sol:{},show:'base',dep:null,horizon:1};
+const pmSave=()=>{try{localStorage.setItem('kom-pm',JSON.stringify(PM))}catch(e){}};
+function pmCompute(p,imp={}){
+  const clicks=p.budget/p.cpc,impressions=clicks/(p.ctr/100),visitors=clicks*.92,leads=clicks*p.siteCR/100;
+  const newMgr=imp.hire?p.hireCand*p.hireSel*p.hireTest*p.hireOn*p.hireNorm/1e8:0,managers=p.managers+newMgr;
+  const capacity=managers*p.hours*p.rate/(imp.assistant?.75:1);
+  const ai=(imp.rop?.04:0)+(imp.quality?.02:0)-(imp.rop&&imp.quality?.01:0),dev=imp.dev?(imp.quality?.5:1)*p.devUplift/100:0;
+  const conv=Math.min(.95,p.conversion/100+ai+dev);
+  const processed=Math.min(leads,capacity),orders=processed*conv,canceled=orders*p.cancel/100,toShip=orders-canceled;
+  const produced=Math.min(toShip,p.production),shipped=Math.min(produced,p.shipping),paid=shipped*Math.min(100,p.buyout)/100,unpaid=shipped-paid;
+  const repOrders=imp.rep?p.repBase*p.repContact/100*p.repConv/100:0,repShipped=repOrders*(1-p.cancel/100),repPaid=repShipped*Math.min(.98,p.buyout/100+.08),repUnpaid=repShipped-repPaid;
+  const ordValue=(orders+repOrders)*p.check,revenue=(paid+repPaid)*p.check,ad=p.budget;
+  const variable=(shipped+repShipped)*(p.cogs+p.delivery),fees=(paid+repPaid)*p.fee,returns=(unpaid+repUnpaid)*p.returnCost;
+  const cm=revenue-variable-fees-returns-ad;
+  const recurring=PSOL.filter(s=>imp[s.id]).reduce((a,s)=>a+s.cost,0)+(imp.hire?newMgr*p.hireCost:0)+(imp.dev?p.devCost:0),setup=PSOL.filter(s=>imp[s.id]).reduce((a,s)=>a+s.setup,0);
+  const profit=cm-p.fixed-recurring;
+  const stages=[{id:'sales',name:'Обработка заявок',capacity},{id:'production',name:'Производство',capacity:p.production/conv/(1-p.cancel/100)},{id:'shipping',name:'Отправка',capacity:p.shipping/conv/(1-p.cancel/100)}];
+  const minCap=Math.min(...stages.map(s=>s.capacity)),limits=leads>=minCap-1e-6?stages.filter(s=>Math.abs(s.capacity-minCap)<.5):[];
+  return{clicks,impressions,visitors,leads,newMgr,managers,capacity,conv,processed,orders,canceled,toShip,produced,shipped,paid,unpaid,repOrders,repPaid,ordValue,revenue,ad,variable,fees,returns,cm,recurring,setup,profit,limits,leadQueue:Math.max(0,leads-processed),prodQueue:Math.max(0,toShip-produced),shipQueue:Math.max(0,produced-shipped)};
+}
+const pmApply=(base,lev,pct)=>{const L=PLV.find(x=>x.k===lev);let v=base[lev]*(1+L.d*pct/100);if(L.cap)v=Math.min(L.cap,v);return Math.max(0,v)};
+function pmScenarioParams(){const p={...PM};PLV.forEach(L=>{const a=PS.adj[L.k];if(a)p[L.k]=pmApply(PM,L.k,a)});return p}
+const pmSol=()=>({...PS.sol});
+function pmSens(lev,pct,sol){const b=pmCompute(PM,sol||{}),p={...PM};p[lev]=lev==='fixed'?PM.fixed*(1-pct/100):pmApply(PM,lev,pct);return pmCompute(p,sol||{}).profit-b.profit}
+function pmPreset(pct){PS.pct=pct;PS.adj={};PLV.forEach(L=>{if(PS.on.has(L.k)&&(!L.req||PS.sol[L.req]))PS.adj[L.k]=pct})}
+const fRub=v=>fM2r(v)+' ₽';
+function fM2r(v){if(!ok(v))return'—';const a=Math.abs(v);return(v<0?'−':'')+(a>=1e6?nfd(2).format(a/1e6)+' млн':NF0.format(a))}
+const sg2=v=>Math.abs(v)<1?'0 ₽':(v>0?'+':'−')+fM2r(Math.abs(v)).replace('−','')+' ₽';
+
+/* ---------- stages ---------- */
+function pmStages(m,p){
+  const S_=[
+   {id:'imp',n:'Рекламные показы',v:m.impressions,u:'',dept:'mk',sub:`CTR ${fP(p.ctr,1)}`,lev:null},
+   {id:'clk',n:'Клики',v:m.clicks,u:'',dept:'mk',sub:`CPC ${fN(p.cpc)} ₽ · бюджет ${fS(p.budget)} ₽`,lev:'cpc'},
+   {id:'vis',n:'Посетители сайта',v:m.visitors,u:'',dept:'mk',sub:'92% кликов доходят до сайта (демо)',lev:null},
+   {id:'lead',n:'Лиды',v:m.leads,u:'',dept:'mk',sub:`конверсия сайта ${fP(p.siteCR,2)} · CPL ${fN(p.budget/m.leads)} ₽`,lev:'siteCR'},
+   {id:'proc',n:'Обработка заявок',v:m.processed,u:'',dept:'sales',sub:`мощность ${fN(m.capacity)} · ${nfd(1).format(m.managers)} менеджеров`,lev:'rate',lim:m.limits.some(x=>x.id==='sales'),q:m.leadQueue},
+   {id:'ord',n:'Подтверждённые заказы',v:m.orders,u:'',dept:'sales',sub:`конверсия ${fP(m.conv*100,1)} · чек ${fN(p.check)} ₽`,lev:'conversion'},
+   {id:'ship',n:'Отправленные заказы',v:m.shipped,u:'',dept:'log',sub:`отмены ${fP(p.cancel,1)} · мощность отправки ${fN(p.shipping)}`,lev:'cancel',lim:m.limits.some(x=>x.id!=='sales'),q:m.prodQueue+m.shipQueue},
+   {id:'dlv',n:'Доставка',v:m.shipped,u:'',dept:'log',sub:`доставка ${fN(p.delivery)} ₽ за заказ`,lev:'delivery'},
+   {id:'buy',n:'Выкуп',v:m.paid,u:'',dept:'log',sub:`${fP(p.buyout,1)} от отправленных · невыкуп ${fN(m.unpaid)}`,lev:'buyout'},
+   {id:'cash',n:'Полученные деньги',v:m.revenue,u:'₽',dept:'fin',sub:`выкупленные заказы × чек${m.repPaid?' + повторные':''}`,lev:'check'},
+   {id:'cm',n:'Маржинальный вклад',v:m.cm,u:'₽',dept:'fin',sub:'минус товар, доставка, комиссии, невыкуп, реклама',lev:'cogs'},
+   {id:'pr',n:'Прибыль',v:m.profit,u:'₽',dept:'fin',sub:`минус постоянные ${fS(p.fixed+m.recurring)} ₽`,lev:'fixed'}];
+  S_.forEach((s,i)=>{const pv=S_[i-1];if(pv&&pv.u===s.u&&s.u===''){s.conv=pv.v?s.v/pv.v*100:null;s.loss=pv.v-s.v}});
+  return S_;
+}
+const PDET={clk:'Клики = бюджет / CPC. Показы = клики / CTR. В оригинальной модели: бюджет / CPM × CTR — при CPM 500 ₽ и CTR 2% это те же 25 ₽ за клик.',vis:'Посещения ≈ клики. 8% теряется до загрузки страницы (демо-допущение, на расчёт лидов не влияет).',lead:'Лиды = клики × конверсия сайта. Квалификация, дубли и спам пока не выделены.',
+ proc:'Мощность = менеджеры × доступные часы × лидов в час. Лиды сверх мощности — расчётная очередь за месяц, а не измеренная очередь CRM.',ord:'Отказы после обработки = обработанные лиды − заказы. Это не очередь и не доказанная потеря прибыли.',
+ ship:'Отмены до отправки — демо-значение. Затем ограничения мощности производства и отправки (1 заказ = 1 условная единица выпуска).',dlv:'Стоимость доставки — демо-часть исходных 4 200 ₽ переменных затрат на отправленный заказ (3 000 ₽ товар + 1 200 ₽ доставка).',
+ buy:'Выкуп — совместный показатель: на него влияют обещания продавца, товар, доставка и связь с клиентом. Учитывается только невыкуп, не возврат после покупки.',cash:'Стоимость выкупленных заказов. Это не банковская касса: перечисление наложенного платежа идёт с задержкой.',
+ cm:'Полученные деньги − товар и доставка (на отправленный заказ) − комиссия (на выкуп) − доп. расход на невыкуп − реклама.',pr:'Маржинальный вклад − постоянные расходы − ежемесячные расходы на выбранные решения. Прибыль до налога; налоги, амортизация и проценты не учтены.'};
+function pmLossPotential(s){if(!s.lev)return null;return pmSens(s.lev,10,pmSol())}
+
+/* ---------- render: head & KPI ---------- */
+function renderPmHead(el){
+  const T_=[['map','Карта и симулятор'],['money','Где деньги'],['dep','Вклад отделов'],['plan','Планёрка'],['data','Данные модели']];
+  el.innerHTML=`<div class="pmhead"><div><h2 style="font-size:22px">Карта прибыли</h2><div class="cnt-s" style="font-size:13px">Как действия каждого отдела превращаются в деньги компании · модель месяца, 30 дней</div></div>
+   <div class="seg" id="pmTabs">${T_.map(t=>`<button data-t="${t[0]}" class="${PS.tab===t[0]?'on':''}">${t[1]}</button>`).join('')}</div>
+   <button class="btn" id="pmPresent">Режим показа ↗</button></div>`;
+  $$('#pmTabs button').forEach(b=>b.addEventListener('click',()=>{PS.tab=b.dataset.t;refresh(['pm-head','pm-kpi','pm-body'])}));
+  $('#pmPresent').addEventListener('click',()=>{document.body.classList.add('present');toast('Режим показа. Esc — выйти');try{document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen().catch(()=>{})}catch(e){}});
+}
+function renderPmKpi(el){
+  const sol=pmSol(),b=pmCompute(PM),s=pmCompute(pmScenarioParams(),sol),d=s.profit-b.profit,dp=b.profit?d/Math.abs(b.profit)*100:null;
+  const c=(n,bv,sv,note,cls)=>`<div class="card kpi ${cls||''}"><div class="k-top"><span class="k-name">${n}</span></div><div class="k-val">${fM2r(sv)}<span class="u">₽</span></div><div class="k-row">${Math.abs(sv-bv)>1?`сейчас ${fM2r(bv)} ₽ · <b class="${sv>=bv?'pos':'neg'}">${sg2(sv-bv)}</b>`:note}</div></div>`;
+  el.innerHTML=`<div class="pmk">${c('Полученные деньги',b.revenue,s.revenue,'выкупленные заказы × средний чек')}${c('Маржинальный вклад',b.cm,s.cm,'после товара, доставки, невыкупа и рекламы')}${c('Прибыль до налога',b.profit,s.profit,'после постоянных расходов')}
+   <div class="card kpi pmd"><div class="k-top"><span class="k-name">Эффект сценария</span><span class="data-l">оценка, не обещание</span></div><div class="k-val ${d>=0?'pos':'neg'}">${sg2(d)}</div><div class="k-row">${ok(dp)?`<b>${dp>=0?'+':'−'}${nfd(1).format(Math.abs(dp))}%</b> к прибыли`:''} · за месяц</div></div></div>`;
+}
+
+/* ---------- map tab ---------- */
+function stageCard(s,sB,i,pot){
+  const dim=PS.dep&&s.dept!==PS.dep&&!(PS.dep==='hr'&&['proc','ord'].includes(s.id))?'dim':'';
+  const val=s.u==='₽'?fM2r(s.v)+' ₽':fN(s.v),dv=sB&&Math.abs(s.v-sB.v)>.5?(s.v-sB.v):0;
+  return`<button class="pst ${s.lim?'lim':''} ${dim}" data-st="${s.id}" style="--dc:${PDEP[s.dept][1]}">${s.lim?'<span class="pflag">ОГРАНИЧЕНИЕ</span>':''}
+   <span class="pno">${p2(i+1)} · ${PDEP[s.dept][0].split(' ')[0]}</span><b class="pn">${s.n}</b><span class="pv">${val}</span>
+   ${dv?`<span class="pdv ${dv>0?'pos':'neg'}">${dv>0?'+':'−'}${s.u==='₽'?fM2r(Math.abs(dv))+' ₽':fN(Math.abs(dv))}</span>`:''}
+   <span class="psub">${s.sub}</span>
+   ${ok(s.conv)&&s.conv<100?`<span class="pconv">→ ${fP(s.conv,s.conv<10?2:1)} прошли · потеря ${fN(s.loss)}</span>`:s.id==='imp'?'<span class="pconv">охват</span>':''}
+   ${s.q>.5?`<span class="pq">в очереди ${fN(s.q)}</span>`:''}
+   ${pot!=null&&Math.abs(pot)>1?`<span class="ppot">+10% к этапу → <b>${sg2(pot)}</b></span>`:pot!=null?'<span class="ppot muted2">+10% к этапу → 0 ₽ (упирается в ограничение)</span>':''}</button>`;
+}
+function renderPmMap(el){
+  const sol=pmSol(),sp=pmScenarioParams(),b=pmCompute(PM),s=pmCompute(sp,sol),show=PS.show==='scn',m=show?s:b,p=show?sp:PM;
+  const st=pmStages(m,p),stB=show?pmStages(b,PM):null,pots=st.map(x=>pmLossPotential(x));
+  const lim=b.limits.length?b.limits.map(x=>x.name).join(' + '):null;
+  const hireN=PM.hireCand*PM.hireSel*PM.hireTest*PM.hireOn*PM.hireNorm/1e8;
+  const ct=(id,title,chain,res,note)=>{const on=PS.sol[id];const eff=pmCompute(PM,{[id]:true}).profit-b.profit;return`<div class="card pct ${on?'on':''}"><div class="pct-h"><b>${title}</b><label class="sw"><input type="checkbox" data-ct="${id}" ${on?'checked':''}><span>${on?'в сценарии':'включить'}</span></label></div>
+    <div class="pchain">${chain.map((c,i)=>`${i?'<i>→</i>':''}<span><small>${c[0]}</small><b>${c[1]}</b></span>`).join('')}</div>
+    <div class="pres">${res} <b class="${eff>=0?'pos':'neg'}">${sg2(eff)}</b> к прибыли в месяц</div><div class="cnt-s">${note}</div></div>`};
+  el.innerHTML=`<div class="pmw"><div class="pmL">
+   <div class="card pdiag ${lim?'':'okd'}"><span class="pdn">!</span><div><b>${lim?'Предел роста в модели — '+lim.toLowerCase():'Внутренние мощности не исчерпаны'}</b><div>${b.limits.some(x=>x.id==='sales')?`${fN(b.leads)} лидов при мощности обработки ${fN(b.capacity)} в месяц. Пока это так, рост рекламы и конверсии сайта увеличивает очередь, а не деньги: на карте их потенциал — 0 ₽.`:lim?'Пропускная способность цепочки ограничивает выполнение заказов.':'Спрос ниже мощности цепочки: работают рычаги конверсии и выкупа.'}</div></div></div>
+   <div class="pmbar"><div class="seg sm" id="pmShow"><button data-s="base" class="${!show?'on':''}">Сейчас</button><button data-s="scn" class="${show?'on':''}">Сценарий</button></div>
+    <div class="seg sm" id="pmDep"><button data-d="" class="${!PS.dep?'on':''}">Все отделы</button>${Object.entries(PDEP).map(([k,v])=>`<button data-d="${k}" class="${PS.dep===k?'on':''}"><i class="dot" style="background:${v[1]}"></i> ${v[0].split(' ')[0]}</button>`).join('')}</div></div>
+   <div class="pgrid">${st.map((x,i)=>`${i===6?'<div class="pturn">деньги ↓</div>':''}${stageCard(x,stB&&stB[i],i,pots[i])}`).join('')}</div>
+   <div class="cnt-s" style="margin:6px 2px 0">Оранжевым — потенциал: сколько прибыли даст улучшение прохождения этапа на 10% (относительно), при прочих равных. Это оценка возможности, а не уже потерянные деньги. Клик по этапу — детали.</div>
+   <div class="h3t">Связанные контуры</div>
+   <div class="pcts">${ct('hire','Найм менеджеров',[['кандидаты',fN(PM.hireCand)],['отбор',fP(PM.hireSel,0)],['тест',fP(PM.hireTest,0)],['вышли',fP(PM.hireOn,0)],['на норме',fP(PM.hireNorm,0)]],`+${nfd(1).format(hireN)} менеджера на норме → мощность +${fN(hireN*PM.hours*PM.rate)} лидов →`,'Стоимость: '+fN(PM.hireCost)+' ₽ в месяц за менеджера. Связь: этап «Обработка заявок».')}
+    ${ct('dev','Развитие менеджеров',[['звонков разобрано',fN(PM.devCalls)],['с ошибками',fP(PM.devErr,0)],['обучено',fP(PM.devTrain,0)],['конверсия',`+${nfd(1).format(PM.devUplift)} п.п.`]],`+${nfd(1).format(PM.devUplift)} п.п. к конверсии в заказ →`,'Стоимость: '+fN(PM.devCost)+' ₽ в месяц. Пересекается с AI-контролем качества: вместе засчитывается половина эффекта.')}
+    ${ct('rep','Повторные продажи · потенциал',[['база',fN(PM.repBase)],['контакт',fP(PM.repContact,0)],['покупка',fP(PM.repConv,0)],['заказов',fN(PM.repBase*PM.repContact*PM.repConv/1e4)]],'Заказы без повторной стоимости привлечения →','Действующего процесса и когортных данных нет: значения демонстрационные. Мощность продаж для звонков по базе не учтена.')}</div>
+   </div><aside class="pmR" id="pmSim"></aside></div>
+   <div class="diag2" style="margin-top:14px"><div id="pmComp"></div><div id="pmEco"></div></div>`;
+  $$('#pmShow button').forEach(x=>x.addEventListener('click',()=>{PS.show=x.dataset.s;renderPmMap(el)}));
+  $$('#pmDep button').forEach(x=>x.addEventListener('click',()=>{PS.dep=x.dataset.d||null;renderPmMap(el)}));
+  el.querySelectorAll('[data-st]').forEach(x=>x.addEventListener('click',()=>openStage(x.dataset.st)));
+  el.querySelectorAll('[data-ct]').forEach(c=>c.addEventListener('change',()=>{PS.sol[c.dataset.ct]=c.checked;if(PS.sc!=='now'&&PS.sc!=='own')pmPreset(PS.pct);pmAll()}));
+  renderPmSim($('#pmSim'));renderPmComp($('#pmComp'));renderPmEco($('#pmEco'));
+}
+function pmAll(){['pm-kpi','pm-body'].forEach(id=>{const b=document.querySelector('#'+id+' .body');PAGES.profitmap.secs.find(s=>s[0]===id)[2](b)})}
+function renderPmSim(el){
+  const sol=pmSol(),sp=pmScenarioParams(),b=pmCompute(PM),s=pmCompute(sp,sol);
+  const lv=PLV.filter(L=>!L.req||PS.sol[L.req]);
+  el.innerHTML=`<div class="card ch"><div><h3>Симулятор прибыли</h3><div class="ch-s">Улучшение относительно текущего уровня: +10% к конверсии 30% — это 33%, а не 40%</div></div>
+   <div class="seg sm pscs" id="pmSc">${[['now','Сейчас'],['5','Осторожный +5%'],['10','Базовый +10%'],['15','Амбициозный +15%']].map(x=>`<button data-s="${x[0]}" class="${PS.sc===x[0]?'on':''}">${x[1]}</button>`).join('')}</div>
+   <div class="plv">${lv.map(L=>{const a=PS.adj[L.k]||0,nv=a?pmApply(PM,L.k,a):PM[L.k],pp=L.u==='%'?nv-PM[L.k]:null;
+     return`<div class="plr ${a?'act':''}"><label class="plt"><input type="checkbox" data-on="${L.k}" ${PS.on.has(L.k)?'checked':''} aria-label="Участвует в сценарии"><span>${L.n}${L.dm?' <span class="data-l">демо</span>':''}</span><i class="dot" style="background:${PDEP[L.dept][1]}" title="${PDEP[L.dept][0]}"></i></label>
+      <div class="plv2"><input type="range" min="-20" max="30" step="1" value="${a}" data-adj="${L.k}" aria-label="${L.n}: изменение"><span class="pla"><b>${a>0?'+':''}${a}%</b> ${L.d<0&&a>0?'дешевле':''}</span></div>
+      <div class="plvv">${L.u==='₽'?fN(PM[L.k]):nfd(L.dec).format(PM[L.k])}${L.u==='%'?'%':''} → <b>${L.u==='₽'?fN(nv):nfd(L.dec).format(nv)}${L.u==='%'?'%':''}</b>${pp?` <span class="cnt-s">(${pp>0?'+':'−'}${nfd(L.dec).format(Math.abs(pp))} п.п.)</span>`:''}${L.cap&&nv>=L.cap-1e-9&&a?' <span class="cnt-s">потолок</span>':''}</div></div>`}).join('')}</div>
+   <div class="h3t" style="margin:6px 0 0">Решения из исходной карты</div>
+   ${PSOL.filter(x=>!x.ct).map(x=>`<label class="psol ${PS.sol[x.id]?'on':''}"><input type="checkbox" data-sol="${x.id}" ${PS.sol[x.id]?'checked':''}><span><b>${x.name}</b><small>${x.effect} · ${fN(x.cost/1000)} тыс ₽/мес · запуск ${fN(x.setup/1000)} тыс ₽</small></span></label>`).join('')}
+   <div class="pres2"><div><span>Обработано лидов</span><b>${fN(b.processed)} → ${fN(s.processed)}</b></div><div><span>Выкуплено заказов</span><b>${fN(b.paid+b.repPaid)} → ${fN(s.paid+s.repPaid)}</b></div><div><span>Полученные деньги</span><b>${fM2r(b.revenue)} → ${fM2r(s.revenue)} ₽</b></div><div><span>Прибыль в месяц</span><b class="big2 ${s.profit>=b.profit?'pos':'neg'}">${sg2(s.profit-b.profit)}</b></div></div>
+   <div style="display:flex;gap:8px"><button class="btn" id="pmReset">Вернуть исходные значения</button></div>
+   <div class="cnt-s">Демонстрационный сценарий, не гарантированный прогноз. Для затрат улучшение — снижение; конверсии ограничены потолком. AI-РОП и контроль качества вместе дают +5 п.п., а не +6.</div></div>`;
+  $$('#pmSc button').forEach(x=>x.addEventListener('click',()=>{PS.sc=x.dataset.s;if(PS.sc==='now'){PS.adj={}}else pmPreset(+PS.sc);PS.show=PS.sc==='now'?'base':'scn';pmAll()}));
+  el.querySelectorAll('[data-on]').forEach(c=>c.addEventListener('change',()=>{c.checked?PS.on.add(c.dataset.on):PS.on.delete(c.dataset.on);if(PS.sc!=='now'&&PS.sc!=='own')pmPreset(PS.pct);else if(!c.checked)delete PS.adj[c.dataset.on];pmAll()}));
+  el.querySelectorAll('[data-adj]').forEach(r=>{r.addEventListener('input',()=>{const k=r.dataset.adj;PS.adj[k]=+r.value;PS.sc='own';PS.show='scn';if(+r.value)PS.on.add(k);const row=r.closest('.plr');const L=PLV.find(x=>x.k===k),a=+r.value,nv=a?pmApply(PM,k,a):PM[k];row.querySelector('.pla').innerHTML=`<b>${a>0?'+':''}${a}%</b>`;row.querySelector('.plvv b').textContent=(L.u==='₽'?fN(nv):nfd(L.dec).format(nv))+(L.u==='%'?'%':'');});
+    r.addEventListener('change',()=>pmAll())});
+  el.querySelectorAll('[data-sol]').forEach(c=>c.addEventListener('change',()=>{PS.sol[c.dataset.sol]=c.checked;pmAll()}));
+  $('#pmReset').addEventListener('click',()=>{PS.adj={};PS.sol={};PS.sc='now';PS.show='base';pmAll();toast('Исходные значения восстановлены')});
+}
+function renderPmComp(el){
+  const sol=pmSol(),b=pmCompute(PM),keys=PLV.filter(L=>PS.adj[L.k]).map(L=>L.k);
+  if(!keys.length&&!Object.values(sol).some(Boolean)){el.innerHTML=`<div class="card ch"><div><h3>Как складываются небольшие улучшения</h3><div class="ch-s">Выберите сценарий справа — здесь появится вклад каждого рычага и эффект их сочетания</div></div></div>`;return}
+  let p={...PM},prev=pmCompute(p,sol),base0=b.profit;const steps=[['Сейчас',base0,'abs']];
+  const solEff=prev.profit-base0;if(Math.abs(solEff)>1)steps.push(['Решения',solEff]);
+  keys.forEach(k=>{p[k]=pmApply(PM,k,PS.adj[k]);const m=pmCompute(p,sol);steps.push([PLV.find(L=>L.k===k).n.replace(/,.*$/,'').replace('Конверсия обработанного лида в заказ','Конверсия в заказ').replace('Скорость обработки','Скорость'),m.profit-prev.profit]);prev=m});
+  steps.push(['Сценарий',prev.profit,'abs']);
+  const solo=keys.reduce((a,k)=>a+pmSens(k,PS.adj[k]),0)+solEff,joint=prev.profit-base0;
+  const W=Math.max(300,(el.clientWidth||600)-34),H=230,m={l:52,r:8,t:20,b:44},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  let run=0;const bars=steps.map(x=>{if(x[2]){run=x[1];return{...x,y0:Math.min(0,x[1]),y1:x[1]}}const y0=run;run+=x[1];return{...x,y0,y1:run}});
+  const lo=Math.min(0,...bars.map(x=>Math.min(x.y0,x.y1))),hi=Math.max(...bars.map(x=>Math.max(x.y0,x.y1)))*1.08,y=v=>m.t+ih-(v-lo)/(hi-lo)*ih,n=bars.length,bw=iw/n,g=Math.min(20,bw*.25);
+  let s=`<svg viewBox="0 0 ${W} ${H}" height="${H}"><line class="ax" x1="${m.l}" x2="${W-m.r}" y1="${y(0)}" y2="${y(0)}"/>`;
+  bars.forEach((x,i)=>{const X=m.l+i*bw+g/2,w=bw-g,top=y(Math.max(x.y0,x.y1)),h=Math.max(2,Math.abs(y(x.y0)-y(x.y1)));const col=x[2]?(i?'var(--accent)':'var(--ink-2)'):x[1]>=0?'var(--good)':'var(--bad)';
+    s+=`<rect x="${X}" y="${top}" width="${w}" height="${h}" rx="3" fill="${col}"/><text x="${X+w/2}" y="${top-5}" text-anchor="middle" style="fill:var(--ink);font-weight:700;font-size:10.5px">${x[2]?fM2r(x[1]):(x[1]>=0?'+':'−')+fM2r(Math.abs(x[1]))}</text>`;
+    const words=x[0].split(' ');s+=`<text x="${X+w/2}" y="${H-28}" text-anchor="middle" style="font-size:10px">${words.slice(0,2).join(' ')}</text>${words.length>2?`<text x="${X+w/2}" y="${H-16}" text-anchor="middle" style="font-size:10px">${words.slice(2).join(' ')}</text>`:''}`});
+  el.innerHTML=`<div class="card ch"><div><h3>Как складываются небольшие улучшения</h3><div class="ch-s">Прибыль в месяц: рычаги подставляются в единую модель по порядку, перекрёстный эффект достаётся нижнему, сумма столбиков = эффект сценария</div></div><div class="plot">${s}</svg></div>
+   <div class="kvx"><div><small>Каждый рычаг по отдельности, сумма</small><b>${sg2(solo)}</b></div><div><small>Все вместе через модель</small><b class="pos">${sg2(joint)}</b></div><div><small>Эффект сочетания</small><b class="${joint-solo>=0?'pos':'neg'}">${sg2(joint-solo)}</b></div></div>
+   <div class="cnt-s">${joint>solo?'Вместе улучшения дают больше суммы по отдельности: рост конверсии умножается на рост чека и выкупа, а снятое ограничение пропускает больше лидов.':'Часть эффектов пересекается или упирается в мощность — сумма по отдельности больше совместного эффекта.'}</div></div>`;
+}
+function renderPmEco(el){
+  const sol=pmSol(),b=pmCompute(PM),s=pmCompute(pmScenarioParams(),sol),h=PS.horizon,diff=s.profit-b.profit;
+  const rows=[['Выручка по заказам','ordValue',fRub],['Полученные деньги (выкуплено)','revenue',fRub],['Рекламные расходы','ad',fRub],['Товар и отправка','variable',fRub],['Комиссии при выкупе','fees',fRub],['Доп. расходы на невыкуп','returns',fRub],['Маржинальный вклад','cm',fRub,1],['Постоянные расходы','fixed',fRub],['Решения и контуры, в месяц','recurring',fRub],['Прибыль до налога','profit',fRub,1]];
+  el.innerHTML=`<div class="card tcard"><div class="toolbar"><b style="font-size:14px">Экономика сценария</b><span class="grow"></span><label class="sel"><span class="lbl">Горизонт</span><select id="pmH" class="fsel">${[1,2,3].map(x=>`<option value="${x}" ${h===x?'selected':''}>${x*30} дней</option>`).join('')}</select></label></div>
+   <div class="twrap"><table class="grid"><thead><tr><th class="first">За месяц</th><th>Сейчас</th><th>Сценарий</th><th>Разница</th></tr></thead><tbody>
+   ${rows.map(r=>{const bv=r[1]==='fixed'?PM.fixed:b[r[1]],sv=r[1]==='fixed'?PM.fixed:s[r[1]],d=sv-bv;return`<tr class="${r[3]?'tot':''}"><td class="first">${r[0]}</td><td>${fN(bv)}</td><td>${fN(sv)}</td><td class="${Math.abs(d)<1?'':(['ad','variable','fees','returns','recurring'].includes(r[1])?d<0:d>0)?'pos':'neg'}">${Math.abs(d)<1?'—':(d>0?'+':'−')+fN(Math.abs(d))}</td></tr>`}).join('')}
+   <tr><td class="first">Прибыль за ${h*30} дней</td><td></td><td></td><td class="${diff>=0?'pos':'neg'}">${(diff>=0?'+':'−')+fN(Math.abs(diff*h))}</td></tr>
+   <tr><td class="first">Разовый запуск решений</td><td></td><td></td><td>${fN(s.setup)}</td></tr>
+   <tr><td class="first">Окупаемость запуска</td><td></td><td></td><td>${s.setup>0?(diff>0?Math.max(1,Math.ceil(s.setup/diff*30))+' дн.':'не окупается'):'—'}</td></tr></tbody></table></div>
+   <div class="tnote"><span>Выручка по заказам ≠ полученные деньги: между ними отмены, мощность и невыкуп. Полный эффект с первого дня, разгон не смоделирован</span></div></div>`;
+  $('#pmH').addEventListener('change',e=>{PS.horizon=+e.target.value;renderPmEco(el)});
+}
+function openStage(id){
+  const sol=pmSol(),b=pmCompute(PM,sol),st=pmStages(b,PM),s=st.find(x=>x.id===id),L=s.lev&&PLV.find(x=>x.k===s.lev);
+  const pots=[5,10,15].map(p=>[p,s.lev?pmSens(s.lev,p,sol):0]);
+  openDr(`<div class="dr-h"><div><h3>${s.n}</h3><div style="font-size:12px;color:var(--muted)">${PDEP[s.dept][0]}</div></div><button class="icon-btn" data-close aria-label="Закрыть">✕</button></div>
+   <div class="mc-kp"><div><small>Объём</small><b>${s.u==='₽'?fRub(s.v):fN(s.v)}</b></div><div><small>Прохождение этапа</small><b>${ok(s.conv)?fP(s.conv,s.conv<10?2:1):'—'}</b></div><div><small>Потери этапа</small><b>${ok(s.loss)?fN(s.loss):'—'}</b></div><div><small>Ограничение</small><b>${s.lim?'да':'нет'}</b></div></div>
+   ${s.lev?`<div class="mc-sec"><h4>Потенциал улучшения${L?': '+L.n.toLowerCase():''}</h4>${pots.map(x=>`<div class="conn"><span>+${x[0]}% относительно текущего</span><b class="${x[1]>0?'pos':''}" style="margin-left:auto">${sg2(x[1])} в месяц</b></div>`).join('')}<div class="cnt-s" style="margin-top:6px">Оценка по модели при прочих равных. Это возможность, а не уже потерянные деньги.</div></div>`:''}
+   ${L?`<div class="mc-sec"><h4>Что можно сделать</h4><div style="font-size:13px">${L.acts}</div><div class="cnt-s" style="margin-top:6px">Зависимость от допущений: ${L.as}</div></div>`:''}
+   <div class="mc-sec"><h4>Как считаем</h4><div style="font-size:13px;color:var(--ink-2)">${PDET[id]||'Объём этапа по модели месяца.'}</div></div>`);
+}
+
+/* ---------- money tab ---------- */
+function renderPmMoney(el){
+  const sol=pmSol(),pct=PS.pct||10;
+  const rows=PLV.filter(L=>!L.req||PS.sol[L.req]).map(L=>{const v=pmSens(L.k,pct,sol),nv=pmApply(PM,L.k,pct);return{L,v,nv}}).concat([{L:{k:'fixed',n:'Постоянные расходы',d:-1,dept:'fin',u:'₽',dec:0,acts:'Аренда, сервисы, штат вне продаж',as:'Низкая',ach:'Низкая'},v:pmSens('fixed',pct,sol),nv:PM.fixed*(1-pct/100)}]).sort((a,b)=>b.v-a.v);
+  const mx=Math.max(1,...rows.map(r=>r.v));
+  el.innerHTML=`<div class="card ch"><div class="ch-h"><div><h3>Где находятся деньги</h3><div class="ch-s">Что даст улучшение каждого показателя на ${pct}% относительно текущего уровня — по отдельности, через единую модель</div></div>
+    <div class="seg sm" id="pmPct">${[5,10,15].map(x=>`<button data-p="${x}" class="${pct===x?'on':''}">+${x}%</button>`).join('')}</div></div>
+   <div class="twrap"><table class="grid"><thead><tr><th class="first" style="min-width:260px">Показатель</th><th>Сейчас</th><th>Цель</th><th style="min-width:220px">Прирост прибыли в месяц</th><th style="text-align:left">Отдел</th><th style="text-align:left;min-width:260px">Что сделать</th><th style="text-align:left">Зависит от допущений</th><th style="text-align:left">Достижимость</th></tr></thead><tbody>
+   ${rows.map((r,i)=>{const L=r.L,f=v=>L.u==='₽'?fN(v)+' ₽':nfd(L.dec).format(v)+(L.u==='%'?'%':'');return`<tr><td class="first"><span class="rowname"><span class="cnt-s" style="width:16px">${i+1}</span><b style="font-weight:600">${L.n}</b>${L.dm?'<span class="data-l">демо</span>':''}</span></td><td>${f(PM[L.k])}</td><td>${f(r.nv)}</td>
+     <td><span class="minibar" style="width:90px"><span style="width:${Math.max(0,r.v)/mx*100}%;background:var(--good)"></span></span><b class="${r.v>0?'pos':''}">${sg2(r.v)}</b></td><td class="l"><i class="dot" style="background:${PDEP[L.dept][1]};display:inline-block"></i> ${PDEP[L.dept][0]}</td><td class="l" style="white-space:normal">${L.acts}</td><td class="l" style="white-space:normal">${L.as}</td><td class="l">${pill(L.ach,L.ach==='Высокая'?'good':L.ach==='Средняя'?'warn':'')}</td></tr>`}).join('')}</tbody></table></div>
+   <div class="callout" style="font-size:13px">Рейтинг показывает математическую чувствительность прибыли, а не лёгкость улучшения: +10% к конверсии сайта при ограничении мощности продаж даёт 0 ₽, хотя сделать его проще всего. Достижимость — экспертная демо-оценка, её нужно заменить оценкой руководителей.</div></div>`;
+  $$('#pmPct button').forEach(b=>b.addEventListener('click',()=>{PS.pct=+b.dataset.p;renderPmMoney(el)}));
+}
+
+/* ---------- departments tab ---------- */
+const PDD={
+ mk:{kpi:m=>[['Бюджет',fRub(PM.budget)],['CPC',fN(PM.cpc)+' ₽'],['Конверсия сайта',fP(PM.siteCR,2)],['Лиды',fN(m.leads)],['CPL',fN(PM.budget/m.leads)+' ₽']],lev:['cpc','siteCR'],acts:'Ставки и минус-слова, креативы, A/B-тесты лендингов, отключение кампаний с низким выкупом',deps:'От качества лида зависят конверсия продаж и выкуп. Пока продажи упираются в мощность, рост лидов превращается в очередь, а не в деньги.'},
+ sales:{kpi:m=>[['Менеджеров',nfd(1).format(m.managers)],['Мощность',fN(m.capacity)+' лидов'],['Обработано',fN(m.processed)],['Конверсия',fP(m.conv*100,1)],['Средний чек',fN(PM.check)+' ₽']],lev:['rate','conversion','check','cancel'],acts:'Скорость первого звонка, разбор звонков, скрипт, допродажи, подтверждение заказа',deps:'Мощность отдела определяет, сколько лидов маркетинга станут деньгами. Обещания менеджера влияют на выкуп в логистике.'},
+ log:{kpi:m=>[['Отправлено',fN(m.shipped)],['Выкуп',fP(PM.buyout,1)],['Невыкуп',fN(m.unpaid)],['Доставка',fN(PM.delivery)+' ₽'],['Мощность отправки',fN(PM.shipping)]],lev:['buyout','delivery'],acts:'Звонок на 3-й и 5-й день хранения, выбор службы по региону, сроки сборки',deps:'Выкуп зависит от качества лида (маркетинг) и честности обещаний (продажи). Невыкуп стоит компании доставку туда и обратно.'},
+ prod:{kpi:m=>[['Мощность',fN(PM.production)+' заказов'],['Выпущено',fN(m.produced)],['Себестоимость',fN(PM.cogs)+' ₽']],lev:['cogs'],acts:'Закупка, брак, план выпуска под спрос',deps:'Если продажи снимут ограничение, следующим пределом может стать производство или отправка.'},
+ hr:{kpi:m=>[['Кандидатов в месяц',fN(PM.hireCand)],['Выходят на норму',nfd(1).format(PM.hireCand*PM.hireSel*PM.hireTest*PM.hireOn*PM.hireNorm/1e8)+' в мес'],['Разобрано звонков',fN(PM.devCalls)],['Эффект обучения',`+${nfd(1).format(PM.devUplift)} п.п.`]],lev:[],sol:['hire','dev'],acts:'Воронка найма, адаптация, разбор звонков, тренировки',deps:'Найм увеличивает мощность продаж — главное ограничение модели. Обучение повышает конверсию всех лидов маркетинга.'},
+ fin:{kpi:m=>[['Полученные деньги',fRub(m.revenue)],['Маржинальный вклад',fRub(m.cm)],['Постоянные расходы',fRub(PM.fixed)],['Прибыль',fRub(m.profit)]],lev:[],acts:'Сверка выкупов с поступлениями, контроль постоянных расходов',deps:'Финансы видят итог всех отделов и задают правила расчёта: что считать деньгами, а что — заказами.'}};
+function renderPmDep(el){
+  const dk=PS.dep||'sales',D=PDD[dk],sol=pmSol(),b=pmCompute(PM,sol);
+  let p={...PM};D.lev.forEach(k=>p[k]=pmApply(PM,k,10));const s2={...sol};(D.sol||[]).forEach(x=>s2[x]=true);const pot=pmCompute(p,s2).profit-b.profit;
+  const solo=D.lev.map(k=>[PLV.find(L=>L.k===k).n,pmSens(k,10,sol)]);(D.sol||[]).forEach(x=>solo.push([PSOL.find(s=>s.id===x).name,pmCompute(PM,{...sol,[x]:true}).profit-b.profit]));
+  const lA={cpl:600,buy:65},lB={cpl:800,buy:85};const leadVal=(cpl,buy)=>{const p={...PM,buyout:buy,cpc:cpl*PM.siteCR/100};const m=pmCompute(p,sol);return m.profit};
+  const pa=leadVal(lA.cpl,lA.buy),pb=leadVal(lB.cpl,lB.buy);
+  el.innerHTML=`<div class="card ch"><div class="ch-h"><div><h3>Вклад подразделений</h3><div class="ch-s">Выберите отдел — на карте подсветятся его участки</div></div></div>
+   <div class="seg" id="pdSel" style="flex-wrap:wrap">${Object.entries(PDEP).map(([k,v])=>`<button data-d="${k}" class="${dk===k?'on':''}"><i class="dot" style="background:${v[1]};display:inline-block"></i> ${v[0]}</button>`).join('')}</div></div>
+   <div class="diag2" style="margin-top:12px"><div class="card ch"><div><h3>${PDEP[dk][0]}: текущие KPI</h3></div><div class="mc-kp" style="padding:0">${D.kpi(b).map(x=>`<div><small>${x[0]}</small><b>${x[1]}</b></div>`).join('')}</div>
+    <div class="h3t" style="margin:4px 0 0">Как действия отдела меняют прибыль</div>${solo.length?solo.map(x=>`<div class="conn"><span>${x[0]}: +10%</span><b class="${x[1]>0?'pos':''}" style="margin-left:auto">${sg2(x[1])}</b></div>`).join(''):'<div class="cnt-s">Отдел влияет на прибыль через правила учёта и постоянные расходы.</div>'}
+    ${solo.length?`<div class="conn" style="border-top:2px solid var(--line)"><b>Всё вместе через модель</b><b class="${pot>0?'pos':''}" style="margin-left:auto">${sg2(pot)} в месяц</b></div>`:''}</div>
+    <div class="card ch"><div><h3>Действия и зависимости</h3></div><div style="font-size:13.5px"><b>Что можно сделать:</b> ${D.acts}</div><div style="font-size:13.5px"><b>Кто зависит от работы отдела:</b> ${D.deps}</div>
+     <div class="pmmini" id="pdMap">${pmStages(b,PM).map(s=>`<span class="${s.dept===dk||(dk==='hr'&&['proc','ord'].includes(s.id))?'on':''}" style="--dc:${PDEP[s.dept][1]}">${s.n}</span>`).join('<i>→</i>')}</div>
+     <button class="btn" id="pdGo">Подсветить на карте →</button></div></div>
+   ${dk==='mk'||dk==='log'?`<div class="card ch" style="margin-top:12px"><div><h3>Дешёвый лид ≠ выгодный лид</h3><div class="ch-s">Тот же бюджет, разные лиды — прибыль компании в месяц по модели</div></div>
+    <div class="diag2"><div class="kvx" style="grid-template-columns:1fr 1fr"><div><small>Лид А: CPL ${lA.cpl} ₽, выкуп ${lA.buy}%</small><b class="${pa>=0?'':'neg'}">${fRub(pa)}</b></div><div><small>Лид Б: CPL ${lB.cpl} ₽, выкуп ${lB.buy}%</small><b class="${pb>=pa?'pos':''}">${fRub(pb)}</b></div></div>
+    <div style="font-size:13.5px">Лид Б на ${fP((lB.cpl/lA.cpl-1)*100,0)} дороже, но приносит компании на ${sg2(pb-pa)} больше в месяц: невыкуп стоит доставки в обе стороны и товара, который не продан. Поэтому маркетинг и логистика смотрят на одну цифру — прибыль на выкупленный заказ.</div></div></div>`:''}`;
+  $$('#pdSel button').forEach(x=>x.addEventListener('click',()=>{PS.dep=x.dataset.d;renderPmDep(el)}));$('#pdGo').addEventListener('click',()=>{PS.dep=dk;PS.tab='map';refresh(['pm-head','pm-kpi','pm-body'])});
+}
+
+/* ---------- planning (weekly meeting) tab ---------- */
+const PLL=[{k:'mk',who:'Маркетинг',lev:'siteCR'},{k:'sales',who:'Продажи · РОП',lev:'conversion'},{k:'log',who:'Логистика',lev:'buyout'},{k:'hr',who:'HR и РОП: команда',lev:'rate'}];
+let PLN={mk:{did:'Отключили 6 кампаний с выкупом ниже 65%, перенесли бюджет в «Пульс»',next:'Тест нового лендинга по суставам',pct:5,dep:'Продажам — звонить по новым лидам в первые 15 минут'},sales:{did:'Внедрили правило «3 звонка за сутки» для недозвонов',next:'Разбор 40 звонков с отказом «дорого», новый скрипт',pct:5,dep:'Маркетингу — меньше нецелевых лидов'},log:{did:'Звонки клиентам на 3-й день хранения в ПВЗ',next:'Перевести дальние регионы на СДЭК',pct:3,dep:'Продажам — не обещать срок доставки меньше 5 дней'},hr:{did:'Вышли на работу 2 менеджера, оба на тесте',next:'Довести обоих до нормы, открыть 2 вакансии',pct:5,dep:'РОПу — наставник на первые 2 недели'}};
+try{const s=JSON.parse(localStorage.getItem('kom-pln')||'null');if(s)PLN=s}catch(e){}
+let PTIMER=null,PT0=0;
+function plWeek(){const a=TI-6,b=TI,pa=TI-13,pb=TI-7,c=rAgg(a,b,r=>r.c>=0),p=rAgg(pa,pb,r=>r.c>=0);const lw=L.filter(l=>l.d>=a&&l.d<=b),lp=L.filter(l=>l.d>=pa&&l.d<=pb);
+  const cr=x=>x.filter(l=>l.order).length/x.length*100,sla=x=>x.filter(l=>l.react!=null&&l.react<=CFG.sla).length/x.length*100;
+  const inW=(t,x,y)=>t!=null&&t>=x&&t<y+1,bu=(x,y)=>{const d=PCL.filter(o=>inW(o.dlv,x,y)).length,r=PCL.filter(o=>inW(o.back,x,y)).length;return d/((d+r)||1)*100};
+  return{mk:[['CPL',c.spend/c.leads,p.spend/p.leads,v=>fN(v)+' ₽',1],['Лиды',c.leads,p.leads,fN],['ROAS',c.sum/c.spend*100,p.sum/p.spend*100,v=>fP(v,0)]],sales:[['Конверсия в заказ',cr(lw),cr(lp),v=>fP(v,1)],['Звонок за 15 мин',sla(lw),sla(lp),v=>fP(v,0)]],log:[['Выкуп',bu(a,b),bu(pa,pb),v=>fP(v,1)],['Зависли в ПВЗ',PCL.filter(o=>o.st==='pvs').length,null,fN,1]],hr:[['Вышли на работу',2,0,fN],['Менеджеров в модели',PM.managers,null,v=>nfd(0).format(v)]]}}
+function renderPmPlan(el){
+  const W_=plWeek(),sol=pmSol();
+  const flow=['Что сделали','Какой показатель изменился','Как это повлияло на прибыль','Что сделаем дальше','Какой ожидаем результат'];
+  el.innerHTML=`<div class="card ch"><div class="ch-h"><div><h3>Планёрка: ${fDs(TI-6)} – ${fD(TI)}</h3><div class="ch-s">Главный вопрос к каждой задаче: как это действие позволит компании заработать больше денег?</div></div><button class="btn" id="plT">▶ 5:00 на руководителя</button></div>
+   <div class="pflow">${flow.map((f,i)=>`<span><b>${i+1}</b>${f}</span>`).join('<i>→</i>')}</div></div>
+   <div class="plg">${PLL.map(P=>{const X=PLN[P.k],L=PLV.find(l=>l.k===P.lev),exp=pmSens(P.lev,+X.pct||0,sol);const rows=W_[P.k];
+     const m=rows[0],r=m[2]?(m[1]-m[2])/m[2]*100:0,eff=P.k==='mk'?null:P.k==='hr'?pmCompute({...PM,managers:PM.managers+2},sol).profit-pmCompute(PM,sol).profit:pmSens(P.lev,r,sol);
+     return`<div class="card ch plc" style="border-top:3px solid ${PDEP[P.k][1]}"><div class="ch-h"><h3>${P.who}</h3></div>
+      <div class="plm">${rows.map(x=>{const d=ok(x[2])&&x[2]?(x[1]-x[2])/x[2]*100:null;const good=x[4]?d<0:d>0;return`<div><small>${x[0]}</small><b>${x[3](x[1])}</b>${ok(d)?`<span class="dl2 ${Math.abs(d)<.5?'':good?'pos':'neg'}">${d>0?'+':'−'}${nfd(1).format(Math.abs(d))}%</span>`:''}</div>`}).join('')}</div>
+      <div class="plf"><label>1 · Что сделали</label><textarea data-pl="${P.k}.did" rows="2">${esc(X.did)}</textarea></div>
+      <div class="plf"><label>2–3 · Влияние на прибыль</label><div class="ple">${P.k==='mk'?`<span>Факт по данным отчёта: ROAS ${fP(rows[2][1],0)} против ${fP(rows[2][2],0)} неделей раньше → выручка на тот же бюджет <b class="${rows[2][1]>=rows[2][2]?'pos':'neg'}">${sg2((rows[2][1]-rows[2][2])/100*rAgg(TI-6,TI,r=>r.c>=0).spend)}</b> за неделю</span>`:P.k==='hr'?`<span>Оценка по модели: если оба выйдут на норму, мощность +${fN(2*PM.hours*PM.rate)} лидов → <b class="pos">${sg2(eff)}</b> в месяц</span><span class="data-l">оценка, не подтверждено</span>`:`<span>Оценка по модели: «${m[0].toLowerCase()}» ${r>=0?'+':'−'}${nfd(1).format(Math.abs(r))}% → <b class="${eff>=0?'pos':'neg'}">${sg2(eff)}</b> в месяц</span><span class="data-l">оценка, не подтверждено</span>`}</div></div>
+      <div class="plf"><label>4 · Что сделаем</label><textarea data-pl="${P.k}.next" rows="2">${esc(X.next)}</textarea></div>
+      <div class="plf"><label>5 · Ожидаемый результат</label><div class="ple">${L.n.replace(/,.*$/,'')} <input type="number" data-pl="${P.k}.pct" value="${X.pct}" min="0" max="30" class="fsel" style="width:60px">% → <b class="${exp>0?'pos':''}">${sg2(exp)}</b> в месяц</div>${Math.abs(exp)<1?'<div class="cnt-s">0 ₽: пока продажи упираются в мощность, этот рычаг не превращается в деньги. Сначала — мощность обработки.</div>':''}</div>
+      <div class="plf"><label>Нужно от других отделов</label><input data-pl="${P.k}.dep" class="fsel" value="${esc(X.dep)}" style="width:100%"></div></div>`}).join('')}</div>
+   <div class="cnt-s">Факт — только то, что можно достоверно посчитать по данным отчёта. Остальное — оценка по модели, пока результат не подтвердится через 2–4 недели. Записи хранятся в этом браузере.</div>`;
+  el.querySelectorAll('[data-pl]').forEach(i=>i.addEventListener('change',()=>{const [k,f]=i.dataset.pl.split('.');PLN[k][f]=f==='pct'?Math.max(0,Math.min(30,+i.value||0)):i.value;try{localStorage.setItem('kom-pln',JSON.stringify(PLN))}catch(e){};if(f==='pct')renderPmPlan(el)}));
+  const tb=$('#plT');tb.addEventListener('click',()=>{if(PTIMER){clearInterval(PTIMER);PTIMER=null;tb.textContent='▶ 5:00 на руководителя';return}PT0=Date.now();PTIMER=setInterval(()=>{const l=Math.max(0,300-Math.floor((Date.now()-PT0)/1000));const b=$('#plT');if(!b){clearInterval(PTIMER);PTIMER=null;return}b.textContent=`■ ${Math.floor(l/60)}:${p2(l%60)}`;if(!l){clearInterval(PTIMER);PTIMER=null;toast('Время руководителя вышло')}},500)});
+}
+
+/* ---------- data tab ---------- */
+const PGR=[['Маркетинг',0,[['budget','Бюджет рекламы, ₽',500000,15000000,100000],['cpc','CPC, ₽',5,200,1],['ctr','CTR, %',.1,10,.1],['siteCR','Конверсия сайта, %',.5,30,.1]]],['Продажи',0,[['managers','Менеджеров',1,30,1],['hours','Доступно часов / человек / мес.',40,200,1],['rate','Лидов / рабочий час',1,15,.1],['conversion','Конверсия в заказ, %',1,80,1],['cancel','Отмены до отправки, %',0,30,.5,1]]],
+ ['Исполнение и выкуп',0,[['production','Мощность производства, заказов / мес.',500,8000,100],['shipping','Мощность отправки, заказов / мес.',500,8000,100],['buyout','Выкуп, %',10,100,1],['check','Средний чек, ₽',1000,50000,100]]],['Расходы',0,[['cogs','Товар на заказ, ₽',0,12000,100,1],['delivery','Доставка на заказ, ₽',0,5000,50,1],['fee','Комиссия / выкуп, ₽',0,1500,10],['returnCost','Доп. расход / невыкуп, ₽',0,3000,50],['fixed','Постоянные расходы, ₽ / мес.',0,10000000,100000]]],
+ ['Повторные продажи',1,[['repBase','Клиентов в базе',0,100000,500],['repContact','Повторный контакт, %',0,60,1],['repConv','Покупка после контакта, %',0,60,1]]],['Найм',1,[['hireCand','Кандидатов в месяц',0,200,1],['hireSel','Прошли отбор, %',0,100,1],['hireTest','Сдали тест, %',0,100,1],['hireOn','Вышли на работу, %',0,100,1],['hireNorm','Вышли на норму, %',0,100,1],['hireCost','Затраты на менеджера, ₽ / мес.',0,300000,5000]]],
+ ['Развитие менеджеров',1,[['devCalls','Разобрано звонков в месяц',0,2000,10],['devErr','Звонков с ошибками, %',0,100,1],['devTrain','Обучено по итогам, %',0,100,1],['devUplift','Рост конверсии, п.п.',0,10,.5],['devCost','Затраты на развитие, ₽ / мес.',0,500000,5000]]]];
+function renderPmData(el){
+  el.innerHTML=`<div class="setg">${PGR.map(g=>`<div class="card ch"><div><h3>${g[0]} ${g[1]?'<span class="data-l">демо</span>':''}</h3></div><div class="setf">${g[2].map(f=>`<label for="pm-${f[0]}">${f[1]}${f[5]?' <span class="data-l">демо</span>':''}</label><span class="setin"><input id="pm-${f[0]}" data-pm="${f[0]}" type="number" min="${f[2]}" max="${f[3]}" step="${f[4]}" value="${Math.round(PM[f[0]]*100)/100}"></span>`).join('')}</div></div>`).join('')}
+   <div class="card ch"><div><h3>Границы расчёта</h3></div><div style="font-size:13px;color:var(--ink-2);display:flex;flex-direction:column;gap:6px"><div>Модель прибыли до налога. Стоимость выкупленных заказов — не банковская касса: задержка перечисления наложенного платежа не учтена.</div><div>Не учтены налоги, амортизация, проценты, запасы. Невыкуп — не то же самое, что возврат после покупки.</div><div>Значения с пометкой «демо» в исходной карте отсутствовали. Их нужно заменить фактическими данными CRM, учёта и HR.</div></div></div></div>
+   <div class="setbar card"><span class="cnt-s">Изменения пересчитывают карту и сохраняются в этом браузере</span><span class="grow"></span><button class="btn" id="pmDef">Сбросить демо</button></div>`;
+  el.querySelectorAll('[data-pm]').forEach(i=>i.addEventListener('change',()=>{const v=Number(i.value);if(i.value.trim()===''||!isFinite(v)){toast('Введите число');i.value=PM[i.dataset.pm];return}PM[i.dataset.pm]=Math.min(+i.max,Math.max(+i.min,v));i.value=Math.round(PM[i.dataset.pm]*100)/100;pmSave();renderPmKpi(document.querySelector('#pm-kpi .body'));toast('Модель пересчитана')}));
+  $('#pmDef').addEventListener('click',()=>{PM={...PM0};pmSave();PS.adj={};PS.sol={};PS.sc='now';refresh(['pm-kpi','pm-body']);toast('Демонстрационные значения восстановлены')});
+}
+function renderPmBody(el){({map:renderPmMap,money:renderPmMoney,dep:renderPmDep,plan:renderPmPlan,data:renderPmData})[PS.tab](el)}
+PAGES.profitmap={t:'Карта прибыли',compute:()=>{},nav:['Карта'],secs:[['pm-head','Карта прибыли',renderPmHead],['pm-kpi','Итоги модели',renderPmKpi],['pm-body','Карта',renderPmBody]]};
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classList.remove('present')});document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement)document.body.classList.remove('present')});
 
 /* resize charts */
 let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{if($('#pDyn'))renderCharts(document.querySelector('#sec-charts .body'))},150)});
