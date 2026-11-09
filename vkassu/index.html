@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Деньги в кассу — сквозная аналитика от рекламы до кассы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* One visual world: ledger-ink night for the money story, cool paper for the explanation; one accent — cash yellow */
+:root{
+  --ink:#0c1726; --ink-2:#1b2b40; --paper:#f3f5f8; --card:#ffffff; --line:#dfe4ec; --text:#0c1726; --text-2:#4a5a70; --muted:#8693a5;
+  --cash:#ffcc3d; --loss:#ff6b5a; --good:#1aa865; --blue:#3d7bff;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif; --body:"Onest",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--text);font:400 17px/1.55 var(--body);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cash);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.eyebrow{font:600 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 16px/1 var(--body);padding:16px 22px;border-radius:12px;text-decoration:none;border:0;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.cash{background:var(--cash);color:var(--ink)}
+.btn.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35)}
+.btn.dark{background:var(--ink);color:#fff}
+
+/* HERO */
+.hero{background:var(--ink);color:#fff;position:relative;overflow:hidden;padding:28px 0 0}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font:700 15px/1 var(--display);letter-spacing:-.01em}
+.logo i{width:32px;height:32px;border-radius:9px;background:var(--cash);display:grid;place-items:center;flex:none}
+.logo small{display:block;font:500 11px/1.2 var(--body);color:rgba(255,255,255,.5);letter-spacing:.04em;margin-top:3px}
+.nav a.link{font-size:14px;color:rgba(255,255,255,.7);text-decoration:none}
+.nav a.link:hover{color:#fff}
+.hero-in{padding:72px 0 30px;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:end}
+.hero h1{font-size:clamp(34px,5.4vw,68px);line-height:1.02;font-weight:800}
+.hero h1 em{font-style:normal;color:var(--cash)}
+.hero p.lead{font-size:20px;color:rgba(255,255,255,.75);max-width:44ch;margin:24px 0 32px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.hero-side{border-left:1px solid rgba(255,255,255,.14);padding-left:28px;display:flex;flex-direction:column;gap:18px}
+.stat b{display:block;font:700 34px/1 var(--display);color:#fff;letter-spacing:-.03em}
+.stat span{font-size:14px;color:rgba(255,255,255,.6)}
+.flow{position:relative;margin-top:36px;height:340px}
+.flow canvas{position:absolute;inset:0;width:100%;height:100%}
+.stages{position:absolute;inset:0;display:grid;grid-template-columns:repeat(7,1fr);pointer-events:none}
+.stg{display:flex;flex-direction:column;justify-content:flex-start;padding:10px 6px 0;border-left:1px dashed rgba(255,255,255,.12)}
+.stg:first-child{border-left:0}
+.stg small{font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.02em}
+.stg b{font:700 clamp(15px,1.7vw,22px)/1.15 var(--display);letter-spacing:-.02em;margin-top:4px}
+.stg .ls{margin-top:auto;padding-bottom:12px;font-size:12.5px;color:var(--loss);font-weight:600;min-height:40px}
+.stg.cashst b{color:var(--cash)}
+.flow-note{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 0 26px;font-size:13px;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.1)}
+.flow-note b{color:var(--loss)}
+
+/* sections */
+section.s{padding:110px 0}
+.s-h{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:end;margin-bottom:56px}
+.s-h h2{font-size:clamp(28px,3.6vw,46px);line-height:1.05}
+.s-h p{color:var(--text-2);font-size:18px;margin:0;max-width:52ch}
+
+/* blind spots */
+.spots{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--ink)}
+.spot{padding:28px 28px 32px 0;border-right:1px solid var(--line)}
+.spot+.spot{padding-left:28px}
+.spot:last-child{border-right:0}
+.spot .num{font:800 54px/1 var(--display);letter-spacing:-.04em}
+.spot .num small{font-size:22px;color:var(--muted);font-weight:700}
+.spot h3{font-size:19px;margin:18px 0 10px;line-height:1.25}
+.spot p{margin:0;color:var(--text-2);font-size:16px}
+.vs{display:flex;gap:10px;margin-top:16px;font-size:14px}
+.vs span{padding:6px 10px;border-radius:8px;background:var(--card);border:1px solid var(--line)}
+.vs span.bad{color:var(--loss);border-color:color-mix(in srgb,var(--loss) 40%,var(--line))}
+.vs span.ok{color:var(--good);border-color:color-mix(in srgb,var(--good) 40%,var(--line))}
+
+/* modules bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.mod{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px;min-height:250px;position:relative;overflow:hidden}
+.mod.w3{grid-column:span 3}.mod.w2{grid-column:span 2}.mod.w4{grid-column:span 4}
+.mod .tag{font:600 11px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.mod h3{font-size:20px;line-height:1.2}
+.mod p{margin:0;color:var(--text-2);font-size:15px}
+.mod .viz{margin-top:auto}
+.mod.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.mod.dark p{color:rgba(255,255,255,.7)}.mod.dark .tag{color:rgba(255,255,255,.5)}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kp div{background:var(--paper);border-radius:10px;padding:10px 12px}
+.kp small{display:block;font-size:11.5px;color:var(--muted)}
+.kp b{font:700 18px/1.2 var(--display);letter-spacing:-.02em}
+.kp .up{color:var(--good);font-size:12px;font-weight:600}
+.heat{display:grid;grid-template-columns:repeat(13,1fr);gap:3px}
+.heat i{aspect-ratio:1;border-radius:3px}
+.rank{display:flex;flex-direction:column;gap:7px}
+.rank div{display:grid;grid-template-columns:70px 1fr 50px;gap:10px;align-items:center;font-size:13px}
+.rank span.b{height:9px;border-radius:5px}
+.rank b{text-align:right}
+.tg{background:#e8eef8;border-radius:14px;padding:12px}
+.tg div{background:#fff;border-radius:12px 12px 12px 4px;padding:10px 12px;font-size:12.5px;line-height:1.45;color:var(--text)}
+.sig{display:flex;flex-direction:column;gap:6px}
+.sig div{display:flex;gap:8px;align-items:flex-start;font-size:13px;background:rgba(255,255,255,.06);border-radius:10px;padding:8px 10px;border-left:3px solid var(--loss)}
+.sig div.w{border-left-color:var(--cash)}
+.phone{width:120px;height:210px;border-radius:24px;border:6px solid var(--ink);background:var(--paper);margin:0 auto;padding:12px 8px;display:flex;flex-direction:column;gap:6px;position:absolute;right:20px;bottom:-30px;box-shadow:0 20px 40px rgba(12,23,38,.2)}
+.phone b{font:800 18px/1 var(--display)}
+.phone i{display:block;height:7px;border-radius:4px;background:var(--line)}
+
+/* simulator */
+.sim{background:var(--ink);color:#fff;border-radius:28px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.sim h2{font-size:clamp(26px,3.2vw,40px);line-height:1.08}
+.sim p.sub{color:rgba(255,255,255,.65);margin:16px 0 28px}
+.sl{display:flex;flex-direction:column;gap:20px}
+.sl label{display:flex;flex-direction:column;gap:8px;font-size:15px}
+.sl .row{display:flex;justify-content:space-between;gap:10px}
+.sl .row b{color:var(--cash);font-weight:600}
+.sl input[type=range]{width:100%;accent-color:var(--cash);height:22px}
+.res{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:18px}
+.res .big{font:800 clamp(44px,6vw,76px)/1 var(--display);letter-spacing:-.04em;color:var(--cash)}
+.res .cap{font-size:14px;color:rgba(255,255,255,.6)}
+.res .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.res .pair div{background:rgba(255,255,255,.06);border-radius:12px;padding:12px 14px}
+.res .pair small{display:block;font-size:12px;color:rgba(255,255,255,.55)}
+.res .pair b{font:700 20px/1.2 var(--display)}
+.note{font-size:14px;line-height:1.5;color:rgba(255,255,255,.75);background:rgba(255,204,61,.1);border-radius:12px;padding:12px 14px;border-left:3px solid var(--cash)}
+.presets{display:flex;gap:8px;flex-wrap:wrap}
+.presets button{font:600 13px/1 var(--body);padding:9px 12px;border-radius:9px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;cursor:pointer}
+.presets button.on{background:var(--cash);color:var(--ink);border-color:var(--cash)}
+
+/* roles */
+.roles{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.role{border-top:3px solid var(--ink);padding-top:18px}
+.role h3{font-size:17px;margin-bottom:8px}
+.role p{margin:0;font-size:15px;color:var(--text-2)}
+.role .q{display:block;margin-top:12px;font-size:14px;font-weight:600;color:var(--text)}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:s}
+.step{padding:0 24px 0 0;position:relative}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font:800 64px/1 var(--display);color:var(--line);letter-spacing:-.04em;display:block;margin-bottom:14px}
+.step h3{font-size:18px;margin-bottom:8px}
+.step p{margin:0;color:var(--text-2);font-size:15px}
+.step em{font-style:normal;display:inline-block;margin-top:12px;font-size:13px;font-weight:600;background:var(--card);border:1px solid var(--line);padding:4px 10px;border-radius:20px}
+
+/* faq */
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+details{border-top:1px solid var(--line);padding:20px 0}
+summary{cursor:pointer;font-weight:600;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:500 24px/1 var(--display);color:var(--muted);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:12px 0 0;color:var(--text-2);font-size:16px;max-width:60ch}
+
+/* final */
+.final{background:var(--ink);color:#fff;padding:110px 0 60px;text-align:left}
+.final h2{font-size:clamp(32px,5vw,64px);line-height:1.03;max-width:16ch}
+.final h2 em{font-style:normal;color:var(--cash)}
+.final p{color:rgba(255,255,255,.7);font-size:19px;max-width:48ch;margin:22px 0 32px}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:90px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:rgba(255,255,255,.45)}
+
+.reveal{transition:opacity .6s ease,transform .6s ease}
+.reveal.pre{opacity:.001;transform:translateY(18px)}
+@media (prefers-reduced-motion:reduce){.reveal{transition:none}.reveal.pre{opacity:1;transform:none}.btn{transition:none}}
+
+@media (max-width:980px){
+  .hero-in,.s-h,.sim{grid-template-columns:1fr}
+  .hero-side{border-left:0;padding-left:0;flex-direction:row;flex-wrap:wrap;gap:24px}
+  .spots{grid-template-columns:1fr}.spot,.spot+.spot{padding:24px 0;border-right:0;border-bottom:1px solid var(--line)}
+  .bento{grid-template-columns:1fr 1fr}.mod.w3,.mod.w2,.mod.w4{grid-column:span 2}
+  .roles{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr;gap:32px 0}
+  .faq{grid-template-columns:1fr}
+  .sim{padding:28px}
+  section.s{padding:80px 0}
+}
+@media (max-width:640px){
+  .nav a.link{display:none}
+  .flow{height:420px}
+  .stages{grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr}
+  .stg:nth-child(5){border-left:0}
+  .roles,.steps{grid-template-columns:1fr}
+  .kp{grid-template-columns:1fr 1fr}
+  .phone{display:none}
+  body{font-size:16px}
+  .hero p.lead{font-size:18px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav" aria-label="Навигация">
+      <div class="logo"><i aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1.5v8.5M5.5 6.5 9 10l3.5-3.5" stroke="#0c1726" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 11v4.5h13V11" stroke="#0c1726" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><span>Деньги в&nbsp;кассу<small>сквозная аналитика</small></span></div>
+      <a class="link" href="#inside">Что внутри</a>
+      <a class="link" href="#sim">Посчитать эффект</a>
+      <a class="link" href="#how">Как внедряем</a>
+    </nav>
+    <div class="hero-in">
+      <div>
+        <div class="eyebrow" style="color:rgba(255,255,255,.5)">Сквозная аналитика для продаж с доставкой</div>
+        <h1 style="margin-top:18px">Каждый рубль рекламы — <em>до кассы</em>. И каждый рубль, потерянный по дороге.</h1>
+        <p class="lead">Рекламный кабинет показывает ROAS, CRM — заказы, служба доставки — выкуп. Мы склеиваем это в одну картину и показываем, какой отдел сколько денег приносит и где их теряет.</p>
+        <div class="cta-row"><a class="btn cash" href="#sim">Посчитать для своих цифр →</a><a class="btn ghost" href="#inside">Посмотреть разделы</a></div>
+      </div>
+      <div class="hero-side">
+        <div class="stat"><b>12</b><span>разделов: от директолога до собственника</span></div>
+        <div class="stat"><b>06:00</b><span>каждое утро свежие данные из CRM, кабинетов и доставки</span></div>
+        <div class="stat"><b>1 ссылка</b><span>на телефоне и на компьютере, без установки</span></div>
+      </div>
+    </div>
+    <div class="flow" aria-label="Путь денег: из 6 млн ₽ рекламы до кассы доходит выкуп на 20 млн ₽, по дороге теряется больше трети заказов">
+      <canvas id="flowC"></canvas>
+      <div class="stages">
+        <div class="stg"><small>Реклама</small><b>6,0 млн ₽</b><span class="ls"></span></div>
+        <div class="stg"><small>Лиды</small><b>8 000</b><span class="ls">2 000 ждут звонка: менеджеров не хватает</span></div>
+        <div class="stg"><small>Обработано</small><b>6 000</b><span class="ls">4 200 отказались после звонка</span></div>
+        <div class="stg"><small>Заказы</small><b>1 800</b><span class="ls">72 отменили до отправки</span></div>
+        <div class="stg"><small>Отправлено</small><b>1 728</b><span class="ls">346 не забрали посылку</span></div>
+        <div class="stg"><small>Выкуплено</small><b>1 382</b><span class="ls"></span></div>
+        <div class="stg cashst"><small>Деньги</small><b>20,0 млн ₽</b><span class="ls" style="color:rgba(255,255,255,.55)">прибыль 3,2 млн ₽</span></div>
+      </div>
+    </div>
+    <div class="flow-note"><span>Демонстрационная модель месяца интернет-магазина с наложенным платежом</span><span>Красным — потери, которые обычно не видит ни один отдел целиком</span></div>
+  </div>
+</header>
+
+<main>
+<section class="s">
+  <div class="wrap">
+    <div class="s-h reveal"><h2>Три цифры, которые врут руководителю каждый день</h2><p>Каждая по отдельности правильная. Вместе они ведут к решениям, которые съедают прибыль: дешёвые лиды, которые не выкупают, реклама, которая упирается в отдел продаж, и касса, которой нет.</p></div>
+    <div class="spots">
+      <div class="spot reveal"><div class="num">435%<small> ROAS</small></div><h3>Реклама считает заказы, а не деньги</h3><p>Кабинет видит заявку и сумму заказа. Отмены, невыкуп и доставку туда и обратно он не видит. До кассы доходит заметно меньше.</p><div class="vs"><span>по заказам 435%</span><span class="bad">до кассы 334%</span></div></div>
+      <div class="spot reveal"><div class="num">−25%<small> CPL</small></div><h3>Дешёвый лид бывает самым дорогим</h3><p>Подрядчик снизил цену лида, а выкуп по его заказам упал с 85% до 65%. На отчёте маркетинга это победа, в кассе — минус.</p><div class="vs"><span class="ok">лид 800 ₽, выкуп 85%</span><span class="bad">лид 600 ₽, выкуп 65%</span></div></div>
+      <div class="spot reveal"><div class="num">0 ₽<small> эффекта</small></div><h3>Больше лидов не значит больше денег</h3><p>Если менеджеры успевают обработать 6 000 заявок, восьмитысячная заявка просто ждёт. Рост рекламы в этот момент — деньги в очередь.</p><div class="vs"><span>+10% лидов</span><span class="bad">+0 ₽ прибыли</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="inside" style="padding-top:0">
+  <div class="wrap">
+    <div class="s-h reveal"><h2>Одна система вместо пяти таблиц</h2><p>Каждый раздел отвечает на вопрос конкретного человека. Цифры одни и те же, поэтому маркетинг, продажи и логистика спорят не о данных, а о решениях.</p></div>
+    <div class="bento">
+      <article class="mod w4 reveal"><span class="tag">Обзор</span><h3>Путь денег за период на одном экране</h3><p>Расход → сумма заказов → ROAS → вручено → касса. Сравнение с прошлым периодом, план со светофором, выводы «что делать на этой неделе».</p>
+        <div class="viz kp"><div><small>Расход</small><b>3,6 млн ₽</b><span class="up">−1,7%</span></div><div><small>Сумма заказов</small><b>21,7 млн ₽</b><span class="up">+2,3%</span></div><div><small>ROAS</small><b style="color:var(--good)">597%</b><span class="up">+4,1%</span></div></div></article>
+      <article class="mod w2 dark reveal"><span class="tag">Сигналы</span><h3>Отчёт сам пишет, где проблема</h3>
+        <div class="viz sig"><div>«Линия»: ROAS ниже 400% три дня подряд</div><div class="w">106 посылок лежат в ПВЗ больше 7 дней</div><div class="w">SLA первого звонка 54% за вчера</div></div></article>
+      <article class="mod w2 reveal"><span class="tag">Подрядчики</span><h3>Кому дать денег, у кого забрать</h3><p>Рейтинг по прибыли после рекламы с учётом выкупа и симулятор перераспределения бюджета.</p>
+        <div class="viz rank"><div><span>Пульс</span><span class="b" style="background:var(--good);width:92%"></span><b>742%</b></div><div><span>Вектор</span><span class="b" style="background:var(--good);width:74%"></span><b>588%</b></div><div><span>Ракурс</span><span class="b" style="background:var(--cash);width:56%"></span><b>431%</b></div><div><span>Линия</span><span class="b" style="background:var(--loss);width:34%"></span><b>255%</b></div></div></article>
+      <article class="mod w2 reveal"><span class="tag">Продажи</span><h3>Когда отдел не успевает звонить</h3><p>Карта «менеджер × час»: где заявки ждут дольше 15 минут и тают.</p>
+        <div class="viz heat" id="heat"></div></article>
+      <article class="mod w2 reveal"><span class="tag">Доставка</span><h3>Каждая зависшая посылка — деньги</h3><p>Воронка от отправки до выкупа, когорты, матрица «регион × служба», список посылок в риске на сегодня.</p>
+        <div class="viz kp"><div><small>Выкуп</small><b>78%</b></div><div><small>В ПВЗ &gt;7 дн</small><b style="color:var(--loss)">106</b></div><div><small>В дороге</small><b>4,1 млн</b></div></div></article>
+      <article class="mod w3 reveal"><span class="tag">План роста</span><h3>Мост к плану: откуда возьмутся деньги</h3><p>Прогноз кассы, разрыв до плана и вклад каждого рычага: лиды, конверсия, чек, база, выкуп. Под рычаги — план действий с ответственными.</p>
+        <svg class="viz" viewBox="0 0 420 110" role="img" aria-label="Мост к плану: прогноз 20 млн, рычаги добавляют до 27 млн при плане 28 млн">
+          <rect x="6" y="40" width="44" height="66" rx="4" fill="#4a5a70"/><rect x="64" y="26" width="44" height="14" rx="3" fill="#1aa865"/><rect x="122" y="18" width="44" height="8" rx="3" fill="#1aa865"/><rect x="180" y="12" width="44" height="6" rx="3" fill="#1aa865"/><rect x="238" y="4" width="44" height="8" rx="3" fill="#1aa865"/><rect x="296" y="4" width="44" height="102" rx="4" fill="#3d7bff"/>
+          <line x1="0" x2="420" y1="2" y2="2" stroke="#ff6b5a" stroke-dasharray="5 4" stroke-width="1.5"/><text x="356" y="16" font-size="11" fill="#ff6b5a" font-family="Onest">план</text></svg></article>
+      <article class="mod w3 dark reveal"><span class="tag">Карта прибыли</span><h3>Каждый руководитель видит свой вклад в деньги</h3><p>12 этапов от показа до прибыли, ответственные отделы, потери и сценарии +5/+10/+15%. Режим планёрки: «сделали → показатель → прибыль».</p>
+        <div class="viz kp" style="color:var(--text)"><div><small>+10% конверсии</small><b>+1,5 млн</b></div><div><small>+10% выкупа</small><b>+2,6 млн</b></div><div><small>все вместе</small><b style="color:var(--good)">+7,7 млн</b></div></div></article>
+      <article class="mod w2 reveal"><span class="tag">Юнит-экономика</span><h3>Сколько остаётся с одного заказа</h3><p>Чек → невыкуп → товар → доставка → реклама → маржа. Предельный CPL, при котором заказ ещё в плюсе.</p>
+        <svg class="viz" viewBox="0 0 300 90" role="img" aria-label="Из среднего чека после всех расходов остаётся маржа"><rect x="4" y="6" width="34" height="80" rx="4" fill="#4a5a70"/><rect x="48" y="6" width="34" height="16" rx="3" fill="#ff6b5a" opacity=".75"/><rect x="92" y="22" width="34" height="26" rx="3" fill="#ff6b5a" opacity=".75"/><rect x="136" y="48" width="34" height="12" rx="3" fill="#ff6b5a" opacity=".75"/><rect x="180" y="60" width="34" height="10" rx="3" fill="#ff6b5a" opacity=".75"/><rect x="224" y="70" width="34" height="16" rx="4" fill="#1aa865"/><text x="262" y="82" font-size="10" fill="#1aa865" font-family="Onest">маржа</text></svg></article>
+      <article class="mod w2 reveal"><span class="tag">Сводка руководителю</span><h3>Понедельник, 9:00, Telegram</h3>
+        <div class="viz tg"><div><b>Сводка за неделю</b><br>• Сумма заказов: 5,1 млн ₽ (+3%)<br>• ROAS: 612%<br>⚠️ 3 проблемы · ✅ 3 действия</div></div></article>
+      <article class="mod w2 reveal" style="padding-right:150px"><span class="tag">Мобильная версия</span><h3>Главные цифры для собственника</h3><p>Выручка, прибыль, деньги на счетах и светофоры — в телефоне.</p>
+        <div class="phone" aria-hidden="true"><small style="font-size:9px;color:var(--muted)">Выручка</small><b>14,7 млн</b><i style="width:70%"></i><i></i><i style="width:55%"></i><i style="width:80%"></i></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="sim" style="padding-top:0">
+  <div class="wrap">
+    <div class="sim reveal">
+      <div>
+        <div class="eyebrow" style="color:rgba(255,255,255,.5)">Попробуйте сами</div>
+        <h2 style="margin-top:14px">Сколько ещё денег дойдёт до кассы, если каждый отдел сделает +10%</h2>
+        <p class="sub">Модель месяца: 6 млн ₽ рекламы, 8 000 лидов, 10 менеджеров, наложенный платёж. Двигайте рычаги — прибыль пересчитывается через всю цепочку, а не складывается на калькуляторе.</p>
+        <div class="presets" id="pre"><button data-p="0">Как сейчас</button><button data-p="5">Каждому +5%</button><button data-p="10" class="on">Каждому +10%</button><button data-p="15">Каждому +15%</button></div>
+        <div class="sl" style="margin-top:24px">
+          <label for="r-site"><span class="row">Конверсия сайта · маркетинг <b id="v-site"></b></span><input id="r-site" type="range" min="0" max="30" value="10"></label>
+          <label for="r-rate"><span class="row">Скорость обработки заявок · РОП <b id="v-rate"></b></span><input id="r-rate" type="range" min="0" max="30" value="10"></label>
+          <label for="r-conv"><span class="row">Конверсия звонка в заказ · продажи <b id="v-conv"></b></span><input id="r-conv" type="range" min="0" max="30" value="10"></label>
+          <label for="r-chk"><span class="row">Средний чек · продажи <b id="v-chk"></b></span><input id="r-chk" type="range" min="0" max="30" value="10"></label>
+          <label for="r-buy"><span class="row">Выкуп · логистика <b id="v-buy"></b></span><input id="r-buy" type="range" min="0" max="20" value="10"></label>
+        </div>
+      </div>
+      <div class="res" aria-live="polite">
+        <span class="cap">Дополнительная прибыль в месяц</span>
+        <div class="big" id="dP"></div>
+        <div class="pair"><div><small>Прибыль сейчас</small><b id="p0"></b></div><div><small>Прибыль после</small><b id="p1"></b></div><div><small>Выкупленных заказов</small><b id="o1"></b></div><div><small>Сумма по отдельности</small><b id="solo"></b></div></div>
+        <div class="note" id="sNote"></div>
+        <span class="cap">Оценка по модели, не обещание. В отчёте эта же модель работает на ваших цифрах из CRM.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s" style="padding-top:0">
+  <div class="wrap">
+    <div class="s-h reveal"><h2>У каждого — свой вопрос и свой экран</h2><p>Отчёт не заменяет руководителей. Он убирает споры о том, чья цифра правильная, и показывает, как работа каждого превращается в деньги компании.</p></div>
+    <div class="roles">
+      <div class="role reveal"><h3>Собственник</h3><p>Прибыль, касса, план и три главные проблемы недели.</p><span class="q">«Где сейчас мои деньги?»</span></div>
+      <div class="role reveal"><h3>Директолог</h3><p>Кампании, направления, подрядчики, ROAS до кассы.</p><span class="q">«Какая кампания реально окупается?»</span></div>
+      <div class="role reveal"><h3>РОП</h3><p>SLA, конверсия менеджеров, причины отказов, связки с источниками.</p><span class="q">«Кому отдавать какие лиды?»</span></div>
+      <div class="role reveal"><h3>Логист</h3><p>Посылки в риске, выкуп по службам и регионам.</p><span class="q">«Кому позвонить сегодня?»</span></div>
+      <div class="role reveal"><h3>Финансы</h3><p>Выкуп против поступлений, юнит-экономика, постоянные расходы.</p><span class="q">«Сколько остаётся с заказа?»</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="how" style="padding-top:0">
+  <div class="wrap">
+    <div class="s-h reveal"><h2>Запуск за три недели на ваших данных</h2><p>Ничего не перестраиваем в CRM. Забираем выгрузку по готовому формату: заявки, заказы, посылки, расходы рекламы и планы — и сверяем каждую цифру с вашей бухгалтерией.</p></div>
+    <div class="steps">
+      <div class="step reveal"><h3>Выгрузка</h3><p>Передаём разработчику CRM формат: 14 таблиц, поля и правила связи заказа с рекламой.</p><em>неделя 1</em></div>
+      <div class="step reveal"><h3>Сверка</h3><p>Расход сходится с кабинетами, заказы — с CRM, поступления — с банком. Только после этого цифрам можно верить.</p><em>неделя 2</em></div>
+      <div class="step reveal"><h3>Запуск</h3><p>Отчёт обновляется каждое утро. Настраиваем планы, пороги и роли под вашу команду.</p><em>неделя 3</em></div>
+      <div class="step reveal"><h3>Планёрки</h3><p>Еженедельно разбираем, какие действия сдвинули прибыль, и выбираем следующие по эффекту в рублях.</p><em>дальше каждую неделю</em></div>
+    </div>
+  </div>
+</section>
+
+<section class="s" style="padding-top:0">
+  <div class="wrap">
+    <div class="s-h reveal"><h2>Частые вопросы</h2><p>Если вашего вопроса здесь нет — задайте его тому, кто прислал вам эту ссылку.</p></div>
+    <div class="faq">
+      <details><summary>Нужна ли какая-то особенная CRM?</summary><p>Нет. Нужна возможность выгрузить заявки, заказы и статусы посылок с датами. Если CRM умеет отдавать CSV или API — этого достаточно.</p></details>
+      <details><summary>А персональные данные клиентов?</summary><p>Не передаются. Имена, телефоны и адреса остаются в вашей CRM; в отчёт приходит только обезличенный ID клиента и регион.</p></details>
+      <details><summary>Чем это отличается от Метрики и отчётов кабинета?</summary><p>Кабинет заканчивается на заказе. Отчёт идёт дальше: отправка, выкуп, поступление денег, себестоимость и постоянные расходы — до прибыли.</p></details>
+      <details><summary>Что если данных по какому-то этапу нет?</summary><p>Раздел работает на демо-допущении и честно помечен. Когда данные появляются, допущение заменяется фактом, а остальные разделы продолжают работать.</p></details>
+      <details><summary>Сколько времени уходит у команды?</summary><p>Разработчику CRM — несколько дней на выгрузку. Руководителям — 5–10 минут в день на свои экраны и час на еженедельную планёрку.</p></details>
+      <details><summary>Можно увидеть отчёт до решения?</summary><p>Да. Покажем живую демо-версию со всеми разделами на вымышленных данных, а затем — на выгрузке за один ваш месяц.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="final">
+  <div class="wrap">
+    <h2 class="reveal">Узнайте, сколько денег теряется <em>между рекламой и кассой</em></h2>
+    <p class="reveal">Покажем живой отчёт и посчитаем модель на цифрах вашего месяца. Чтобы договориться о показе, ответьте тому, кто прислал вам эту ссылку.</p>
+    <a class="btn cash reveal" href="#sim">Ещё раз посчитать эффект ↑</a>
+    <div class="foot"><span>Деньги в кассу · сквозная аналитика от рекламы до кассы</span><span>Все цифры на странице — демонстрационная модель, не результаты конкретной компании.</span></div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const NF=new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0});
+const mln=v=>(v<0?'−':'')+new Intl.NumberFormat('ru-RU',{minimumFractionDigits:1,maximumFractionDigits:1}).format(Math.abs(v)/1e6)+' млн ₽';
+
+/* ---------- hero money flow ---------- */
+const cv=document.getElementById('flowC'),ctx=cv.getContext('2d');
+const keep=[1,1,.75,.3,.96,.8,1];
+let W=0,H=0,parts=[],cols=7;
+function size(){const r=cv.getBoundingClientRect(),d=devicePixelRatio||1;W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0);cols=W<640?0:7}
+function band(i){const pass=keep.slice(0,i+1).reduce((a,b)=>a*b,1);return pass}
+function spawn(){const y0=H*.5;return{x:-10,y:y0+(Math.random()-.5)*110,vx:1.1+Math.random()*.9,vy:0,stage:0,lost:false,r:1.6+Math.random()*1.6,a:1}}
+function step(){
+  if(!cols)return;const cw=W/7;
+  for(const p of parts){
+    if(!p.lost){const st=Math.floor(p.x/cw);if(st>p.stage&&st<7){p.stage=st;if(Math.random()>keep[st]){p.lost=true;p.vy=.6+Math.random()*.8;p.vx*=.35}}}
+    p.x+=p.vx;p.y+=p.vy;if(p.lost){p.vy+=.03;p.a-=.006}}
+  parts=parts.filter(p=>p.x<W+20&&p.y<H+20&&p.a>0);
+}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  if(cols){const cw=W/7;
+    for(let i=0;i<7;i++){const h=Math.max(10,band(i)*140),x=i*cw+8,y=H*.5-h/2;
+      const g=ctx.createLinearGradient(x,0,x+cw,0);g.addColorStop(0,'rgba(61,123,255,.16)');g.addColorStop(1,i===6?'rgba(255,204,61,.25)':'rgba(61,123,255,.08)');
+      ctx.fillStyle=g;ctx.beginPath();ctx.roundRect?ctx.roundRect(x,y,cw-16,h,10):ctx.rect(x,y,cw-16,h);ctx.fill()}}
+  for(const p of parts){const cash=!p.lost&&p.x>W*(6/7);
+    ctx.globalAlpha=Math.max(0,p.a);ctx.fillStyle=p.lost?'#ff6b5a':cash?'#ffcc3d':'#8fb3ff';
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r*(cash?1.4:1),0,6.283);ctx.fill()}
+  ctx.globalAlpha=1;
+}
+function loop(){for(let i=0;i<4;i++)parts.push(spawn());step();draw();requestAnimationFrame(loop)}
+size();addEventListener('resize',size);
+for(let k=0;k<Math.ceil(W/1.4)+60;k++){for(let i=0;i<4;i++)parts.push(spawn());step()}
+if(RM)draw();else loop();
+
+/* ---------- heat ---------- */
+const heat=document.getElementById('heat');let h='';
+for(let r=0;r<5;r++)for(let c=0;c<13;c++){const v=Math.abs(Math.sin(r*3.1+c*.9))*(c>9?1.3:1)*(r===3?1.4:.8);const col=v>.95?'var(--loss)':v>.6?'var(--cash)':'var(--good)';h+=`<i style="background:${col};opacity:${.35+Math.min(.6,v*.5)}"></i>`}
+heat.innerHTML=h;
+
+/* ---------- simulator (same model as the report's profit map) ---------- */
+const B={budget:6e6,cpc:25,siteCR:3.3333333,managers:10,hours:120,rate:5,conv:30,cancel:4,prod:2400,ship:2800,buy:80,chk:14500,varc:4200,fee:300,ret:600,fixed:3e6};
+function model(p){const clicks=p.budget/p.cpc,leads=clicks*p.siteCR/100,cap=p.managers*p.hours*p.rate,proc=Math.min(leads,cap),orders=proc*Math.min(.95,p.conv/100),toShip=orders*(1-p.cancel/100),shipped=Math.min(toShip,p.prod,p.ship),paid=shipped*Math.min(99,p.buy)/100;
+  const rev=paid*p.chk,profit=rev-p.budget-shipped*p.varc-paid*p.fee-(shipped-paid)*p.ret-p.fixed;return{leads,cap,proc,paid,profit}}
+const K=[['site','siteCR'],['rate','rate'],['conv','conv'],['chk','chk'],['buy','buy']];
+const el=id=>document.getElementById(id);
+function params(over){const p={...B};K.forEach(([id,k])=>{const v=over?over[id]:+el('r-'+id).value;p[k]=B[k]*(1+v/100)});return p}
+function upd(){
+  const b=model(B),pp=params(),s=model(pp),d=s.profit-b.profit;
+  let solo=0;K.forEach(([id,k])=>{const o={site:0,rate:0,conv:0,chk:0,buy:0};o[id]=+el('r-'+id).value;solo+=model(params(o)).profit-b.profit});
+  K.forEach(([id,k])=>{const v=+el('r-'+id).value,nv=B[k]*(1+v/100);el('v-'+id).textContent=(v?'+'+v+'% · ':'')+(k==='chk'?NF.format(nv)+' ₽':k==='rate'?new Intl.NumberFormat('ru-RU',{maximumFractionDigits:1}).format(nv)+' лида/час':new Intl.NumberFormat('ru-RU',{maximumFractionDigits:1}).format(Math.min(k==='buy'?99:100,nv))+'%')});
+  el('dP').textContent=(d>=0?'+':'')+mln(d);el('p0').textContent=mln(b.profit);el('p1').textContent=mln(s.profit);el('o1').textContent=NF.format(b.paid)+' → '+NF.format(s.paid);el('solo').textContent=(solo>=0?'+':'')+mln(solo);
+  const siteOnly=(()=>{const o={site:+el('r-site').value,rate:0,conv:0,chk:0,buy:0};return model(params(o)).profit-b.profit})();
+  el('sNote').innerHTML=s.leads>s.cap+1?`Отдел продаж успевает только ${NF.format(s.cap)} из ${NF.format(s.leads)} заявок. Конверсия сайта сама по себе даёт <b>${mln(siteOnly)}</b>: сначала — скорость обработки.`
+   :d>solo+1000?`Вместе улучшения дают на <b>${mln(d-solo)}</b> больше, чем сумма по отдельности: рост в одном отделе умножается на рост в другом.`
+   :'Двигайте рычаги, чтобы увидеть, как отделы усиливают друг друга.';
+}
+K.forEach(([id])=>el('r-'+id).addEventListener('input',()=>{document.querySelectorAll('#pre button').forEach(b=>b.classList.remove('on'));upd()}));
+document.getElementById('pre').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const v=+b.dataset.p;K.forEach(([id])=>{el('r-'+id).value=id==='buy'?Math.min(20,v):v});document.querySelectorAll('#pre button').forEach(x=>x.classList.toggle('on',x===b));upd()});
+upd();
+
+/* ---------- reveal ---------- */
+if(!RM&&'IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.remove('pre');io.unobserve(en.target)}}),{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(x=>{const r=x.getBoundingClientRect();if(r.top>innerHeight){x.classList.add('pre');io.observe(x)}})}
+})();
+</script>
+</body>
+</html>
