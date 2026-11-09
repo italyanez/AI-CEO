@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Деньги в кассу — сквозная аналитика от рекламы до кассы</title>
+<title>Деньги в кассу — запись на демонстрацию</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -31,13 +31,14 @@ h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.02em;margin
 /* HERO */
 .hero{background:var(--ink);color:#fff;position:relative;overflow:hidden;padding:28px 0 0}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.logo{display:flex;align-items:center;gap:10px;font:700 15px/1 var(--display);letter-spacing:-.01em}
+.logo{display:flex;align-items:center;gap:10px;white-space:nowrap;font:700 15px/1 var(--display);letter-spacing:-.01em}
 .logo i{width:32px;height:32px;border-radius:9px;background:var(--cash);display:grid;place-items:center;flex:none}
 .logo small{display:block;font:500 11px/1.2 var(--body);color:rgba(255,255,255,.5);letter-spacing:.04em;margin-top:3px}
+.navcta{padding:11px 16px;font-size:14px;white-space:nowrap}
 .nav a.link{font-size:14px;color:rgba(255,255,255,.7);text-decoration:none}
 .nav a.link:hover{color:#fff}
-.hero-in{padding:72px 0 30px;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:end}
-.hero h1{font-size:clamp(34px,5.4vw,68px);line-height:1.02;font-weight:800}
+.hero-in{padding:64px 0 30px;display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(34px,4.8vw,62px);line-height:1.02;font-weight:800}
 .hero h1 em{font-style:normal;color:var(--cash)}
 .hero p.lead{font-size:20px;color:rgba(255,255,255,.75);max-width:44ch;margin:24px 0 32px}
 .cta-row{display:flex;gap:12px;flex-wrap:wrap}
@@ -55,6 +56,35 @@ h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.02em;margin
 .stg.cashst b{color:var(--cash)}
 .flow-note{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 0 26px;font-size:13px;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.1)}
 .flow-note b{color:var(--loss)}
+
+/* demo form */
+.formcard{background:#fff;color:var(--text);border-radius:22px;padding:26px;box-shadow:0 30px 70px rgba(0,0,0,.35);position:relative;scroll-margin-top:24px}
+.formcard h2{font-size:22px;line-height:1.15}
+.formcard .fsub{font-size:14.5px;color:var(--text-2);margin:8px 0 18px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fld{display:flex;flex-direction:column;gap:5px}
+.fld.full{grid-column:1/-1}
+.fld label{font-size:12.5px;font-weight:600;color:var(--text-2)}
+.fld label i{font-style:normal;color:var(--loss)}
+.fld input{font:500 16px/1.2 var(--body);padding:12px 13px;border-radius:11px;border:1.5px solid var(--line);background:var(--paper);color:var(--text);outline:none;transition:border-color .15s,background .15s}
+.fld input:focus{border-color:var(--ink);background:#fff}
+.fld input[aria-invalid="true"]{border-color:var(--loss);background:#fff6f5}
+.ferr{font-size:12px;color:#d23f31;min-height:0}
+.consent{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;color:var(--text-2);margin:14px 0 4px;line-height:1.4}
+.consent input{width:17px;height:17px;accent-color:var(--ink);margin-top:1px;flex:none}
+.fsubmit{width:100%;justify-content:center;margin-top:12px;padding:17px}
+.fsubmit[disabled]{opacity:.6;cursor:default;transform:none}
+.fnote{font-size:12px;color:var(--muted);margin-top:10px;text-align:center}
+.fdone{display:flex;flex-direction:column;gap:10px}
+.fdone .ok{width:46px;height:46px;border-radius:50%;background:#e4f6ec;display:grid;place-items:center}
+.fdone h3{font-size:20px}
+.fdone p{margin:0;font-size:14.5px;color:var(--text-2)}
+.fdone .btns{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.fdone .btn{justify-content:center}
+.fdone .btn.tg{background:#229ED9;color:#fff}
+.mini-stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:34px}
+.mini-stats div b{display:block;font:700 24px/1 var(--display);letter-spacing:-.03em}
+.mini-stats div span{font-size:13px;color:rgba(255,255,255,.55)}
 
 /* sections */
 section.s{padding:110px 0}
@@ -164,6 +194,7 @@ details p{margin:12px 0 0;color:var(--text-2);font-size:16px;max-width:60ch}
 
 @media (max-width:980px){
   .hero-in,.s-h,.sim{grid-template-columns:1fr}
+  .formcard{max-width:560px}
   .hero-side{border-left:0;padding-left:0;flex-direction:row;flex-wrap:wrap;gap:24px}
   .spots{grid-template-columns:1fr}.spot,.spot+.spot{padding:24px 0;border-right:0;border-bottom:1px solid var(--line)}
   .bento{grid-template-columns:1fr 1fr}.mod.w3,.mod.w2,.mod.w4{grid-column:span 2}
@@ -174,6 +205,8 @@ details p{margin:12px 0 0;color:var(--text-2);font-size:16px;max-width:60ch}
 }
 @media (max-width:640px){
   .nav a.link{display:none}
+  .navcta{padding:10px 12px;font-size:13px}.logo small{display:none}
+  .fgrid{grid-template-columns:1fr}.formcard{padding:20px}
   .flow{height:420px}
   .stages{grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr}
   .stg:nth-child(5){border-left:0}
@@ -194,18 +227,30 @@ details p{margin:12px 0 0;color:var(--text-2);font-size:16px;max-width:60ch}
       <a class="link" href="#inside">Что внутри</a>
       <a class="link" href="#sim">Посчитать эффект</a>
       <a class="link" href="#how">Как внедряем</a>
+      <a class="btn cash navcta" href="#demo">Записаться на демо</a>
     </nav>
     <div class="hero-in">
       <div>
         <div class="eyebrow" style="color:rgba(255,255,255,.5)">Сквозная аналитика для продаж с доставкой</div>
         <h1 style="margin-top:18px">Каждый рубль рекламы — <em>до кассы</em>. И каждый рубль, потерянный по дороге.</h1>
         <p class="lead">Рекламный кабинет показывает ROAS, CRM — заказы, служба доставки — выкуп. Мы склеиваем это в одну картину и показываем, какой отдел сколько денег приносит и где их теряет.</p>
-        <div class="cta-row"><a class="btn cash" href="#sim">Посчитать для своих цифр →</a><a class="btn ghost" href="#inside">Посмотреть разделы</a></div>
+        <div class="cta-row"><a class="btn ghost" href="#sim">Посчитать эффект →</a><a class="btn ghost" href="#inside">Посмотреть разделы</a></div>
+        <div class="mini-stats"><div><b>12</b><span>разделов отчёта</span></div><div><b>06:00</b><span>свежие данные каждое утро</span></div><div><b>3 недели</b><span>до запуска на ваших данных</span></div></div>
       </div>
-      <div class="hero-side">
-        <div class="stat"><b>12</b><span>разделов: от директолога до собственника</span></div>
-        <div class="stat"><b>06:00</b><span>каждое утро свежие данные из CRM, кабинетов и доставки</span></div>
-        <div class="stat"><b>1 ссылка</b><span>на телефоне и на компьютере, без установки</span></div>
+      <div class="formcard" id="demo">
+        <h2>Запишитесь на демонстрацию</h2>
+        <p class="fsub">30 минут онлайн: покажем живой отчёт и посчитаем, сколько денег теряется в вашей воронке.</p>
+        <form id="leadForm" data-source="Сквозная аналитика · Деньги в кассу" novalidate>
+          <div class="fgrid">
+            <div class="fld full"><label for="f-name">Имя <i>*</i></label><input id="f-name" name="name" autocomplete="name" placeholder="Как к вам обращаться" required><span class="ferr" id="e-name"></span></div>
+            <div class="fld full"><label for="f-contact">Телефон / Telegram <i>*</i></label><input id="f-contact" name="phone" type="text" inputmode="text" autocomplete="tel" placeholder="+7 ... / @username" required><span class="ferr" id="e-contact"></span></div>
+            <div class="fld full"><label for="f-email">Email <i>*</i></label><input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@company.ru" required><span class="ferr" id="e-email"></span></div>
+          </div>
+          <label class="consent"><input type="checkbox" id="f-ok" required><span>Согласен на обработку персональных данных для связи по демонстрации</span></label>
+          <span class="ferr" id="e-ok"></span>
+          <button class="btn cash fsubmit" type="submit" id="fBtn">Записаться на демонстрацию →</button>
+          <p class="fnote">Бесплатно и без обязательств. Ответим в течение рабочего дня.</p>
+        </form>
       </div>
     </div>
     <div class="flow" aria-label="Путь денег: из 6 млн ₽ рекламы до кассы доходит выкуп на 20 млн ₽, по дороге теряется больше трети заказов">
@@ -320,7 +365,7 @@ details p{margin:12px 0 0;color:var(--text-2);font-size:16px;max-width:60ch}
 
 <section class="s" style="padding-top:0">
   <div class="wrap">
-    <div class="s-h reveal"><h2>Частые вопросы</h2><p>Если вашего вопроса здесь нет — задайте его тому, кто прислал вам эту ссылку.</p></div>
+    <div class="s-h reveal"><h2>Частые вопросы</h2><p>Если вашего вопроса здесь нет — задайте его на демонстрации. <a href="#demo">Записаться →</a></p></div>
     <div class="faq">
       <details><summary>Нужна ли какая-то особенная CRM?</summary><p>Нет. Нужна возможность выгрузить заявки, заказы и статусы посылок с датами. Если CRM умеет отдавать CSV или API — этого достаточно.</p></details>
       <details><summary>А персональные данные клиентов?</summary><p>Не передаются. Имена, телефоны и адреса остаются в вашей CRM; в отчёт приходит только обезличенный ID клиента и регион.</p></details>
@@ -336,12 +381,13 @@ details p{margin:12px 0 0;color:var(--text-2);font-size:16px;max-width:60ch}
 <footer class="final">
   <div class="wrap">
     <h2 class="reveal">Узнайте, сколько денег теряется <em>между рекламой и кассой</em></h2>
-    <p class="reveal">Покажем живой отчёт и посчитаем модель на цифрах вашего месяца. Чтобы договориться о показе, ответьте тому, кто прислал вам эту ссылку.</p>
-    <a class="btn cash reveal" href="#sim">Ещё раз посчитать эффект ↑</a>
+    <p class="reveal">Покажем живой отчёт и посчитаем модель на цифрах вашего месяца. Демонстрация — 30 минут онлайн, бесплатно.</p>
+    <a class="btn cash reveal" href="#demo">Записаться на демонстрацию ↑</a>
     <div class="foot"><span>Деньги в кассу · сквозная аналитика от рекламы до кассы</span><span>Все цифры на странице — демонстрационная модель, не результаты конкретной компании.</span></div>
   </div>
 </footer>
 
+<script src="/assets/lead-delivery.js"></script>
 <script>
 (()=>{
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -403,6 +449,31 @@ function upd(){
 K.forEach(([id])=>el('r-'+id).addEventListener('input',()=>{document.querySelectorAll('#pre button').forEach(b=>b.classList.remove('on'));upd()}));
 document.getElementById('pre').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const v=+b.dataset.p;K.forEach(([id])=>{el('r-'+id).value=id==='buy'?Math.min(20,v):v});document.querySelectorAll('#pre button').forEach(x=>x.classList.toggle('on',x===b));upd()});
 upd();
+
+/* ---------- demo form ---------- */
+const F=document.getElementById('leadForm'),fv=id=>document.getElementById(id).value.trim();
+const setErr=(id,eid,msg)=>{const i=document.getElementById(id);i.setAttribute('aria-invalid',msg?'true':'false');document.getElementById(eid).textContent=msg||''};
+function validate(){let ok=true;
+  if(fv('f-name').length<2){setErr('f-name','e-name','Укажите имя');ok=false}else setErr('f-name','e-name');
+  const contact=fv('f-contact');if(!(/^[+\d][\d ()-]{5,20}$/.test(contact)||/^@[A-Za-z0-9_]{5,32}$/.test(contact))){setErr('f-contact','e-contact','Укажите телефон или Telegram в формате @username');ok=false}else setErr('f-contact','e-contact');
+  const em=fv('f-email');if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){setErr('f-email','e-email','Проверьте адрес');ok=false}else setErr('f-email','e-email');
+  const c=document.getElementById('f-ok').checked;document.getElementById('e-ok').textContent=c?'':'Нужно согласие, чтобы мы могли связаться';if(!c)ok=false;
+  return ok}
+function payload(){const q=new URLSearchParams(location.search),u={};['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(k=>{if(q.get(k))u[k]=q.get(k)});
+  return{name:fv('f-name'),phone:fv('f-contact'),email:fv('f-email'),source:'Сквозная аналитика · Деньги в кассу',page:location.href.split('#')[0],utm:u,created_at:new Date().toISOString()}}
+function done(html){F.parentElement.querySelector('h2').style.display='none';F.parentElement.querySelector('.fsub').style.display='none';F.outerHTML=`<div class="fdone" role="status">${html}</div>`}
+const okIcon='<span class="ok"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1aa865" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></span>';
+function addHidden(name,value){let i=F.querySelector(`input[type="hidden"][name="${name}"]`);if(!i){i=document.createElement('input');i.type='hidden';i.name=name;F.appendChild(i)}i.value=value??''}
+F.addEventListener('submit',async e=>{e.preventDefault();if(!validate()){const first=F.querySelector('[aria-invalid="true"]')||document.getElementById('f-ok');first.focus();return}
+  const d=payload(),b=document.getElementById('fBtn');
+  b.disabled=true;b.textContent='Отправляем…';
+  const leadId=globalThis.crypto?.randomUUID?.()||`lead-${Date.now()}-${Math.random().toString(36).slice(2,10)}`;
+  let crmFailed=false;
+  try{await window.AgentaniumLeads.send({kind:'application',leadId,source:d.source,name:d.name,phone:d.phone,email:d.email,fields:{...d.utm,'Время заявки':d.created_at,'Страница':d.page}})}catch(err){crmFailed=true}
+  F.action='https://formsubmit.co/vkuskichev@gmail.com';F.method='POST';
+  addHidden('_subject','Новая заявка · Сквозная аналитика');addHidden('_template','table');addHidden('_captcha','false');addHidden('_next','https://agentanium.ru/thankyou');addHidden('Источник',d.source);addHidden('ID заявки',leadId);addHidden('Время заявки',d.created_at);addHidden('Страница',d.page);Object.entries(d.utm).forEach(([k,v])=>addHidden(k,v));
+  if(crmFailed)addHidden('Доставка в CRM','Требует проверки — заявка продублирована на email');
+  HTMLFormElement.prototype.submit.call(F)});
 
 /* ---------- reveal ---------- */
 if(!RM&&'IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.remove('pre');io.unobserve(en.target)}}),{rootMargin:'0px 0px -8% 0px'});
