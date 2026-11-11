@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Финут — управленческий учёт с прогнозом</title>
+<meta name="description" content="Финут показывает прогноз денег, план-факт, платёжный календарь и экономику бизнеса на ваших данных.">
+<link rel="canonical" href="https://agentanium.ru/finut/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Финут — управленческий учёт с прогнозом">
+<meta property="og:description" content="Покажем прогноз месяца, план-факт и движение денег на ваших данных.">
+<meta property="og:url" content="https://agentanium.ru/finut/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: тёмно-синий «банкнотный» первый экран с гильоширом → светлые разделы на бумаге с зеленоватым оттенком; цифры моноширинным шрифтом, как в ведомости */
+:root{
+  --navy:#081a33; --navy-2:#0f2a4f; --navy-3:#173a68;
+  --green:#0e9f6e; --green-2:#14c389; --mint:#dff6ec;
+  --paper:#f5f8f6; --white:#ffffff; --ink:#0b1b2e; --ink-2:#3b4a5c; --muted:#6a7889; --line:#dbe3e0;
+  --bad:#d64532; --warn:#c07a0c;
+  --display:"Onest",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --body:"Onest",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--green-2);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.02em}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:10px;border:0;border-radius:12px;padding:14px 22px;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;transition:transform .15s,box-shadow .15s,background .15s}
+.btn.green{background:var(--green-2);color:var(--navy);box-shadow:0 8px 24px rgba(20,195,137,.28)}
+.btn.green:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(20,195,137,.38)}
+.btn.ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.22)}
+.btn.ghost:hover{background:rgba(255,255,255,.14)}
+.btn.dark{background:var(--navy);color:#fff}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+
+/* header */
+header.top{position:sticky;top:0;z-index:30;background:rgba(8,26,51,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
+.top .wrap{display:flex;align-items:center;gap:28px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:18px;letter-spacing:-.01em;white-space:nowrap}
+.coin{width:32px;height:32px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#3ee0a6,var(--green) 60%,#087a54);display:grid;place-items:center;color:var(--navy);font-weight:800;font-size:17px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
+nav.menu{display:flex;gap:22px;margin-left:auto}
+nav.menu a{color:rgba(255,255,255,.75);text-decoration:none;font-size:14.5px;font-weight:500}
+nav.menu a:hover{color:#fff}
+.top .btn{padding:10px 16px;font-size:14px}
+@media (max-width:900px){nav.menu{display:none}.top .btn{margin-left:auto}}
+
+/* hero */
+.hero{position:relative;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 60%,#0d3b4a 100%);color:#fff;overflow:hidden}
+#guilloche{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding-top:72px;padding-bottom:88px}
+.hero h1{font-size:clamp(36px,4.6vw,58px);line-height:1.04;font-weight:800}
+.hero h1 em{font-style:normal;color:var(--green-2)}
+.hero p.lead{font-size:19px;line-height:1.55;color:rgba(255,255,255,.8);margin:22px 0 30px;max-width:560px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero .facts{display:flex;gap:28px;margin-top:38px;flex-wrap:wrap}
+.hero .facts div{font-size:13.5px;color:rgba(255,255,255,.65);max-width:170px;line-height:1.4}
+.hero .facts b{display:block;color:#fff;font-size:15px;margin-bottom:2px}
+@media (max-width:960px){.hero .wrap{grid-template-columns:1fr}}
+
+/* forecast card in hero */
+.fcard{background:rgba(255,255,255,.97);color:var(--ink);border-radius:20px;padding:22px 22px 18px;box-shadow:0 30px 80px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.4);position:relative}
+.fcard .bar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.fcard .bar span{font-size:12.5px;color:var(--muted)}
+.tag{display:inline-flex;gap:6px;align-items:center;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green);background:var(--mint);border-radius:999px;padding:4px 10px}
+.tag i{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.fbig{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.fbig .v{font-size:40px;font-weight:600;line-height:1}
+.fbig .u{font-size:18px;color:var(--muted)}
+.chipd{font-size:12.5px;font-weight:700;border-radius:8px;padding:3px 8px}
+.chipd.up{background:var(--mint);color:var(--green)}.chipd.down{background:#fdecea;color:var(--bad)}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+.fgrid div{background:var(--paper);border-radius:12px;padding:10px 12px}
+.fgrid small{display:block;font-size:11.5px;color:var(--muted)}
+.fgrid b{font-size:16px}
+.scn{display:flex;background:var(--paper);border-radius:10px;padding:3px;gap:2px;margin-bottom:12px}
+.scn button{flex:1;border:0;background:none;border-radius:8px;padding:7px 6px;font-size:12.5px;font-weight:600;color:var(--ink-2);cursor:pointer}
+.scn button.on{background:var(--navy);color:#fff}
+.mini-chart{height:120px}
+.mini-chart svg{width:100%;height:100%;display:block}
+.fnote{font-size:11.5px;color:var(--muted);margin-top:8px}
+
+/* sections */
+section.s{padding:96px 0}
+.s-h{max-width:760px;margin-bottom:44px}
+.s-h h2{font-size:clamp(28px,3.2vw,42px);line-height:1.12;font-weight:800;margin-top:10px}
+.s-h p{color:var(--ink-2);font-size:18px;margin:14px 0 0;max-width:640px}
+
+/* classic strip */
+.classic{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.classic .wrap{padding-top:44px;padding-bottom:44px;display:grid;grid-template-columns:260px 1fr;gap:32px;align-items:center}
+.classic h3{font-size:20px;line-height:1.25}
+.classic h3 small{display:block;font-size:14px;font-weight:500;color:var(--muted);margin-top:6px;letter-spacing:0}
+.pills{display:flex;flex-wrap:wrap;gap:10px}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:9px 14px;font-weight:600;font-size:14.5px}
+.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}
+@media (max-width:820px){.classic .wrap{grid-template-columns:1fr}}
+
+/* differentiators */
+.diff{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.dcard{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:26px 24px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.dcard .no{font-family:var(--mono);font-size:13px;color:var(--green);font-weight:600}
+.dcard h3{font-size:21px;line-height:1.25}
+.dcard p{margin:0;color:var(--ink-2);font-size:15.5px}
+.dcard .ex{margin-top:auto;font-size:13.5px;background:var(--mint);color:#0a5f43;border-radius:10px;padding:10px 12px}
+.dcard.wide{grid-column:1/-1}.dcard.lead{grid-column:span 2;background:var(--navy);color:#fff;border-color:var(--navy)}
+.dcard.lead p{color:rgba(255,255,255,.78)}
+.dcard.lead .ex{background:rgba(20,195,137,.14);color:#9ff0cf}
+.flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:6px 0 4px}
+.flow span{font-size:13px;font-weight:600;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:6px 10px}
+.flow i{color:var(--green-2);font-style:normal}
+.flow span.cash{background:var(--green-2);color:var(--navy);border-color:var(--green-2)}
+@media (max-width:980px){.diff{grid-template-columns:1fr}.dcard.lead,.dcard.wide{grid-column:auto}}
+
+/* demo */
+.demo{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.demo .s-h p{color:rgba(255,255,255,.75)}
+.demo .eyebrow{color:var(--green-2)}
+.dtabs{display:flex;gap:4px;background:rgba(255,255,255,.07);border-radius:12px;padding:4px;width:max-content;max-width:100%;overflow:auto;margin-bottom:16px}
+.dtabs button{border:0;background:none;color:rgba(255,255,255,.7);padding:10px 16px;border-radius:9px;font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap}
+.dtabs button.on{background:#fff;color:var(--navy)}
+.screen{background:#fff;color:var(--ink);border-radius:18px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.screen .sh{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:14px}
+.screen h4{margin:0;font-size:17px;font-family:var(--display)}
+.screen .sub{font-size:12.5px;color:var(--muted)}
+table.t{width:100%;border-collapse:collapse;font-size:13.5px}
+.t th{font-size:11.5px;color:var(--muted);font-weight:600;text-align:right;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+.t td{padding:9px 10px;border-bottom:1px solid #eef2f0;text-align:right;white-space:nowrap}
+.t th:first-child,.t td:first-child{text-align:left}
+.t tr.tot td{font-weight:700;background:var(--paper)}
+.t .pos{color:var(--green);font-weight:600}.t .neg{color:var(--bad);font-weight:600}
+.tw{overflow-x:auto}
+.prog{display:inline-block;width:80px;height:6px;border-radius:4px;background:#e7ece9;position:relative;vertical-align:middle;margin-right:8px}
+.prog span{position:absolute;left:0;top:0;bottom:0;border-radius:4px}
+.prog i{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);opacity:.5}
+.why{display:grid;gap:6px;margin-top:16px}
+.why div{display:grid;grid-template-columns:200px 1fr 90px;gap:12px;align-items:center;font-size:13px}
+.why .tr{height:12px;position:relative;background:linear-gradient(#cfd8d4,#cfd8d4) center/1px 100% no-repeat}
+.why .tr span{position:absolute;top:0;bottom:0;border-radius:4px}
+.lg{display:flex;gap:16px;font-size:12.5px;color:var(--ink-2);margin-bottom:6px;flex-wrap:wrap}
+.lg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.callouts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.callouts div{border-left:2px solid var(--green-2);padding:2px 0 2px 14px;font-size:14.5px;color:rgba(255,255,255,.8)}
+.callouts b{color:#fff;display:block;margin-bottom:2px}
+@media (max-width:820px){.callouts{grid-template-columns:1fr}.why div{grid-template-columns:120px 1fr 80px}}
+
+/* compare */
+.cmp{background:var(--white);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.cmp table{width:100%;border-collapse:collapse}
+.cmp th,.cmp td{padding:15px 20px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:15px}
+.cmp thead th{font-size:13px;color:var(--muted);font-weight:600;background:var(--paper)}
+.cmp thead th.us{background:var(--navy);color:#fff}
+.cmp td.us{background:#f0faf5}
+.cmp td small{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.yes,.no,.part{display:inline-flex;align-items:center;gap:8px;font-weight:700}
+.yes{color:var(--green)}.no{color:#a3adb8}.part{color:var(--warn)}
+.cmp tr:last-child td{border-bottom:0}
+@media (max-width:820px){.cmp th,.cmp td{padding:11px 12px;font-size:13.5px}}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:st}
+.step{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:26px 24px}
+.step .k{font-family:var(--mono);font-size:40px;font-weight:600;color:var(--green);line-height:1}
+.step h3{font-size:19px;margin:14px 0 8px}
+.step p{margin:0;color:var(--ink-2);font-size:15px}
+.who{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.who div{background:var(--mint);border-radius:18px;padding:22px 24px;color:#0a4d37}
+.who h3{font-size:18px;margin-bottom:8px;color:var(--navy)}
+.who ul{margin:0;padding-left:18px}
+.who li{margin:3px 0}
+@media (max-width:900px){.steps,.who{grid-template-columns:1fr}}
+
+/* faq */
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+details{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+summary{cursor:pointer;font-weight:700;font-size:16px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:var(--green);font-weight:800;font-size:20px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:10px 0 0;color:var(--ink-2);font-size:15px}
+@media (max-width:820px){.faq{grid-template-columns:1fr}}
+
+/* form */
+.formsec{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-3) 100%);color:#fff;position:relative;overflow:hidden}
+.formsec .wrap{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;gap:48px}
+.formsec h2{font-size:clamp(28px,3.2vw,42px);line-height:1.12;font-weight:800}
+.formsec .lead{color:rgba(255,255,255,.78);font-size:17px;margin:16px 0 24px}
+.formsec ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.formsec li{display:flex;gap:12px;color:rgba(255,255,255,.85)}
+.formsec li::before{content:"✓";color:var(--green-2);font-weight:800}
+form.lead-form{background:#fff;color:var(--ink);border-radius:20px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;box-shadow:0 30px 80px rgba(0,0,0,.3)}
+.f{display:flex;flex-direction:column;gap:6px}
+.f.full{grid-column:1/-1}
+.f label,.f .lbl{font-size:13px;font-weight:600;color:var(--ink-2)}
+.f input,.f select,.f textarea{border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:var(--paper);font-size:15px}
+.f input:focus,.f select:focus,.f textarea:focus{outline:2px solid var(--green);outline-offset:0;border-color:var(--green);background:#fff}
+.f textarea{min-height:80px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{display:inline-flex;gap:7px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:13.5px;font-weight:500;cursor:pointer;background:var(--paper)}
+.chips input{accent-color:var(--green);margin:0}
+.chips label:has(input:checked){border-color:var(--green);background:var(--mint);color:#0a5f43}
+.consent{grid-column:1/-1;display:flex;gap:10px;font-size:13px;color:var(--muted);align-items:flex-start}
+.consent input{accent-color:var(--green);margin-top:3px}
+.form-foot{grid-column:1/-1;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.form-foot .btn{padding:15px 26px}
+.err{color:var(--bad);font-size:13.5px;font-weight:600}
+.okbox{grid-column:1/-1;background:var(--mint);color:#0a5f43;border-radius:14px;padding:18px;font-weight:600}
+.copybox{grid-column:1/-1;background:#fff7e6;color:#7a4b00;border-radius:14px;padding:16px;font-size:14px}
+.copybox pre{white-space:pre-wrap;font-family:var(--mono);font-size:12.5px;background:#fff;border-radius:8px;padding:10px;margin:10px 0}
+@media (max-width:960px){.formsec .wrap{grid-template-columns:1fr}form.lead-form{grid-template-columns:1fr}}
+
+footer{background:var(--navy);color:rgba(255,255,255,.6);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:28px;padding-bottom:28px;border-top:1px solid rgba(255,255,255,.08)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="#top"><span class="coin">₽</span>Деньги в кассу</a>
+  <nav class="menu" aria-label="Разделы"><a href="#features">Возможности</a><a href="#demo">Как выглядит</a><a href="#compare">Сравнение</a><a href="#start">Внедрение</a><a href="#faq">Вопросы</a></nav>
+  <a class="btn green" href="#form">Оставить заявку</a>
+</div></header>
+
+<section class="hero" id="top">
+  <canvas id="guilloche" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:var(--green-2)">Управленческий учёт с прогнозом</span>
+      <h1 style="margin-top:14px">Узнайте результат месяца <em>в его начале</em>, а&nbsp;не&nbsp;после закрытия</h1>
+      <p class="lead">ДДС, ОПиУ, план-факт и платёжный календарь в одной системе. Плюс прогноз финансового результата до конца месяца: по воронке продаж, а не по банковской выписке.</p>
+      <div class="ctas"><a class="btn green" href="#form">Получить демо на своих данных</a><a class="btn ghost" href="#demo">Посмотреть, как это выглядит</a></div>
+      <div class="facts">
+        <div><b>Каждое утро</b>свежий прогноз прибыли и кассы месяца</div>
+        <div><b>Поверх ваших данных</b>Google-таблицы, CRM, выписки: учёт не переносим</div>
+        <div><b>От клика до кассы</b>реклама, заказы, выкуп и деньги в одной цепочке</div>
+      </div>
+    </div>
+    <div class="fcard" aria-label="Пример карточки прогноза">
+      <div class="bar"><span class="tag"><i></i>Прогноз ноября</span><span>прошло 9 из 30 дней · пример</span></div>
+      <div class="fbig"><span class="v num" id="hV">9,6</span><span class="u">млн ₽ чистого потока к 30-му</span></div>
+      <div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="chipd up" id="hD">+0,4 млн к плану</span><span style="font-size:12.5px;color:var(--muted)">план 9,2 млн</span></div>
+      <div class="fgrid">
+        <div><small>Уже пришло</small><b class="num">6,13 млн</b></div>
+        <div><small>Ещё придёт</small><b class="num" id="hE">20,6 млн</b></div>
+        <div><small>Выплаты до конца</small><b class="num">−12,3 млн</b></div>
+      </div>
+      <div class="scn" role="group" aria-label="Сценарий"><button data-k=".85">Осторожный</button><button data-k="1" class="on">Реалистичный</button><button data-k="1.12">Целевой</button></div>
+      <div class="mini-chart" id="hChart"></div>
+      <div class="fnote">Демонстрационные цифры. Прогноз собирается из выкупленных посылок, посылок в пути, оформленных заказов и будущих продаж.</div>
+    </div>
+  </div>
+</section>
+
+<div class="classic"><div class="wrap">
+  <h3>Классический управленческий учёт — внутри<small>Всё, что положено финансовому директору, без доплат за модули</small></h3>
+  <div class="pills"><span class="pill">ДДС</span><span class="pill">ОПиУ</span><span class="pill">Кассовый ОФР</span><span class="pill">Управленческий баланс</span><span class="pill">План-факт</span><span class="pill">Бюджеты БДДС и БДР</span><span class="pill">Платёжный календарь</span><span class="pill">Статьи и контрагенты</span><span class="pill">Направления и проекты</span><span class="pill">Распределение общих расходов</span></div>
+</div></div>
+
+<section class="s" id="features"><div class="wrap">
+  <div class="s-h"><span class="eyebrow">Чем мы отличаемся</span><h2>Обычный сервис учёта показывает прошлое. Мы считаем, чем закончится месяц</h2><p>Отчёты о прошедшем месяце есть у всех. Нам важнее, чтобы собственник 9-го числа знал, сколько денег будет 30-го, и успел что-то изменить.</p></div>
+  <div class="diff">
+    <div class="dcard lead"><span class="no">01</span><h3>Прогноз финансового результата по воронке продаж</h3>
+      <p>Деньги считаются там, где они рождаются. Система видит, сколько заказов оформлено, сколько посылок в пути и сколько выкуплено, и переводит это в поступления до конца месяца. Рядом строит прогноз выплат по каждой статье, и вы получаете чистый поток и прибыль месяца.</p>
+      <div class="flow"><span>Реклама</span><i>→</i><span>Заявки</span><i>→</i><span>Заказы</span><i>→</i><span>В пути</span><i>→</i><span>Выкуп</span><i>→</i><span class="cash">Деньги в кассе</span></div>
+      <div class="ex">Особенно точно там, где деньги приходят с задержкой: наложенный платёж, рассрочка, маркетплейсы, оплата по этапам.</div></div>
+    <div class="dcard"><span class="no">02</span><h3>План-факт с прогнозом в каждой строке</h3><p>Не просто «бюджет и факт». В каждой строке: план, факт на сегодня, сколько ещё придёт или уйдёт и чем закончится месяц. Метод прогноза выбирается в строке: как в прошлые месяцы, по темпу, по плану или вручную.</p><div class="ex">Недельный план-факт: видно, на какой неделе пошло не так.</div></div>
+    <div class="dcard"><span class="no">03</span><h3>Объясняет отклонения в рублях</h3><p>Если прогноз ниже плана, система раскладывает разницу по причинам: недобор поступлений, перерасход рекламы, зарплаты раньше графика. Сразу видно, куда смотреть.</p><div class="ex">«Почему прогноз ниже плана на 1,2 млн?» — ответ на одном экране.</div></div>
+    <div class="dcard"><span class="no">04</span><h3>Сквозная аналитика: от рекламного рубля до прибыли</h3><p>Рекламные кабинеты, CRM и деньги связаны в одну цепочку. Окупаемость рекламы считается по деньгам в кассе, а не по дешёвым заявкам.</p><div class="ex">Видно, какой источник трафика приносит прибыль после выкупа, возвратов и доставки.</div></div>
+    <div class="dcard"><span class="no">05</span><h3>Сверяет источники и находит ошибки</h3><p>Факт сверяется в нескольких местах: журнал платежей, отчёт ОФР, листы план-факта. Расхождения подсвечиваются со ссылкой на строку.</p><div class="ex">Реальный случай: формула факта в план-факте съехала на строку, и реклама на 6,5 млн попала в CPA. Система показала это в первый же день.</div></div>
+    <div class="dcard wide"><span class="no">06</span><h3>Работает поверх того, что у вас уже есть</h3><p>Не нужно переезжать и заново размечать статьи. Подключаемся к вашей Google-таблице, CRM или выпискам и обновляем отчёты каждое утро. Новые статьи подхватываются сами.</p><div class="ex">Чистая прибыль по направлениям, с долями производства и управляющей компании.</div></div>
+  </div>
+</div></section>
+
+<section class="s demo" id="demo"><div class="wrap">
+  <div class="s-h"><span class="eyebrow">Как это выглядит</span><h2>Один экран — и понятно, что будет с деньгами</h2><p>Демонстрационные данные: ноябрь, прошло 9 дней из 30.</p></div>
+  <div class="dtabs" role="tablist"><button class="on" data-t="pf" role="tab">План-факт месяца</button><button data-t="cal" role="tab">Платёжный календарь</button><button data-t="dds" role="tab">ДДС</button></div>
+  <div class="screen" id="screen"></div>
+  <div class="callouts"><div><b>Поступления и выплаты рядом</b>Столбцы стоят бок о бок и растут вверх. Сразу видно, покрывают ли деньги расходы.</div><div><b>Клик по любой цифре</b>Под каждой суммой лежат операции: дата, контрагент, статья, комментарий.</div><div><b>Сценарии</b>Осторожный, реалистичный и целевой прогноз переключаются одной кнопкой.</div></div>
+</div></section>
+
+<section class="s" id="compare"><div class="wrap">
+  <div class="s-h"><span class="eyebrow">Сравнение</span><h2>Что вы получаете сверх типичного сервиса учёта</h2><p>Классика есть и у них, и у нас. Разница в том, умеет ли система смотреть вперёд и объяснять цифры.</p></div>
+  <div class="cmp"><div class="tw"><table>
+    <thead><tr><th style="width:38%">Возможность</th><th>Типичный сервис учёта</th><th class="us">Деньги в кассу</th></tr></thead>
+    <tbody>
+     <tr><td>ДДС, ОПиУ, баланс, бюджеты</td><td><span class="yes">✓ Есть</span><small>часто по модулям и тарифам</small></td><td class="us"><span class="yes">✓ Есть</span><small>в базовой поставке</small></td></tr>
+     <tr><td>Платёжный календарь</td><td><span class="yes">✓ Есть</span><small>по введённым платежам</small></td><td class="us"><span class="yes">✓ Есть</span><small>плюс автопрогноз регулярных платежей и ожидаемых поступлений</small></td></tr>
+     <tr><td>План-факт</td><td><span class="part">◐ Бюджет и факт</span></td><td class="us"><span class="yes">✓ По строкам и неделям</span><small>с прогнозом до конца месяца в каждой строке</small></td></tr>
+     <tr><td>Прогноз результата месяца по воронке продаж</td><td><span class="no">— Нет</span></td><td class="us"><span class="yes">✓ Есть</span><small>заказы, посылки в пути, выкуп переводятся в деньги</small></td></tr>
+     <tr><td>Сквозная аналитика: реклама → деньги</td><td><span class="no">— Нет</span><small>учёт начинается с выписки</small></td><td class="us"><span class="yes">✓ Есть</span><small>окупаемость рекламы по деньгам в кассе</small></td></tr>
+     <tr><td>Объяснение отклонений от плана</td><td><span class="no">— Нет</span></td><td class="us"><span class="yes">✓ Есть</span><small>причины в рублях на одном экране</small></td></tr>
+     <tr><td>Сверка нескольких источников</td><td><span class="part">◐ Сверка с банком</span></td><td class="us"><span class="yes">✓ Таблицы, CRM, журнал</span><small>подсветка расхождений построчно</small></td></tr>
+     <tr><td>Переход на систему</td><td><span class="part">◐ Перенос учёта</span><small>новые статьи и правила</small></td><td class="us"><span class="yes">✓ Поверх ваших данных</span><small>ваши статьи и таблицы остаются</small></td></tr>
+    </tbody></table></div></div>
+</div></section>
+
+<section class="s" id="start" style="padding-top:0"><div class="wrap">
+  <div class="s-h"><span class="eyebrow">Внедрение</span><h2>Первый прогноз — на ваших цифрах</h2><p>Начинаем не с настройки пустой программы, а с ваших реальных данных.</p></div>
+  <div class="steps">
+   <div class="step"><div class="k">1</div><h3>Подключаем источники</h3><p>Google-таблицу с ОФР и план-фактом, CRM, выписки. Ничего не переносим и не переименовываем.</p></div>
+   <div class="step"><div class="k">2</div><h3>Сверяем и настраиваем</h3><p>Проверяем, что итоги совпадают с вашим учётом до рубля, настраиваем план, направления и правила прогноза.</p></div>
+   <div class="step"><div class="k">3</div><h3>Каждое утро — прогноз</h3><p>Отчёты обновляются автоматически, уведомление приходит с главными цифрами и отклонениями.</p></div>
+  </div>
+  <div class="who">
+   <div><h3>Кому подходит лучше всего</h3><ul><li>Продажи через заявки и отдел продаж</li><li>Наложенный платёж, рассрочка, маркетплейсы</li><li>Несколько направлений с общими расходами</li><li>Собственник хочет видеть месяц заранее</li></ul></div>
+   <div><h3>Сделано практиками</h3><ul><li>Система выросла из управления собственным direct-response бизнесом</li><li>Более 13 лет в лидогенерации и продажах по заявкам</li><li>Каждая функция сначала проверена на своих деньгах</li></ul></div>
+  </div>
+</div></section>
+
+<section class="s" id="faq" style="padding-top:0"><div class="wrap">
+  <div class="s-h"><span class="eyebrow">Вопросы</span><h2>Частые вопросы</h2></div>
+  <div class="faq">
+   <details><summary>Нужно ли переносить учёт в новую программу?</summary><p>Нет. Мы подключаемся к тому, где вы уже ведёте учёт: Google-таблица, CRM, выписки. Ваши статьи и таблицы остаются источником правды.</p></details>
+   <details><summary>Насколько точен прогноз?</summary><p>Прогноз строится по фактическим данным воронки и истории платежей и пересчитывается каждый день. По мере приближения к концу месяца он сходится с фактом, а точность прошлых месяцев видна в отчёте.</p></details>
+   <details><summary>Чем это лучше Excel?</summary><p>Excel хорошо считает то, что в него ввели. Система сама собирает данные, сверяет источники, строит прогноз и показывает, откуда взялась каждая цифра.</p></details>
+   <details><summary>Сколько занимает внедрение?</summary><p>Первые отчёты на ваших данных — в первые дни после подключения источников. Настройка плана, направлений и прогноза — по ходу первого месяца.</p></details>
+   <details><summary>Можно ли смотреть с телефона?</summary><p>Да, отчёты открываются в браузере на любом устройстве, а ежедневная сводка приходит уведомлением.</p></details>
+   <details><summary>Кто видит наши данные?</summary><p>Доступ только у тех, кого вы пригласите. Мы не меняем ваши исходные данные: правки делаются в вашей таблице.</p></details>
+  </div>
+</div></section>
+
+<section class="s formsec" id="form"><div class="wrap">
+  <div>
+    <span class="eyebrow" style="color:var(--green-2)">Заявка</span>
+    <h2 style="margin-top:10px">Покажем прогноз вашего месяца на ваших цифрах</h2>
+    <p class="lead">Оставьте контакты. Мы свяжемся, посмотрим, где вы ведёте учёт, и подготовим демо на ваших данных.</p>
+    <ul><li>Разбор учёта и план-факта: где теряются цифры</li><li>Прогноз текущего месяца по вашей воронке</li><li>Список расхождений, если они есть</li></ul>
+  </div>
+  <form class="lead-form" id="leadForm" novalidate>
+    <div class="f"><label for="f-name">Имя</label><input id="f-name" name="name" autocomplete="name" required></div>
+    <div class="f"><label for="f-company">Компания</label><input id="f-company" name="company" autocomplete="organization"></div>
+    <div class="f"><label for="f-contact">Телефон или Telegram</label><input id="f-contact" name="contact" placeholder="+7… или @username" required></div>
+    <div class="f"><label for="f-turnover">Оборот в месяц</label><select id="f-turnover" name="turnover"><option value="">Выберите</option><option>до 5 млн ₽</option><option>5–20 млн ₽</option><option>20–50 млн ₽</option><option>50–150 млн ₽</option><option>более 150 млн ₽</option></select></div>
+    <div class="f full"><span class="lbl" id="l-now">Где сейчас ведёте учёт</span><div class="chips" role="group" aria-labelledby="l-now"></div></div>
+    <div class="f full"><span class="lbl" id="l-need">Что важнее всего</span><div class="chips" role="group" aria-labelledby="l-need" id="needChips"></div></div>
+    <div class="f full"><label for="f-note">Комментарий</label><textarea id="f-note" name="note" placeholder="Например: хотим видеть прогноз кассы и окупаемость рекламы по деньгам"></textarea></div>
+    <label class="consent"><input type="checkbox" id="f-consent" required>Согласен на обработку персональных данных для связи по заявке</label>
+    <div class="form-foot"><button class="btn green" type="submit" id="sendBtn">Отправить заявку</button><span class="err" id="formErr" role="alert"></span></div>
+  </form>
+</div></section>
+
+<footer><div class="wrap"><span>© 2026 «Деньги в кассу» — управленческий учёт с прогнозом</span><span>Цифры на странице — демонстрационные</span></div></footer>
+
+<script src="/assets/lead-delivery.js"></script>
+<script>
+(()=>{
+const $=s=>document.querySelector(s);
+const nf=(v,d=1)=>new Intl.NumberFormat('ru-RU',{minimumFractionDigits:d,maximumFractionDigits:d}).format(v);
+const fM=v=>nf(v/1e6,v>=1e7||v<=-1e7?1:2)+' млн';
+
+/* --- гильошир в первом экране --- */
+function guilloche(){const c=$('#guilloche'),r=c.getBoundingClientRect(),dpr=Math.min(2,window.devicePixelRatio||1);c.width=r.width*dpr;c.height=r.height*dpr;const g=c.getContext('2d');g.scale(dpr,dpr);
+  const W=r.width,H=r.height;const draw=(cx,cy,R,rr,d,n,col,lw)=>{g.beginPath();for(let t=0;t<=Math.PI*2*n;t+=.01){const x=(R-rr)*Math.cos(t)+d*Math.cos((R-rr)/rr*t),y=(R-rr)*Math.sin(t)-d*Math.sin((R-rr)/rr*t);t?g.lineTo(cx+x,cy+y):g.moveTo(cx+x,cy+y);}g.strokeStyle=col;g.lineWidth=lw;g.stroke();};
+  const cx=W*.78,cy=H*.48,s=Math.min(W,H);
+  draw(cx,cy,s*.42,s*.42/7.3,s*.12,11,'rgba(20,195,137,.20)',.7);
+  draw(cx,cy,s*.33,s*.33/5.2,s*.09,9,'rgba(120,170,255,.16)',.7);
+  draw(cx,cy,s*.24,s*.24/9.1,s*.06,13,'rgba(20,195,137,.14)',.6);
+  g.globalAlpha=.5;for(let i=0;i<14;i++){g.beginPath();for(let x=0;x<=W;x+=4){const y=H*.82+i*7+Math.sin(x/38+i*.5)*9+Math.sin(x/97)*6;x?g.lineTo(x,y):g.moveTo(x,y);}g.strokeStyle='rgba(255,255,255,.06)';g.lineWidth=1;g.stroke();}}
+guilloche();let gT;addEventListener('resize',()=>{clearTimeout(gT);gT=setTimeout(guilloche,150);});
+
+/* --- карточка прогноза: сценарии --- */
+const FACT=6131070,EXP=[9276591,[6772813,465536,238927,3884575]],OUT_FACT=-4827436,OUT_REST=-12300000,PLAN=9200000;
+function bars(vals,labels){const W=420,H=120,mx=Math.max(...vals.flat()),bw=W/labels.length;let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Поступления и выплаты по неделям">`;
+  s+=`<line x1="0" x2="${W}" y1="${H-16}" y2="${H-16}" stroke="#dbe3e0"/>`;
+  labels.forEach((l,i)=>{const [a,b]=vals[i],x=i*bw+bw/2,hA=(H-26)*a/mx,hB=(H-26)*b/mx;s+=`<rect x="${x-17}" y="${H-16-hA}" width="15" height="${hA}" rx="2" fill="#0e9f6e" opacity="${i<2?1:.45}"/><rect x="${x+2}" y="${H-16-hB}" width="15" height="${hB}" rx="2" fill="#d64532" opacity="${i<2?1:.45}"/><text x="${x}" y="${H-3}" text-anchor="middle" font-size="10" fill="#6a7889" font-family="Onest">${l}</text>`;});
+  return s+'</svg>';}
+function hero(k){const exp=EXP[0]+EXP[1].reduce((a,b)=>a+b,0)*k,net=FACT+exp+OUT_FACT+OUT_REST,d=net-PLAN;
+  $('#hV').textContent=nf(net/1e6,1);$('#hE').textContent=fM(exp);const c=$('#hD');c.textContent=(d>=0?'+':'−')+nf(Math.abs(d)/1e6,1)+' млн к плану';c.className='chipd '+(d>=0?'up':'down');
+  const wk=[[4.17,4.33],[1.96,.5],[7.6*k,8.3],[7.4*k,4.4],[5.6*k,4.4]];$('#hChart').innerHTML=bars(wk,['нед. 45','нед. 46','нед. 47','нед. 48','нед. 49']);}
+document.querySelector('.scn').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('.scn button').forEach(x=>x.classList.toggle('on',x===b));hero(+b.dataset.k);});
+hero(1);
+
+/* --- демо-экраны --- */
+const prog=(f,p,t)=>{const r=Math.max(0,Math.min(1.2,f/p));const col=t==null?'#0e9f6e':r>=t*.95?'#0e9f6e':r>=t*.8?'#c07a0c':'#d64532';return`<span class="prog"><span style="width:${Math.min(100,r*100)}%;background:${col}"></span>${t!=null?`<i style="left:${t*100}%"></i>`:''}</span>${Math.round(f/p*100)}%`;};
+const n0=v=>new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0}).format(v);
+const PF=[['Поступления от продаж',33000000,6056822,26400000],['Возвраты покупателям',-1000000,-96284,-620000],['Рекламные бюджеты',-7800000,-2900000,-8640000],['ЗП отдела продаж',-3800000,0,-3800000],['ЗП подрядчиков',-1200000,-1232704,-1232704],['Связь отдела продаж',-720000,-231489,-690000],['Курьерские услуги',-825000,0,-825000],['Доля общих расходов',-7756000,-1058000,-7800000]];
+const V={
+ pf:()=>{const t=.3,tot=PF.reduce((a,r)=>[a[0]+r[1],a[1]+r[2],a[2]+r[3]],[0,0,0]);const why=PF.map(r=>[r[0],r[3]-r[1]]).filter(x=>Math.abs(x[1])>10000).sort((a,b)=>Math.abs(b[1])-Math.abs(a[1])).slice(0,4),mx=Math.abs(why[0][1]);
+  return`<div class="sh"><h4>План-факт · ноябрь</h4><span class="sub">факт на 09.11 · черта на полосе — доля прошедших дней</span></div>
+  <div class="tw"><table class="t"><thead><tr><th>Статья</th><th>План</th><th>Факт</th><th style="text-align:left">Выполнение</th><th>Прогноз месяца</th><th>Прогноз − план</th></tr></thead><tbody>
+  ${PF.map(r=>`<tr><td>${r[0]}</td><td class="num">${n0(r[1])}</td><td class="num">${n0(r[2])}</td><td style="text-align:left">${prog(r[2],r[1],t)}</td><td class="num"><b>${n0(r[3])}</b></td><td class="num ${r[3]-r[1]>=0?'pos':'neg'}">${r[3]-r[1]>0?'+':''}${n0(r[3]-r[1])}</td></tr>`).join('')}
+  <tr class="tot"><td>Чистый денежный поток</td><td class="num">${n0(tot[0])}</td><td class="num">${n0(tot[1])}</td><td></td><td class="num">${n0(tot[2])}</td><td class="num ${tot[2]-tot[0]>=0?'pos':'neg'}">${tot[2]-tot[0]>0?'+':''}${n0(tot[2]-tot[0])}</td></tr></tbody></table></div>
+  <div class="why"><b style="font-size:13px">Почему прогноз отличается от плана</b>${why.map(([n,d])=>`<div><span>${n}</span><span class="tr"><span style="${d>0?'left':'right'}:50%;width:${Math.abs(d)/mx*50}%;background:${d>0?'#0e9f6e':'#d64532'}"></span></span><b class="num ${d>0?'pos':'neg'}" style="text-align:right;color:${d>0?'#0e9f6e':'#d64532'}">${d>0?'+':''}${nf(d/1e6,2)} млн</b></div>`).join('')}</div>`;},
+ cal:()=>{const days=[];let b=4200000;for(let i=0;i<21;i++){const d=10+i,wd=(d+0)%7;const inn=[5,6].includes(wd%7)?0:880000+((d*37)%9)*60000;const out=d===10?-3900000:d===25?-4300000:d===28?-1900000:-(150000+((d*53)%7)*90000);b+=inn+out;days.push([d,inn,out,b]);}
+  const W=880,H=220,mx=Math.max(...days.map(x=>Math.max(x[1],-x[2],x[3]))),mn=Math.min(0,...days.map(x=>x[3])),y=v=>12+(H-40)*(mx-v)/(mx-mn),bw=W/days.length,min=days.reduce((a,c)=>c[3]<a[3]?c:a);
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%"><line x1="0" x2="${W}" y1="${y(0)}" y2="${y(0)}" stroke="#dbe3e0"/><line x1="0" x2="${W}" y1="${y(2000000)}" y2="${y(2000000)}" stroke="#d64532" stroke-dasharray="5 4" opacity=".7"/>`;
+  days.forEach((d,i)=>{const x=i*bw+bw/2;if(d===min)s+=`<rect x="${i*bw}" y="8" width="${bw}" height="${H-34}" fill="#fdecea"/>`;s+=`<rect x="${x-11}" y="${y(d[1])}" width="10" height="${y(0)-y(d[1])}" rx="2" fill="#0e9f6e"/><rect x="${x+1}" y="${y(-d[2])}" width="10" height="${y(0)-y(-d[2])}" rx="2" fill="#d64532"/>${i%2?'':`<text x="${x}" y="${H-6}" text-anchor="middle" font-size="10" fill="#6a7889" font-family="Onest">${d[0]}.11</text>`}`;});
+  s+=`<path d="${days.map((d,i)=>(i?'L':'M')+(i*bw+bw/2)+' '+y(d[3])).join('')}" fill="none" stroke="#173a68" stroke-width="2.2"/></svg>`;
+  return`<div class="sh"><h4>Платёжный календарь · 30 дней</h4><span class="sub">минимум ${min[0]}.11: <b class="num" style="color:${min[3]<2e6?'#d64532':'#0b1b2e'}">${n0(min[3])} ₽</b> · порог 2 000 000 ₽</span></div>
+  <div class="lg"><span><i style="background:#0e9f6e"></i>Ожидаемые поступления</span><span><i style="background:#d64532"></i>Плановые выплаты</span><span><i style="background:#173a68;height:2px"></i>Остаток на конец дня</span></div>${s}
+  <p class="sub" style="margin:8px 0 0">Регулярные платежи прогнозируются по истории, поступления — по прогнозу месяца. Снимите галочку с платежа, чтобы увидеть эффект переноса.</p>`;},
+ dds:()=>{const M=['Июл','Авг','Сен','Окт','Ноя*'],I=[18.7,16.8,24.4,23.7,6.1],O=[12.7,12.2,13.4,12.6,4.8];const rows=[['Поступления от покупателей',I.map(v=>v*.99)],['Маркетинг',O.map(v=>-v*.55)],['Отдел продаж',O.map(v=>-v*.22)],['IT и автоматизация',O.map(v=>-v*.07)],['Управление',O.map(v=>-v*.06)],['Прочие выплаты',O.map(v=>-v*.1)]];
+  return`<div class="sh"><h4>Движение денежных средств</h4><span class="sub">по дате платежа · млн ₽ · клик по сумме открывает операции</span></div>
+  <div class="tw"><table class="t"><thead><tr><th>Статья</th>${M.map(m=>`<th>${m}</th>`).join('')}<th>Итого</th></tr></thead><tbody>
+  ${rows.map(([n,v])=>`<tr><td>${n}</td>${v.map(x=>`<td class="num">${nf(x,1)}</td>`).join('')}<td class="num"><b>${nf(v.reduce((a,b)=>a+b,0),1)}</b></td></tr>`).join('')}
+  <tr class="tot"><td>Чистый денежный поток</td>${I.map((v,i)=>`<td class="num pos">${nf(v-O[i],1)}</td>`).join('')}<td class="num pos">${nf(I.reduce((a,b)=>a+b,0)-O.reduce((a,b)=>a+b,0),1)}</td></tr></tbody></table></div>
+  <p class="sub" style="margin:10px 0 0">* ноябрь — по 9-е число. Переключение: по отделам, по статьям ОФР, % от поступлений, изменение к прошлому месяцу.</p>`;}};
+function showT(k){$('#screen').innerHTML=V[k]();document.querySelectorAll('.dtabs button').forEach(b=>{b.classList.toggle('on',b.dataset.t===k);b.setAttribute('aria-selected',b.dataset.t===k);});}
+document.querySelector('.dtabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)showT(b.dataset.t);});showT('pf');
+
+/* --- форма --- */
+const NOW=['Excel / Google-таблицы','1С','ПланФакт','Adesk','Финтабло','Учёт не ведём'],NEED=['Прогноз месяца','План-факт','Платёжный календарь','Окупаемость рекламы по деньгам','ДДС и ОПиУ'];
+const chips=(name,list)=>list.map((t,i)=>`<label><input type="checkbox" name="${name}" value="${t}">${t}</label>`).join('');
+document.querySelector('[aria-labelledby="l-now"]').innerHTML=chips('now',NOW);$('#needChips').innerHTML=chips('need',NEED);
+const form=$('#leadForm');
+const addHidden=(name,value)=>{let input=form.querySelector(`input[type="hidden"][name="${name}"]`);if(!input){input=document.createElement('input');input.type='hidden';input.name=name;form.appendChild(input);}input.value=value??'';};
+form.addEventListener('submit',async e=>{e.preventDefault();const err=$('#formErr');err.textContent='';
+  const fd=new FormData(form),lead={name:(fd.get('name')||'').trim(),company:(fd.get('company')||'').trim(),contact:(fd.get('contact')||'').trim(),turnover:fd.get('turnover')||'',now:fd.getAll('now'),need:fd.getAll('need'),note:(fd.get('note')||'').trim(),at:new Date().toISOString()};
+  if(!lead.name){err.textContent='Укажите имя.';$('#f-name').focus();return;}
+  if(!lead.contact){err.textContent='Укажите телефон или Telegram, чтобы мы могли связаться.';$('#f-contact').focus();return;}
+  if(!$('#f-consent').checked){err.textContent='Нужно согласие на обработку данных.';return;}
+  const btn=$('#sendBtn');btn.disabled=true;btn.textContent='Отправляем…';
+  const leadId=globalThis.crypto?.randomUUID?.()||`lead-${Date.now()}-${Math.random().toString(36).slice(2,10)}`;
+  const fields={'Компания':lead.company,'Оборот в месяц':lead.turnover,'Где ведут учёт':lead.now.join(', '),'Что важнее всего':lead.need.join(', '),'Комментарий':lead.note,'Время заявки':lead.at,...(window.AgentaniumLeads?.tracking?.()||{})};
+  let crmFailed=false;
+  try{await window.AgentaniumLeads.send({kind:'application',leadId,source:'Финут · управленческий учёт',name:lead.name,phone:lead.contact,email:'',fields});}catch(sendError){crmFailed=true;}
+  form.action='https://formsubmit.co/vkuskichev@gmail.com';
+  form.method='POST';
+  addHidden('_subject','Новая заявка · Финут');
+  addHidden('_template','table');
+  addHidden('_captcha','false');
+  addHidden('_next','https://agentanium.ru/thankyou');
+  addHidden('Источник','Финут · управленческий учёт');
+  addHidden('ID заявки',leadId);
+  Object.entries(fields).forEach(([key,value])=>addHidden(key,value));
+  if(crmFailed)addHidden('Доставка в CRM','Требует проверки — заявка продублирована на email');
+  HTMLFormElement.prototype.submit.call(form);
+});
+})();
+</script>
+</body>
+</html>
