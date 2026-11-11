@@ -1,0 +1,1 @@
+// Financial data is bundled inside the encrypted report.\nwindow.DATA=null;\n
